@@ -5,7 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "start": "npm run dev & npm run server",
+    "dev": "parcel static/index.html",
     "server": "node api/server.js",
+    "build": "parcel build static/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +23,8 @@
   "homepage": "https://github.com/orlovse/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
