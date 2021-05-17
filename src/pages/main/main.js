@@ -1,9 +1,15 @@
-const MainTemplate = `
-<div>{{test}}</div>
+import { createTemplate } from "../../template";
+import menu from "../../components/menu";
+
+const mainTemplate = `
+  <div class={{name}}>
+    {{menu}}
+  </div>
 `;
 
-const MainData = {
-  test: "New home page",
+const mainData = {
+  name: "test",
+  menu: createTemplate(menu),
 };
 
-export default [MainTemplate, MainData];
+export default createTemplate(mainTemplate, mainData);

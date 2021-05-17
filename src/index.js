@@ -1,5 +1,5 @@
 import "../static/styles.scss";
-import { renderTemplate } from "./template";
+import { mountTemplate, createTemplate } from "./template";
 import main from "./pages/main";
 import error from "./pages/error";
 import login from "./pages/login";
@@ -16,7 +16,7 @@ const appRouts = {
 };
 
 if (appRouts[path]) {
-  renderTemplate(appRouts[path]);
+  mountTemplate(appRouts[path]);
 } else {
-  renderTemplate(appRouts["/error"]);
+  mountTemplate(appRouts["/error"]);
 }

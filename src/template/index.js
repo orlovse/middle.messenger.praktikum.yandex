@@ -3,7 +3,7 @@ import { getObjectField } from "../utils";
 const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
 const app = document.querySelector("#app");
 
-export const renderTemplate = ([templ, templData]) => {
+export const createTemplate = (templ, templData) => {
   let key = null;
   while ((key = TEMPLATE_REGEXP.exec(templ))) {
     if (key[1]) {
@@ -12,5 +12,9 @@ export const renderTemplate = ([templ, templData]) => {
       templ = templ.replace(new RegExp(key[0], "gi"), data);
     }
   }
-  app.innerHTML = templ;
+  return templ;
+};
+
+export const mountTemplate = (template, selector) => {
+  app.innerHTML = template;
 };
