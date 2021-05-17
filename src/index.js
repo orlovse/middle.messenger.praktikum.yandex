@@ -1,4 +1,6 @@
 import "../static/styles.scss";
+import {} from "./pages/main";
+import { renderTemplate } from "./template";
 
 const path = window.location.pathname;
 const appRouts = {
@@ -11,5 +13,7 @@ const appRouts = {
 };
 
 if (appRouts[path]) {
+  renderTemplate(main);
+  console.log("main", main);
   console.log(appRouts[path]);
 }

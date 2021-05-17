@@ -3,7 +3,7 @@ import { getObjectField } from "../utils";
 const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
 const app = document.querySelector("#app");
 
-export const renderTemplate = (templ, templData) => {
+export const renderTemplate = ([templ, templData]) => {
   let key = null;
   while ((key = TEMPLATE_REGEXP.exec(templ))) {
     if (key[1]) {
