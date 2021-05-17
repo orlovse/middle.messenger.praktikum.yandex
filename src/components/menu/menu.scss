@@ -1,0 +1,19 @@
+.menu {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  a:hover {
+    color: rgb(223, 130, 130);
+  }
+}

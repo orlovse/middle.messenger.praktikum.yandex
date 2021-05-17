@@ -1,7 +1,8 @@
 import { createTemplate } from "../../template";
+import "./menu.scss";
 
 const menuTemplate = `
-<div>
+<div class="menu">
   {{menuTemplateList}}
 </div>
 `;
