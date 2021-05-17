@@ -14,7 +14,11 @@ const chatTemplate = `
       <div class="badge"><span>2</span></div>
     </div>
   </div>
-  <div class="main-field"></div>
+  <div class="main-field">
+    <div class="message my">My test message with mock text</div>
+    <div class="message">Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et. Voluptatem deleniti quam sunt in odit nam aperiam doloremque eligendi minus, id sequi. Iste facilis voluptatem sapiente quo quas et doloremque!
+    </div>
+  </div>
 </div>
 `;
 
