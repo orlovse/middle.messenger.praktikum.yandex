@@ -1,0 +1,24 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "chat app",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "server": "node api/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orlovse/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Sergey Orlov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orlovse/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/orlovse/middle.messenger.praktikum.yandex#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
