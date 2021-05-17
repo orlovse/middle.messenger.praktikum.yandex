@@ -1,19 +1,20 @@
 import "../static/styles.scss";
-import {} from "./pages/main";
 import { renderTemplate } from "./template";
+import main from "./pages/main";
+import error from "./pages/error";
 
 const path = window.location.pathname;
 const appRouts = {
-  "/": 1,
+  "/": main,
   "/login": 2,
   "/signin": 3,
   "/profile": 4,
   "/chat": 5,
-  "/error": 6,
+  "/error": error,
 };
 
 if (appRouts[path]) {
-  renderTemplate(main);
-  console.log("main", main);
-  console.log(appRouts[path]);
+  renderTemplate(appRouts[path]);
+} else {
+  renderTemplate(appRouts["/error"]);
 }
