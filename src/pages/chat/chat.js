@@ -7,9 +7,20 @@ import Contact from "../../components/contact";
 const Chat = (props) => {
   const chatTemplate = `
   <div class="chat">
-    <div class="contacts-list">
+    <div class="panel">
       {{Search}}
-      {{Contact}}
+      <div class="contact-list">
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+        {{Contact}}
+      </div>
     </div>
     <div class="main-field">
       {{Message}}
