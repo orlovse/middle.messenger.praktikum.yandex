@@ -8,7 +8,7 @@ const Menu = (props) => {
   </div>
   `;
 
-  const menuDate = {
+  const menuData = {
     menuList: [
       { name: "Main", link: "/" },
       { name: "Login", link: "/login" },
@@ -21,7 +21,7 @@ const Menu = (props) => {
         .join("");
     },
   };
-  return createTemplate(menuTemplate, menuDate);
+  return createTemplate(menuTemplate, menuData);
 };
 
 export default Menu;

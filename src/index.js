@@ -12,7 +12,7 @@ const appRouts = {
   "/login": Login,
   "/profile": Profile,
   "/chat": Chat,
-  "/error": Error({ type: "404" }),
+  "/error": Error({ type: "500" }),
 };
 
 if (appRouts[path]) {

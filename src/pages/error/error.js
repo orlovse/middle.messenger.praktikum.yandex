@@ -6,7 +6,7 @@ const Error = (props) => {
   <div class="error">
     <div class="window">
       <p class="title">{{props.type}}</p>
-      <a>Back to chats</a>
+      <a href="/">Back to chats</a>
     </div>
   </div>
   `;

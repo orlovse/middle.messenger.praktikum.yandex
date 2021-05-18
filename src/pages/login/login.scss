@@ -1,0 +1,22 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  padding: 0 2rem;
+  background: rgb(68, 68, 68);
+  background: radial-gradient(circle,
+      rgb(32, 32, 32) 15%,
+      rgb(68, 68, 68) 41%,
+      rgb(96, 101, 107) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .window {
+    max-width: 600px;
+    height: 60%;
+    background-color: #1e2022;
+    border-radius: 2rem;
+    color: rgb(218, 218, 218);
+    padding: 2rem;
+  }
+}
