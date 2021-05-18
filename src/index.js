@@ -17,13 +17,7 @@ const appRouts = {
   "/error": Error({ type: "500" }),
 };
 
-console.log("appRouts[path]", appRouts[path]);
-console.log(
-  "layout",
-  Layout({ child: appRouts[path] || Error({ type: "404" }) })
-);
-
-mountTemplate(Layout({ child: appRouts[path] || Error({ type: "404" }) }));
+mountTemplate(Layout({ child: appRouts["/chat"] || Error({ type: "404" }) }));
 
 // if (appRouts[path]) {
 //   mountTemplate(appRouts[path]);
