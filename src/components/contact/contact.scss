@@ -1,0 +1,29 @@
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 3rem;
+  background: #292c2d;
+  padding: 0.5rem 1rem;
+  transition: 0.5s;
+  box-shadow: 1px 29px 52px -20px rgba(0, 0, 0, 1);
+
+  &:hover {
+    box-shadow: 1px 10px 42px -15px rgba(0, 0, 0, 1);
+  }
+
+
+
+  .title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    font-weight: 200;
+  }
+
+
+}

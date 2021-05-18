@@ -1,0 +1,13 @@
+.badge {
+  font-size: 0.8rem;
+  //transform: translate(20%);
+  text-align: center;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: var(--color-primary);
+
+  span {
+    vertical-align: middle;
+  }
+}
