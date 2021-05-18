@@ -17,6 +17,8 @@ const appRouts = {
   "/error": Error({ type: "500" }),
 };
 
+console.log("test");
+
 mountTemplate(Layout({ child: appRouts[path] || Error({ type: "404" }) }));
 
 // if (appRouts[path]) {
