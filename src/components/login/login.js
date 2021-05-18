@@ -15,7 +15,7 @@ const LoginComponen = (props) => {
   const loginData = {
     LoginInput: Input({ label: "Login", type: "text" }),
     PasswordInput: Input({ label: "Password", type: "password" }),
-    SubmitButton: Input({ type: "button" }),
+    SubmitButton: Input({ label: "Enter", type: "submit", value: "Enter" }),
     handleSubmit: () => {
       console.log("click");
     },

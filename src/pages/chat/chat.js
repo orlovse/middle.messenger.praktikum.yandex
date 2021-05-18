@@ -18,7 +18,7 @@ const Chat = (props) => {
     </div>
     <div class="main-field">
       {{Message}}
-      <div class="message">Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et. Voluptatem deleniti quam sunt in odit nam aperiam doloremque eligendi minus, id sequi. Iste facilis voluptatem sapiente quo quas et doloremque!
+      {{Message2}}
       </div>
     </div>
   </div>
@@ -26,6 +26,10 @@ const Chat = (props) => {
 
   const chatData = {
     Message: Message({ text: "My test message with mock text", class: "my" }),
+    Message2: Message({
+      text:
+        "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et.",
+    }),
   };
   return createTemplate(chatTemplate, chatData);
 };
