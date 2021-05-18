@@ -12,11 +12,11 @@ const appRouts = {
   "/login": Login,
   "/profile": Profile,
   "/chat": Chat,
-  "/error": Error("500"),
+  "/error": Error({ type: "404" }),
 };
 
 if (appRouts[path]) {
   mountTemplate(appRouts[path]);
 } else {
-  mountTemplate(Error("404"));
+  mountTemplate(Error({ type: "404" }));
 }

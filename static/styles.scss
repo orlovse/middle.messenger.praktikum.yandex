@@ -12,3 +12,14 @@ input {
   text-decoration: none;
   outline: none;
 }
+
+a {
+  text-decoration: none;
+  color: rgb(218, 218, 218);
+  padding: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(54, 54, 206);
+  }
+}
