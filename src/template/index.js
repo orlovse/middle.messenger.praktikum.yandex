@@ -1,6 +1,6 @@
 import { getObjectField } from "../utils";
 
-const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
+const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/i;
 const app = document.querySelector("#app");
 
 export const createTemplate = (templ, templData) => {
@@ -8,11 +8,11 @@ export const createTemplate = (templ, templData) => {
   while ((key = TEMPLATE_REGEXP.exec(templ))) {
     if (key[1]) {
       const templValue = key[1].trim();
-      let data = getObjectField(templData, templValue);
+      const data = getObjectField(templData, templValue);
       if (typeof data === "function") {
         data();
       }
-      templ = templ.replace(new RegExp(key[0], "gi"), data);
+      templ = templ.replace(new RegExp(key[0], "i"), data);
     }
   }
   return templ;
