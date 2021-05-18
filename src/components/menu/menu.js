@@ -16,7 +16,7 @@ const Menu = (props) => {
       { name: "Chat", link: "/chat" },
     ],
     menuTemplateList() {
-      return menuDate.menuList
+      return menuData.menuList
         .map((menu) => `<a href=${menu.link}>${menu.name}</a>`)
         .join("");
     },

@@ -3,14 +3,15 @@ import "./input.scss";
 
 const Input = (props) => {
   const inputTemplate = `
-    <input class="input" placeholder={{placeholder}} type={{type}} />
+    <input class="input" placeholder={{placeholder}} type={{type}} value={{value}} />
   `;
 
-  console.log("props", props.type);
+  console.log("props", props);
   const inputData = {
     props,
-    placeholder: props.label,
-    type: props.type,
+    placeholder: props.label || "label",
+    type: props.type || "type",
+    value: props.value || "value",
   };
 
   return createTemplate(inputTemplate, inputData);

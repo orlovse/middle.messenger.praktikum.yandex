@@ -11,12 +11,12 @@ const Error = (props) => {
   </div>
   `;
 
-  const errorDate = {
+  const errorData = {
     test: "error page",
     props,
   };
 
-  return createTemplate(errorTemplate, errorDate);
+  return createTemplate(errorTemplate, errorData);
 };
 
 export default Error;

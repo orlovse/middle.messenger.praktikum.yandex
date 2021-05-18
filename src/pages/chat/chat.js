@@ -1,5 +1,6 @@
 import { createTemplate } from "../../template";
 import "./chat.scss";
+import Message from "../../components/message";
 
 const Chat = (props) => {
   const chatTemplate = `
@@ -16,15 +17,16 @@ const Chat = (props) => {
       </div>
     </div>
     <div class="main-field">
-      <div class="message my">My test message with mock text</div>
+      {{Message}}
       <div class="message">Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et. Voluptatem deleniti quam sunt in odit nam aperiam doloremque eligendi minus, id sequi. Iste facilis voluptatem sapiente quo quas et doloremque!
       </div>
     </div>
   </div>
   `;
 
-  const chatData = {};
-
+  const chatData = {
+    Message: Message({ text: "My test message with mock text", class: "my" }),
+  };
   return createTemplate(chatTemplate, chatData);
 };
 
