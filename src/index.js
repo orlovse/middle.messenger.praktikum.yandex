@@ -8,6 +8,7 @@ import Chat from "./pages/chat";
 import Layout from "./layout";
 
 const path = window.location.pathname;
+console.log("path", path);
 const appRouts = {
   "/": Main,
   "/login": Login,
