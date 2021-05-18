@@ -8,7 +8,10 @@ export const createTemplate = (templ, templData) => {
   while ((key = TEMPLATE_REGEXP.exec(templ))) {
     if (key[1]) {
       const templValue = key[1].trim();
-      const data = getObjectField(templData, templValue);
+      let data = getObjectField(templData, templValue);
+      if (typeof data === "function") {
+        data();
+      }
       templ = templ.replace(new RegExp(key[0], "gi"), data);
     }
   }
@@ -16,5 +19,8 @@ export const createTemplate = (templ, templData) => {
 };
 
 export const mountTemplate = (template, selector) => {
-  app.innerHTML = template();
+  if (typeof template === "function") {
+    template = template();
+  }
+  app.innerHTML = template;
 };

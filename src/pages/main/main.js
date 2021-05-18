@@ -13,7 +13,7 @@ const Main = (props) => {
     menu: Menu,
   };
 
-  createTemplate(mainTemplate, mainData);
+  return createTemplate(mainTemplate, mainData);
 };
 
 export default Main;
