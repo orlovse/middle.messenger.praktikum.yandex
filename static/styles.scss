@@ -10,6 +10,10 @@
   color: var(--text-color);
 }
 
+body {
+  overflow: hidden;
+}
+
 input {
   border: none;
   text-decoration: none;
@@ -30,4 +34,8 @@ button {
   text-decoration: none;
   border: none;
   cursor: pointer;
+}
+
+.wrapper {
+  margin: 1rem 0;
 }

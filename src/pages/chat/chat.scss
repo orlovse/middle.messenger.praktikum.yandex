@@ -29,11 +29,19 @@
     }
   }
 
-  .main-field {
+  .main {
     flex: 70%;
-    height: 80vh;
-    background-color: #1e2022;
-    border-radius: 2rem;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    .main-field {
+
+      height: 80vh;
+      background-color: #1e2022;
+      border-radius: 2rem;
+      padding: 2rem;
+    }
   }
+
+
 }

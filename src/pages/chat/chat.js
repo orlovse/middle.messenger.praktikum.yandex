@@ -3,6 +3,7 @@ import "./chat.scss";
 import Message from "../../components/message";
 import Input from "../../components/input";
 import Contact from "../../components/contact";
+import Sender from "../../components/sender";
 
 const Chat = (props) => {
   const chatTemplate = `
@@ -22,11 +23,18 @@ const Chat = (props) => {
         {{Contact}}
       </div>
     </div>
-    <div class="main-field">
-      {{Message}}
-      {{Message2}}
+    <div class="main">
+      <div class="main-field">
+        {{Message}}
+        {{Message2}}
       </div>
+      <div class="wrapper">
+      {{Sender}}
+      </div>
+
     </div>
+    </div>
+
   </div>
   `;
 
@@ -38,6 +46,7 @@ const Chat = (props) => {
       text:
         "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et.",
     }),
+    Sender: Sender,
   };
   return createTemplate(chatTemplate, chatData);
 };
