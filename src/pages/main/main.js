@@ -1,15 +1,19 @@
 import { createTemplate } from "../../template";
-import menu from "../../components/menu";
+import Menu from "../../components/menu";
 
-const mainTemplate = `
+const Main = (props) => {
+  const mainTemplate = `
   <div class={{name}}>
     {{menu}}
   </div>
 `;
 
-const mainData = {
-  name: "test",
-  menu: createTemplate(menu),
+  const mainData = {
+    name: "test",
+    menu: Menu,
+  };
+
+  createTemplate(mainTemplate, mainData);
 };
 
-export default createTemplate(mainTemplate, mainData);
+export default Main;

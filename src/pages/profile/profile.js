@@ -1,8 +1,12 @@
 import { createTemplate } from "../../template";
 
-const profileTemplate = `
-`;
+const Profile = (props) => {
+  const profileTemplate = `
+  `;
 
-const profileData = {};
+  const profileData = {};
 
-export default createTemplate(profileTemplate, profileData);
+  return createTemplate(profileTemplate, profileData);
+};
+
+export default Profile;

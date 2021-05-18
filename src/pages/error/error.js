@@ -1,11 +1,15 @@
 import { createTemplate } from "../../template";
 
-const errorTemplate = `
-<div>{{test}}</div>
-`;
+const Error = (props) => {
+  const errorTemplate = `
+  <div>{{test}}</div>
+  `;
 
-const errorDate = {
-  test: "error page",
+  const errorDate = {
+    test: "error page",
+  };
+
+  return createTemplate(errorTemplate, errorDate);
 };
 
-export default createTemplate(errorTemplate, errorDate);
+export default Error;

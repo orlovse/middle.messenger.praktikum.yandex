@@ -16,5 +16,5 @@ export const createTemplate = (templ, templData) => {
 };
 
 export const mountTemplate = (template, selector) => {
-  app.innerHTML = template;
+  app.innerHTML = template();
 };

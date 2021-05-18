@@ -1,8 +1,12 @@
 import { createTemplate } from "../../template";
 
-const loginTemplate = `
-`;
+const Login = (props) => {
+  const loginTemplate = `
+  `;
 
-const loginData = {};
+  const loginData = {};
 
-export default createTemplate(loginTemplate, loginData);
+  return createTemplate(loginTemplate, loginData);
+};
+
+export default Login;
