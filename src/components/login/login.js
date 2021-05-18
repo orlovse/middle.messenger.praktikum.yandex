@@ -4,7 +4,7 @@ import Input from "../input";
 
 const LoginComponen = (props) => {
   const loginTemplate = `
-    <form onsubmit="">
+    <form onsubmit="{{handleSubmit}}">
       {{LoginInput}}
       {{PasswordInput}}
       <div class="submit">
@@ -15,7 +15,10 @@ const LoginComponen = (props) => {
   const loginData = {
     LoginInput: Input({ label: "Login", type: "text" }),
     PasswordInput: Input({ label: "Password", type: "password" }),
-    SubmitButton: Input({ type: "submit" }),
+    SubmitButton: Input({ type: "button" }),
+    handleSubmit: () => {
+      console.log("click");
+    },
   };
 
   return createTemplate(loginTemplate, loginData);

@@ -1,15 +1,4 @@
 .profile {
-  width: 100vw;
-  height: 100vh;
-  padding: 0 2rem;
-  background: rgb(68, 68, 68);
-  background: radial-gradient(circle,
-      rgb(32, 32, 32) 15%,
-      rgb(68, 68, 68) 41%,
-      rgb(96, 101, 107) 100%);
-  display: flex;
-  padding: 2rem;
-
   .sheet {
     flex: 80%;
     height: 100%;

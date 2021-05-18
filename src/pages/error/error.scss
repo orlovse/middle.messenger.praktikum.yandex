@@ -1,14 +1,9 @@
 .error {
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(68, 68, 68);
-  background: radial-gradient(circle,
-      rgb(32, 32, 32) 15%,
-      rgb(68, 68, 68) 41%,
-      rgb(96, 101, 107) 100%);
 
   .window {
     display: flex;
