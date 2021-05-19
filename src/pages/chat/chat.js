@@ -11,29 +11,14 @@ const Chat = (props) => {
     <div class="panel">
       {{Search}}
       <div class="contact-list">
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
-        {{Contact}}
+        {{contactsList}}
       </div>
     </div>
     <div class="main">
       <div class="main-field">
-        {{Message}}
-        {{Message2}}
-        {{Message2}}
-        {{Message2}}
-        {{Message2}}
-        {{Message}}
+        {{messagesList}}
       </div>
       {{Sender}}
-
     </div>
     </div>
 
@@ -41,13 +26,39 @@ const Chat = (props) => {
   `;
 
   const chatData = {
-    Contact,
+    contactsList: [
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+      Contact(),
+    ].join(" "),
     Search: Input({ label: "Search" }),
-    Message: Message({ text: "My test message with mock text", class: "my" }),
-    Message2: Message({
-      text:
-        "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et.",
-    }),
+    messagesList: [
+      Message({ text: "My test message with mock text", class: "my" }),
+      Message({
+        text:
+          "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et.",
+      }),
+      Message({
+        text:
+          "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime",
+      }),
+      Message({
+        text:
+          "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime, sit in.Odio deserunt porro nesciunt nostrum labore est rerum et.",
+      }),
+      Message({
+        text:
+          "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime",
+      }),
+      Message({ text: "My test message with mock text", class: "my" }),
+    ].join(" "),
     Sender: Sender,
   };
   return createTemplate(chatTemplate, chatData);
