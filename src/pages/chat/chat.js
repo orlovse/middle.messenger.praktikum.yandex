@@ -28,9 +28,7 @@ const Chat = (props) => {
         {{Message}}
         {{Message2}}
       </div>
-      <div class="wrapper">
       {{Sender}}
-      </div>
 
     </div>
     </div>
