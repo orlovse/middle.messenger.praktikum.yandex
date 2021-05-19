@@ -9,7 +9,7 @@ import Layout from "./layout";
 
 const path = window.location.pathname;
 const appRouts = {
-  "/": Main,
+  "/": Chat,
   "/login": Login,
   "/profile": Profile,
   "/chat": Chat,
