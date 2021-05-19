@@ -18,7 +18,9 @@ const Chat = (props) => {
       <div class="main-field">
         {{messagesList}}
       </div>
-      {{Sender}}
+      <div class="wrapper">
+        {{Sender}}
+      </div>
     </div>
     </div>
 
