@@ -9,6 +9,7 @@ const Message = (props) => {
         {{Avatar}}
       </div>
       {{ props.text }} 
+      <span class="message-date">12:58</span>
     </div>`;
   const messageData = {
     props,

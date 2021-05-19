@@ -13,7 +13,7 @@ const Sender = (props) => {
   `;
   const senderData = {
     props,
-    Input: Input({ name: "Message" }),
+    Input: Input({ label: "Message" }),
     SendButton: Button({ name: "Send" }),
     OptionsButton: Button({ name: "=>" }),
   };
