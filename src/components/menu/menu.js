@@ -14,6 +14,7 @@ const Menu = (props) => {
       { name: "Login", link: "/login" },
       { name: "Profile", link: "/profile" },
       { name: "Chat", link: "/chat" },
+      { name: "Error", link: "/error" },
     ],
     menuTemplateList() {
       return menuData.menuList

@@ -4,11 +4,50 @@
   justify-content: center;
   align-items: center;
 
-  .window {
+  .sheet {
+    position: relative;
     max-width: 600px;
     height: 60%;
     background-color: #1e2022;
     border-radius: 2rem;
     padding: 2rem;
+    overflow: scroll;
   }
+
+  .tabs .tab-panel {
+    opacity: 0;
+    transition: 1s;
+    transform: translateY(100%);
+    position: absolute;
+  }
+
+  .tabs>input:first-child:checked~.tab-panels>.tab-panel:first-child,
+  .tabs>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2) {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .tabs>label:hover,
+  .tabs>input:focus+label,
+  .tabs>input:checked+label {
+    color: var(--color-primary);
+  }
+
+  .tabs {
+    text-align: center;
+
+    // .tab-panels {
+    //   display: flex;
+    // }
+
+    label {
+      padding: 1rem;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+  }
+
 }

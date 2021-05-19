@@ -4,18 +4,27 @@ import Input from "../input";
 
 const LoginComponen = (props) => {
   const loginTemplate = `
-    <form onsubmit="{{handleSubmit}}">
-      {{LoginInput}}
-      {{PasswordInput}}
+    <form onsubmit="{{handleSubmit}}" class="login-form">
+        {{LoginInput}}
+        {{PasswordInput}}
       <div class="submit">
         {{SubmitButton}}
       </div>
     </form>
   `;
   const loginData = {
-    LoginInput: Input({ label: "Login", type: "text" }),
-    PasswordInput: Input({ label: "Password", type: "password" }),
-    SubmitButton: Input({ label: "Enter", type: "submit", value: "Enter" }),
+    LoginInput: Input({ label: "Login", type: "text", class: "mt-2" }),
+    PasswordInput: Input({
+      label: "Password",
+      type: "password",
+      class: "mt-2",
+    }),
+    SubmitButton: Input({
+      label: "Enter",
+      type: "submit",
+      value: "Enter",
+      class: "mt-2",
+    }),
     handleSubmit: () => {
       console.log("click");
     },

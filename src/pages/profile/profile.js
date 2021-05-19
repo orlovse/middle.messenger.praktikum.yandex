@@ -9,12 +9,7 @@ const Profile = (props) => {
     <div class="sheet">
       <div class="avatar"></div>
       <div class="fields">
-        {{InputMail}}
-        {{InputLogin}}
-        {{InputName}}
-        {{InputSurname}}
-        {{InputNickname}}
-        {{InputPhone}}
+        {{fieldsConfig}}
       </div>
       <div class="actions">
         {{Button}}
@@ -24,12 +19,14 @@ const Profile = (props) => {
   `;
 
   const profileData = {
-    InputMail: Input({ name: "email", value: "mail@test.com" }),
-    InputLogin: Input({ name: "login", value: "orlov" }),
-    InputName: Input({ name: "name", value: "Sergey" }),
-    InputSurname: Input({ name: "surname", value: "Orlov" }),
-    InputNickname: Input({ name: "nickname", value: "Sergey" }),
-    InputPhone: Input({ name: "phone", value: "+79140000000" }),
+    fieldsConfig: [
+      Input({ name: "email", value: "mail@test.com", class: "mb-1" }),
+      Input({ name: "login", value: "orlov", class: "mb-1" }),
+      Input({ name: "name", value: "Sergey", class: "mb-1" }),
+      Input({ name: "surname", value: "Orlov", class: "mb-1" }),
+      Input({ name: "nickname", value: "Sergey", class: "mb-1" }),
+      Input({ name: "phone", value: "+79140000000", class: "mb-1" }),
+    ].join(" "),
     Button: Button({ name: "Save" }),
   };
 
