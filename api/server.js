@@ -4,11 +4,11 @@ const PORT = 3000;
 
 const app = express();
 
-app.use(express.static("./static"));
+app.use(express.static("./dist"));
 
-// app.get("/", (req, res) => {
-//   res.status(200).send()
-// })
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "./dist/index.html");
+});
 
 app.listen(PORT, () => {
   console.log(`Server run on port http://localhost:${PORT}`);
