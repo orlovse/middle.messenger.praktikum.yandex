@@ -1,4 +1,4 @@
-PR Print 1: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/1
+PR Sprint 1: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/1
 
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
