@@ -10,7 +10,6 @@ const Menu = (props) => {
 
   const menuData = {
     menuList: [
-      //{ name: "Main", link: "/" },
       { name: "Login", link: "/login" },
       { name: "Profile", link: "/profile" },
       { name: "Chat", link: "/chat" },

@@ -9,9 +9,6 @@ export const createTemplate = (templ, templData) => {
     if (key[1]) {
       const templValue = key[1].trim();
       const data = getObjectField(templData, templValue);
-      // if (typeof data === "function") {
-      //   data();
-      // }
       templ = templ.replace(new RegExp(key[0], "i"), data);
     }
   }
