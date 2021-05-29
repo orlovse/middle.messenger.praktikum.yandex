@@ -9,17 +9,17 @@ const Chat = (props) => {
   const chatTemplate = `
   <div class="chat">
     <div class="panel">
-      {{Search}}
+      {{ Search }}
       <div class="contact-list">
-        {{contactsList}}
+        {{ contactsList }}
       </div>
     </div>
     <div class="main">
       <div class="main-field">
-        {{messagesList}}
+        {{ messagesList }}
       </div>
       <div class="wrapper">
-        {{Sender}}
+        {{ Sender }}
       </div>
     </div>
     </div>

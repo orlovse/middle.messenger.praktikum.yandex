@@ -6,9 +6,9 @@ import Button from "../button";
 const Sender = (props) => {
   const senderTemplate = `
     <div class="sender">
-      {{OptionsButton}}
-      {{Input}}
-      {{SendButton}}
+      {{ OptionsButton }}
+      {{ Input }}
+      {{ SendButton }}
     </div>
   `;
   const senderData = {

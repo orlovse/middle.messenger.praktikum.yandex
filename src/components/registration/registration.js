@@ -4,16 +4,16 @@ import Input from "../input";
 
 const RegistrationComponent = (props) => {
   const registrationTemplate = `
-    <form onsubmit="{{handleSubmit}}" class="registration-form">
-        {{EmailInput}}
-        {{LoginInput}}
-        {{NameInput}}
-        {{SurnameInput}}
-        {{PhoneInput}}
-        {{PasswordInput}}
-        {{PasswordInput}}
+    <form onsubmit="{{ handleSubmit }}" class="registration-form">
+        {{ EmailInput }}
+        {{ LoginInput }}
+        {{ NameInput }}
+        {{ SurnameInput }}
+        {{ PhoneInput }}
+        {{ PasswordInput }}
+        {{ PasswordInput }}
       <div class="submit">
-        {{SubmitButton}}
+        {{ SubmitButton }}
       </div>
     </form>
   `;

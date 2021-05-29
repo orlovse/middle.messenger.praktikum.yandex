@@ -3,10 +3,9 @@ import "./input.scss";
 
 const Input = (props) => {
   const inputTemplate = `
-    <input class="input {{class}}" placeholder={{placeholder}} type={{type}} value="{{value}}" />
+    <input class="input {{ class }}" placeholder="{{ placeholder }}" type="{{ type }}" value="{{ value }}" />
   `;
 
-  console.log("props", props);
   const inputData = {
     props,
     placeholder: props.label || "label",

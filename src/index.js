@@ -32,9 +32,3 @@ const routing = (event) => {
 };
 
 app.addEventListener("click", routing);
-
-// if (appRouts[path]) {
-//   mountTemplate(appRouts[path]);
-// } else {
-//   mountTemplate(Error({ type: "404" }));
-// }

@@ -4,11 +4,11 @@ import Input from "../input";
 
 const LoginComponen = (props) => {
   const loginTemplate = `
-    <form onsubmit="{{handleSubmit}}" class="login-form">
-        {{LoginInput}}
-        {{PasswordInput}}
+    <form onsubmit="{{ handleSubmit }}" class="login-form">
+        {{ LoginInput }}
+        {{ PasswordInput }}
       <div class="submit">
-        {{SubmitButton}}
+        {{ SubmitButton }}
       </div>
     </form>
   `;

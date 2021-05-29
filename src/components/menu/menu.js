@@ -3,14 +3,13 @@ import "./menu.scss";
 
 const Menu = (props) => {
   const menuTemplate = `
-  <div class="menu">
-    {{menuTemplateList}}
-  </div>
+  <nav class="menu">
+    {{ menuTemplateList }}
+  </nav>
   `;
 
   const menuData = {
     menuList: [
-      //{ name: "Main", link: "/" },
       { name: "Login", link: "/login" },
       { name: "Profile", link: "/profile" },
       { name: "Chat", link: "/chat" },

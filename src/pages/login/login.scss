@@ -16,7 +16,7 @@
 
   .tabs .tab-panel {
     opacity: 0;
-    transition: 1s;
+    transition: transform 1s, opacity 1s;
     transform: translateY(100%);
     position: absolute;
   }
@@ -35,10 +35,6 @@
 
   .tabs {
     text-align: center;
-
-    // .tab-panels {
-    //   display: flex;
-    // }
 
     label {
       padding: 1rem;

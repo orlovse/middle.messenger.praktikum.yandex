@@ -9,10 +9,10 @@ const Profile = (props) => {
     <div class="sheet">
       <div class="avatar"></div>
       <div class="fields">
-        {{fieldsConfig}}
+        {{ fieldsConfig }}
       </div>
       <div class="actions">
-        {{Button}}
+        {{ Button }}
       </div>
     </div>
   </div>

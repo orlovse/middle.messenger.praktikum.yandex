@@ -5,7 +5,7 @@ const Error = (props) => {
   const errorTemplate = `
   <div class="error">
     <div class="window">
-      <p class="title">{{props.type}}</p>
+      <p class="title">{{ props.type }}</p>
       <a href="/">Back to chats</a>
     </div>
   </div>
