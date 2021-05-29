@@ -7,7 +7,7 @@
   background: #292c2d;
   padding: 0.5rem 1rem;
   margin: 1rem 0;
-  transition: 0.5s;
+  transition: box-shadow 0.5s;
   box-shadow: 1px 29px 52px -20px rgba(0, 0, 0, 1);
 
   &:hover {
@@ -23,6 +23,4 @@
     font-size: 0.8rem;
     font-weight: 200;
   }
-
-
 }
