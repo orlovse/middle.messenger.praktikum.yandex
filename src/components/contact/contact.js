@@ -6,12 +6,12 @@ import Badge from "../badge";
 const Contact = (props) => {
   const contactTemplate = `
   <div class="contact">
-    {{Avatar}}
+    {{ Avatar }}
     <div class="content">
       <p class="title">Test contact</p>
       <p class="subtitle">Message text</p>
     </div>
-    {{Badge}}
+    {{ Badge }}
   </div>
   `;
   const contactData = {

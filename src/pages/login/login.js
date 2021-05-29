@@ -14,10 +14,10 @@ const Login = (props) => {
           <label for="tab2">Registration</label>
           <div class="tab-panels">
             <section class="tab-panel" id="login">
-              {{LoginComponent}}
+              {{ LoginComponent }}
             </section>
             <section class="tab-panel" id="registration">
-              {{RegistrationComponent}}
+              {{ RegistrationComponent }}
             </section>
           </div>
         </div>

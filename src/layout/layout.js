@@ -5,9 +5,9 @@ import Menu from "../components/menu";
 const Layout = (props) => {
   const layoutTemplate = `
     <div class="layout">
-      {{Menu}}
+      {{ Menu }}
       <div class="container">
-        {{props.child}}
+        {{ props.child }}
       </div>
     </div>
   `;

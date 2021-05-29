@@ -6,7 +6,7 @@ const Message = (props) => {
   const messageTemplate = `
     <div class="message {{ props.class }}"> 
       <div class="message-avatar">
-        {{Avatar}}
+        {{ Avatar }}
       </div>
       {{ props.text }} 
       <span class="message-date">12:58</span>

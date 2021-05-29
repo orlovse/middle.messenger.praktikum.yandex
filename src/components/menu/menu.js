@@ -4,7 +4,7 @@ import "./menu.scss";
 const Menu = (props) => {
   const menuTemplate = `
   <div class="menu">
-    {{menuTemplateList}}
+    {{ menuTemplateList }}
   </div>
   `;
 

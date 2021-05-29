@@ -2,6 +2,7 @@ import express from "express";
 
 const PORT = 3000;
 
+const http = require("http");
 const app = express();
 
 app.use(express.static("./dist"));
