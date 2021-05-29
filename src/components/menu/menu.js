@@ -3,9 +3,9 @@ import "./menu.scss";
 
 const Menu = (props) => {
   const menuTemplate = `
-  <div class="menu">
+  <nav class="menu">
     {{ menuTemplateList }}
-  </div>
+  </nav>
   `;
 
   const menuData = {

@@ -6,9 +6,9 @@ const Layout = (props) => {
   const layoutTemplate = `
     <div class="layout">
       {{ Menu }}
-      <div class="container">
+      <main class="container">
         {{ props.child }}
-      </div>
+      </main>
     </div>
   `;
   const layoutData = { props, Menu };
