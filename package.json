@@ -8,7 +8,7 @@
     "start": "parcel static/index.html --open & npm run server",
     "dev": "parcel static/index.html --open",
     "server": "node api/server.js",
-    "build": "parcel build static/index.html",
+    "build": "parcel build static/index.html"
   },
   "repository": {
     "type": "git",
