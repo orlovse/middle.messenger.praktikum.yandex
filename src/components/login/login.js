@@ -4,7 +4,7 @@ import Input from "../input";
 
 const LoginComponen = (props) => {
   const loginTemplate = `
-    <form onsubmit="{{ handleSubmit }}" class="login-form">
+    <form class="login-form">
         {{ LoginInput }}
         {{ PasswordInput }}
       <div class="submit">
@@ -13,24 +13,48 @@ const LoginComponen = (props) => {
     </form>
   `;
   const loginData = {
-    LoginInput: Input({ label: "Login", type: "text", class: "mt-2" }),
+    LoginInput: Input({
+      label: "Login",
+      type: "text",
+      class: "login-input mt-2",
+    }),
     PasswordInput: Input({
       label: "Password",
       type: "password",
-      class: "mt-2",
+      class: "password-input mt-2",
     }),
     SubmitButton: Input({
       label: "Enter",
       type: "submit",
       value: "Enter",
-      class: "mt-2",
+      class: "submit-login-button mt-2",
     }),
-    handleSubmit: () => {
-      console.log("click");
-    },
+    result: { login: "", password: "" },
   };
 
-  return createTemplate(loginTemplate, loginData);
+  const loginEvents = [
+    {
+      selector: ".submit-login-button",
+      event: "click",
+      func: (e) => {
+        e.preventDefault();
+        console.log("result:", loginData.result);
+      },
+    },
+    {
+      selector: ".login-form",
+      event: "input",
+      func: (e) => {
+        if (e.target.classList.contains("login-input")) {
+          loginData.result.login = e.target.value;
+        } else if (e.target.classList.contains("password-input")) {
+          loginData.result.password = e.target.value;
+        }
+      },
+    },
+  ];
+
+  return createTemplate(loginTemplate, loginData, loginEvents);
 };
 
 export default LoginComponen;

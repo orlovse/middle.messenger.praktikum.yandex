@@ -4,13 +4,12 @@ import Input from "../input";
 
 const RegistrationComponent = (props) => {
   const registrationTemplate = `
-    <form onsubmit="{{ handleSubmit }}" class="registration-form">
+    <form class="registration-form">
         {{ EmailInput }}
         {{ LoginInput }}
         {{ NameInput }}
         {{ SurnameInput }}
         {{ PhoneInput }}
-        {{ PasswordInput }}
         {{ PasswordInput }}
       <div class="submit">
         {{ SubmitButton }}
@@ -18,28 +17,87 @@ const RegistrationComponent = (props) => {
     </form>
   `;
   const registrationData = {
-    EmailInput: Input({ label: "Email", type: "email", class: "mt-2" }),
-    LoginInput: Input({ label: "Login", type: "text", class: "mt-2" }),
-    NameInput: Input({ label: "Name", type: "text", class: "mt-2" }),
-    SurnameInput: Input({ label: "Surname", type: "text", class: "mt-2" }),
-    PhoneInput: Input({ label: "Phone", type: "tel", class: "mt-2" }),
+    EmailInput: Input({
+      label: "Email",
+      type: "email",
+      class: "email-input mt-2",
+    }),
+    LoginInput: Input({
+      label: "Login",
+      type: "text",
+      class: "login-input mt-2",
+    }),
+    NameInput: Input({
+      label: "Name",
+      type: "text",
+      class: " name-input mt-2",
+    }),
+    SurnameInput: Input({
+      label: "Surname",
+      type: "text",
+      class: "surname-input mt-2",
+    }),
+    PhoneInput: Input({
+      label: "Phone",
+      type: "tel",
+      class: "phone-input mt-2",
+    }),
     PasswordInput: Input({
       label: "Password",
       type: "password",
-      class: "mt-2",
+      class: "password-input mt-2",
     }),
     SubmitButton: Input({
       label: "Enter",
       type: "submit",
       value: "Enter",
-      class: "mt-2",
+      class: "submit-registration-button mt-2",
     }),
-    handleSubmit: () => {
-      console.log("click");
+    result: {
+      email: "",
+      login: "",
+      name: "",
+      surname: "",
+      phone: "",
+      password: "",
     },
   };
 
-  return createTemplate(registrationTemplate, registrationData);
+  const lregistrationEvents = [
+    {
+      selector: ".submit-registration-button",
+      event: "click",
+      func: (e) => {
+        e.preventDefault();
+        console.log("result:", registrationData.result);
+      },
+    },
+    {
+      selector: ".registration-form",
+      event: "input",
+      func: (e) => {
+        if (e.target.classList.contains("login-input")) {
+          registrationData.result.login = e.target.value;
+        } else if (e.target.classList.contains("password-input")) {
+          registrationData.result.password = e.target.value;
+        } else if (e.target.classList.contains("email-input")) {
+          registrationData.result.email = e.target.value;
+        } else if (e.target.classList.contains("name-input")) {
+          registrationData.result.name = e.target.value;
+        } else if (e.target.classList.contains("surname-input")) {
+          registrationData.result.surname = e.target.value;
+        } else if (e.target.classList.contains("phone-input")) {
+          registrationData.result.phone = e.target.value;
+        }
+      },
+    },
+  ];
+
+  return createTemplate(
+    registrationTemplate,
+    registrationData,
+    lregistrationEvents
+  );
 };
 
 export default RegistrationComponent;
