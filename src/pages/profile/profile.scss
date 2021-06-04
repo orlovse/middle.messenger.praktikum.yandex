@@ -1,0 +1,22 @@
+.profile {
+  .sheet {
+    flex: 80%;
+    height: 85vh;
+    overflow: scroll;
+    background-color: #1e2022;
+    border-radius: 2rem;
+    padding: 2rem;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 1rem auto;
+    background-color: black;
+  }
+
+  .actions {
+    text-align: center;
+  }
+}

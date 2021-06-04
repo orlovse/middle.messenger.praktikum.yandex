@@ -1,0 +1,58 @@
+.chat {
+  display: flex;
+
+  .panel {
+    flex: 30%;
+    padding: 0 2rem;
+
+    .contact-list {
+      width: 100%;
+      height: 80vh;
+      padding: 0 2rem;
+      overflow: scroll;
+    }
+
+    .search {
+      width: 100%;
+      margin-bottom: 2rem;
+      border-radius: 3rem;
+      background: #292c2d;
+      padding: 1rem 1.5rem;
+      border: none;
+      box-shadow: 1px 19px 42px -5px rgba(0, 0, 0, 1);
+      transition: box-shadow 0.3s;
+
+      &:focus {
+        box-shadow: 1px 5px 20px 2px rgba(0, 0, 0, 1);
+      }
+    }
+  }
+
+  .main {
+    flex: 70%;
+    display: flex;
+    flex-direction: column;
+
+    .main-field {
+      overflow: scroll;
+      height: 77vh;
+      background-color: #1e2022;
+      border-radius: 2rem;
+      padding: 2rem;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .chat {
+    flex-direction: column;
+
+    .panel {
+      display: none;
+    }
+
+    .main {
+      flex: 100%;
+    }
+  }
+}
