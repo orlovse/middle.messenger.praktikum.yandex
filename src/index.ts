@@ -15,7 +15,9 @@ const appRouts = {
   "/error": Error({ type: "500" }),
 };
 
-mountTemplate(Layout({ component: appRouts[path] || Error({ type: "404" }) }));
+mountTemplate(
+  Layout({ component: appRouts[path] || Error({ type: "404" }) }) as HTMLElement
+);
 
 const routing = (event: Event & { target: HTMLElement }) => {
   if (event.target.tagName === "A") {
@@ -25,7 +27,9 @@ const routing = (event: Event & { target: HTMLElement }) => {
       path = newPath;
       window.history.replaceState({}, "title", newPath);
       mountTemplate(
-        Layout({ component: appRouts[newPath] || Error({ type: "404" }) })
+        Layout({
+          component: appRouts[newPath] || Error({ type: "404" }),
+        }) as HTMLElement
       );
     }
   }

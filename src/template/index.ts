@@ -12,7 +12,7 @@ type ChildComponent = { dataId: string; data: HTMLElement };
 
 export const createElement = (
   template: string,
-  data: { id: string },
+  data: any,
   events: Event[] | null
 ) => {
   let key: RegExpExecArray | null = null;
@@ -94,7 +94,7 @@ export const createElement = (
   return element;
 };
 
-const reactivData = (data: { id: string; updateElement?: Function }) => {
+const reactivData = (data: { id?: string; updateElement?: Function }) => {
   const set = (key: string, value: any, notUpdate = false) => {
     if (key.includes(".")) {
       data = deepUpdate(data, key, value);
@@ -115,7 +115,7 @@ const reactivData = (data: { id: string; updateElement?: Function }) => {
   return { getAll, set, get, addUpdate };
 };
 
-export const mountTemplate = (element, selector = "#app") => {
+export const mountTemplate = (element: HTMLElement, selector = "#app") => {
   const parent = document.querySelector(selector);
   if (parent && parent.firstChild) {
     parent.firstChild.replaceWith(element);
