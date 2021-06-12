@@ -30,10 +30,10 @@ const Profile = () => {
         Input({ label: "nickname", class: "profile-nickname mb-1" }),
         Input({ label: "phone", class: "profile-phone mb-1" }),
       ],
-      SubmitButton: Input({
-        label: "Save",
-        type: "submit",
-        value: "Save",
+      SubmitButton: Button({
+        name: "Save",
+        //type: "submit",
+        //value: "Save",
         class: "save-profile-button mt-2",
       }),
     },
@@ -49,8 +49,8 @@ const Profile = () => {
 
   const profileEvents = [
     {
-      selector: ".profile-form",
-      event: "submit",
+      selector: ".save-profile-button",
+      event: "click",
       func(e: Event) {
         e.preventDefault();
         console.log("test", this.get("result"));
