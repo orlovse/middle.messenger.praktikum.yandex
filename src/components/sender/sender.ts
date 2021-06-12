@@ -13,7 +13,7 @@ const Sender = () => {
   `;
   const senderData = {
     components: {
-      Input: Input({ label: "Message" }),
+      Input: Input({ label: "Message", class: "mx-1" }),
       SendButton: Button({ name: "Send" }),
       OptionsButton: Button({ name: "=>" }),
     },
