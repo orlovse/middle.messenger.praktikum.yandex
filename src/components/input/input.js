@@ -1,4 +1,4 @@
-import { createTemplate } from "../../template";
+import { createElement } from "../../template";
 import "./input.scss";
 
 const Input = (props) => {
@@ -14,7 +14,7 @@ const Input = (props) => {
     class: props.class || "",
   };
 
-  return createTemplate(inputTemplate, inputData);
+  return createElement(inputTemplate, inputData);
 };
 
 export default Input;

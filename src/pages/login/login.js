@@ -1,6 +1,6 @@
-import { createTemplate } from "../../template";
+import { createElement } from "../../template";
 import LoginComponent from "../../components/login";
-import RegistrationComponent from "../../components/registration";
+import Registration from "../../components/registration";
 import "./login.scss";
 
 const Login = (props) => {
@@ -14,10 +14,10 @@ const Login = (props) => {
           <label for="tab2">Registration</label>
           <div class="tab-panels">
             <section class="tab-panel" id="login">
-              {{ LoginComponent }}
+              {{ components.Login }}
             </section>
             <section class="tab-panel" id="registration">
-              {{ RegistrationComponent }}
+              {{ components.Registration }}
             </section>
           </div>
         </div>
@@ -26,11 +26,13 @@ const Login = (props) => {
   `;
 
   const loginData = {
-    LoginComponent,
-    RegistrationComponent,
+    components: {
+      Login: LoginComponent(),
+      Registration: Registration(),
+    },
   };
 
-  return createTemplate(loginTemplate, loginData);
+  return createElement(loginTemplate, loginData);
 };
 
 export default Login;

@@ -1,5 +1,5 @@
+import { createElement } from "../../template";
 import "./sheet.scss";
-import { createTemplate } from "../../template";
 
 const Sheet = (props) => {
   const sheetTemplate = `<div class="main-field">{{ props }}</div>`;
@@ -7,7 +7,7 @@ const Sheet = (props) => {
     props,
   };
 
-  return createTemplate(sheetTemplate, sheetData);
+  return createElement(sheetTemplate, sheetData);
 };
 
 export default Sheet;

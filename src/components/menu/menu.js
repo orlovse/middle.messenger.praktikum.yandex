@@ -1,4 +1,4 @@
-import { createTemplate } from "../../template";
+import { createElement } from "../../template";
 import "./menu.scss";
 
 const Menu = (props) => {
@@ -9,6 +9,8 @@ const Menu = (props) => {
   `;
 
   const menuData = {
+    name: "menu",
+    props,
     menuList: [
       { name: "Login", link: "/login" },
       { name: "Profile", link: "/profile" },
@@ -16,12 +18,13 @@ const Menu = (props) => {
       { name: "Error", link: "/error" },
     ],
     menuTemplateList() {
+      console.log("test func");
       return menuData.menuList
         .map((menu) => `<a href=${menu.link}>${menu.name}</a>`)
         .join("");
     },
   };
-  return createTemplate(menuTemplate, menuData);
+  return createElement(menuTemplate, menuData);
 };
 
 export default Menu;

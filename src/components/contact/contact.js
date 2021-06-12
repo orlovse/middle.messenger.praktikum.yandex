@@ -1,7 +1,9 @@
 import "./contact.scss";
-import { createTemplate } from "../../template";
+
 import Avatar from "../avatar";
 import Badge from "../badge";
+
+import { createElement } from "../../template";
 
 const Contact = (props) => {
   const contactTemplate = `
@@ -19,7 +21,7 @@ const Contact = (props) => {
     Badge: Badge({ number: 2 }),
   };
 
-  return createTemplate(contactTemplate, contactData);
+  return createElement(contactTemplate, contactData);
 };
 
 export default Contact;

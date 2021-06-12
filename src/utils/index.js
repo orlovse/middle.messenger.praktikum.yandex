@@ -11,3 +11,7 @@ export const getObjectField = (obj, path, defaultValue) => {
   }
   return result ?? defaultValue;
 };
+
+export const createId = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};

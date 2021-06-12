@@ -1,24 +1,26 @@
+import { createElement } from "../../template";
 import "./sender.scss";
-import { createTemplate } from "../../template";
 import Input from "../input";
 import Button from "../button";
 
 const Sender = (props) => {
   const senderTemplate = `
     <div class="sender">
-      {{ OptionsButton }}
-      {{ Input }}
-      {{ SendButton }}
+      {{ components.OptionsButton }}
+      {{ components.Input }}
+      {{ components.SendButton }}
     </div>
   `;
   const senderData = {
     props,
-    Input: Input({ label: "Message" }),
-    SendButton: Button({ name: "Send" }),
-    OptionsButton: Button({ name: "=>" }),
+    components: {
+      Input: Input({ label: "Message" }),
+      SendButton: Button({ name: "Send" }),
+      OptionsButton: Button({ name: "=>" }),
+    },
   };
 
-  return createTemplate(senderTemplate, senderData);
+  return createElement(senderTemplate, senderData);
 };
 
 export default Sender;

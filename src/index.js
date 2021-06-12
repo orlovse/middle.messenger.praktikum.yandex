@@ -8,14 +8,14 @@ import Layout from "./layout";
 
 let path = window.location.pathname;
 const appRouts = {
-  "/": Chat,
-  "/login": Login,
-  "/profile": Profile,
-  "/chat": Chat,
+  "/": Chat(),
+  "/login": Login(),
+  "/profile": Profile(),
+  "/chat": Chat(),
   "/error": Error({ type: "500" }),
 };
 
-mountTemplate(Layout({ child: appRouts[path] || Error({ type: "404" }) }));
+mountTemplate(Layout({ component: appRouts[path] || Error({ type: "404" }) }));
 
 const routing = (event) => {
   if (event.target.tagName === "A") {
@@ -25,7 +25,7 @@ const routing = (event) => {
       path = newPath;
       window.history.replaceState({}, "title", newPath);
       mountTemplate(
-        Layout({ child: appRouts[newPath] || Error({ type: "404" }) })
+        Layout({ component: appRouts[newPath] || Error({ type: "404" }) })
       );
     }
   }
