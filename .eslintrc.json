@@ -1,0 +1,10 @@
+{
+  "extends": "xo",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "string-quotes": "double",
+    "max-len": [2, 100],
+    "@typescript-eslint/no-unused-vars": 2
+  }
+}
