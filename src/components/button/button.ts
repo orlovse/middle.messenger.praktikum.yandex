@@ -7,8 +7,8 @@ type Props = {
 };
 
 const Button = (props: Props) => {
-  const buttonTemplate = `<button class="button {{ props.class }}">{{ props.name }}</button>`;
-  const buttonData = { props };
+  const buttonTemplate = `<button class="button {{ class }}">{{ props.name }}</button>`;
+  const buttonData = { props, class: props.class || "" };
 
   return createElement(buttonTemplate, buttonData);
 };
