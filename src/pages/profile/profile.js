@@ -27,12 +27,12 @@ const Profile = (props) => {
         Input({ name: "surname", value: "Orlov", class: "mb-1" }),
         Input({ name: "nickname", value: "Sergey", class: "mb-1" }),
         Input({ name: "phone", value: "+79140000000", class: "mb-1" }),
-      ].join(" "),
+      ],
       Button: Button({ name: "Save" }),
     },
   };
 
-  return [profileTemplate, profileData];
+  return createElement(profileTemplate, profileData);
 };
 
 export default Profile;

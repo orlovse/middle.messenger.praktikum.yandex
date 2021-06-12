@@ -18,7 +18,6 @@ const Menu = (props) => {
       { name: "Error", link: "/error" },
     ],
     menuTemplateList() {
-      console.log("test func");
       return menuData.menuList
         .map((menu) => `<a href=${menu.link}>${menu.name}</a>`)
         .join("");

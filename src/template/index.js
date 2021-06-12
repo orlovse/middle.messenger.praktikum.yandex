@@ -7,16 +7,28 @@ export const createElement = (template, data, events) => {
   const dataId = createId();
   data.id = dataId;
   const rData = reactivData(data);
-  const childComponents = [];
 
   const createTemplate = (template) => {
+    const childComponents = [];
     while ((key = TEMPLATE_REGEXP.exec(template))) {
       if (key[1]) {
         const templateValue = key[1].trim();
         let data = getObjectField(rData.getAll(), templateValue);
         if (templateValue.includes("component")) {
-          childComponents.push({ dataId: data.dataset.id, data });
-          data = `<div data-id="${data.dataset.id}"></div>`;
+          if (Array.isArray(data)) {
+            let newData = "";
+            data.map((component) => {
+              childComponents.push({
+                dataId: component.dataset.id,
+                data: component,
+              });
+              newData += `<div data-id="${component.dataset.id}"></div>\n`;
+            });
+            data = newData;
+          } else {
+            childComponents.push({ dataId: data.dataset.id, data });
+            data = `<div data-id="${data.dataset.id}"></div>`;
+          }
         }
         template = template.replace(new RegExp(key[0], "i"), data);
       }
@@ -35,7 +47,9 @@ export const createElement = (template, data, events) => {
     if (childComponents.length > 0) {
       childComponents.map(({ dataId, data }) => {
         const portal = element.querySelector(`[data-id="${dataId}"]`);
-        portal.replaceWith(data);
+        if (portal) {
+          portal.replaceWith(data);
+        }
       });
     }
 

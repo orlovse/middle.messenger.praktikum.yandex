@@ -39,7 +39,7 @@ const Chat = (props) => {
         Contact(),
         Contact(),
         Contact(),
-      ].join(" "),
+      ],
       Search: Input({ label: "Search" }),
       messagesList: [
         Message({ text: "My test message with mock text", class: "my" }),
@@ -60,11 +60,11 @@ const Chat = (props) => {
             "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime",
         }),
         Message({ text: "My test message with mock text", class: "my" }),
-      ].join(" "),
+      ],
       Sender: Sender(),
     },
   };
-  return [chatTemplate, chatData];
+  return createElement(chatTemplate, chatData);
 };
 
 export default Chat;
