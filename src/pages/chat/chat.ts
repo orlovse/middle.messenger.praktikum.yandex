@@ -5,7 +5,7 @@ import Input from "../../components/input";
 import Contact from "../../components/contact";
 import Sender from "../../components/sender";
 
-const Chat = (props) => {
+const Chat = () => {
   const chatTemplate = `
   <div class="chat">
     <div class="panel">

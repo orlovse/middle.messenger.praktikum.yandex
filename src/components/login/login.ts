@@ -2,7 +2,7 @@ import { createElement } from "../../template";
 import "./login.scss";
 import Input from "../input";
 
-const LoginComponen = (props) => {
+const LoginComponen = () => {
   const loginTemplate = `
     <form class="login-form">
         {{ components.LoginInput }}
@@ -39,7 +39,7 @@ const LoginComponen = (props) => {
     {
       selector: ".submit-login-button",
       event: "click",
-      func(e) {
+      func(e: Event) {
         e.preventDefault();
         console.log("send this", this.get("result"));
       },
@@ -47,7 +47,7 @@ const LoginComponen = (props) => {
     {
       selector: "root",
       event: "input",
-      func(e) {
+      func(e: { target: HTMLInputElement }) {
         if (e.target.classList.contains("login-input")) {
           this.set("result.login", e.target.value, true);
         } else if (e.target.classList.contains("password-input")) {

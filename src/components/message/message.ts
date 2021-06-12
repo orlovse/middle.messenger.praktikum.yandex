@@ -2,7 +2,11 @@ import { createElement } from "../../template";
 import "./message.scss";
 import Avatar from "../avatar";
 
-const Message = (props) => {
+type Props = {
+  class?: string;
+  text: string;
+};
+const Message = (props: Props) => {
   const messageTemplate = `
     <div class="message {{ props.class }}"> 
       <div class="message-avatar">

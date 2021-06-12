@@ -5,7 +5,7 @@ import Badge from "../badge";
 
 import { createElement } from "../../template";
 
-const Contact = (props) => {
+const Contact = () => {
   const contactTemplate = `
   <div class="contact">
     {{ components.Avatar }}

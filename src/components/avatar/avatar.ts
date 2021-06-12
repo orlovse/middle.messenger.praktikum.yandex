@@ -1,9 +1,9 @@
 import "./avatar.scss";
 import { createElement } from "../../template";
 
-const Avatar = (props) => {
+const Avatar = () => {
   const avatarTemplate = `<div class="avatar"></div>`;
-  const avatarData = { props };
+  const avatarData = {};
 
   return createElement(avatarTemplate, avatarData);
 };

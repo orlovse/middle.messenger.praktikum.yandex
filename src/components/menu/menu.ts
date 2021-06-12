@@ -1,7 +1,7 @@
 import { createElement } from "../../template";
 import "./menu.scss";
 
-const Menu = (props) => {
+const Menu = () => {
   const menuTemplate = `
   <nav class="menu">
     {{ menuTemplateList }}
@@ -10,7 +10,6 @@ const Menu = (props) => {
 
   const menuData = {
     name: "menu",
-    props,
     menuList: [
       { name: "Login", link: "/login" },
       { name: "Profile", link: "/profile" },

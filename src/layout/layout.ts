@@ -2,7 +2,10 @@ import { createElement } from "../template/index";
 import "./layout.scss";
 import Menu from "../components/menu";
 
-const Layout = (props) => {
+type Props = {
+  component: HTMLElement;
+};
+const Layout = (props: Props) => {
   const layoutTemplate = `
     <div class="layout">
       {{ components.Menu }}

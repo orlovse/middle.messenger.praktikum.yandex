@@ -3,7 +3,7 @@ import "./sender.scss";
 import Input from "../input";
 import Button from "../button";
 
-const Sender = (props) => {
+const Sender = () => {
   const senderTemplate = `
     <div class="sender">
       {{ components.OptionsButton }}
@@ -12,7 +12,6 @@ const Sender = (props) => {
     </div>
   `;
   const senderData = {
-    props,
     components: {
       Input: Input({ label: "Message" }),
       SendButton: Button({ name: "Send" }),

@@ -2,7 +2,7 @@ import { createElement } from "../../template";
 import "./registration.scss";
 import Input from "../input";
 
-const RegistrationComponent = (props) => {
+const RegistrationComponent = () => {
   const registrationTemplate = `
     <form class="registration-form">
         {{ components.EmailInput }}
@@ -70,7 +70,7 @@ const RegistrationComponent = (props) => {
     {
       selector: ".submit-registration-button",
       event: "click",
-      func(e) {
+      func(e: Event) {
         e.preventDefault();
         console.log("result:", this.get("result"));
       },
@@ -78,7 +78,7 @@ const RegistrationComponent = (props) => {
     {
       selector: "root",
       event: "input",
-      func(e) {
+      func(e: { target: HTMLInputElement }) {
         if (e.target.classList.contains("login-input")) {
           this.set("result.login", e.target.value, true);
         } else if (e.target.classList.contains("password-input")) {

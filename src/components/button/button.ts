@@ -1,7 +1,11 @@
 import { createElement } from "../../template";
 import "./button.scss";
 
-const Button = (props) => {
+type Props = {
+  name: string;
+};
+
+const Button = (props: Props) => {
   const buttonTemplate = `<button class="button">{{ props.name }}</button>`;
   const buttonData = { props };
 

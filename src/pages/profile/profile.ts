@@ -3,7 +3,7 @@ import "./profile.scss";
 import Input from "../../components/input";
 import Button from "../../components/button";
 
-const Profile = (props) => {
+const Profile = () => {
   const profileTemplate = `
   <div class="profile">
     <div class="sheet">
@@ -21,12 +21,12 @@ const Profile = (props) => {
   const profileData = {
     components: {
       fieldsConfig: [
-        Input({ name: "email", value: "mail@test.com", class: "mb-1" }),
-        Input({ name: "login", value: "orlov", class: "mb-1" }),
-        Input({ name: "name", value: "Sergey", class: "mb-1" }),
-        Input({ name: "surname", value: "Orlov", class: "mb-1" }),
-        Input({ name: "nickname", value: "Sergey", class: "mb-1" }),
-        Input({ name: "phone", value: "+79140000000", class: "mb-1" }),
+        Input({ label: "email", value: "mail@test.com", class: "mb-1" }),
+        Input({ label: "login", value: "orlov", class: "mb-1" }),
+        Input({ label: "name", value: "Sergey", class: "mb-1" }),
+        Input({ label: "surname", value: "Orlov", class: "mb-1" }),
+        Input({ label: "nickname", value: "Sergey", class: "mb-1" }),
+        Input({ label: "phone", value: "+79140000000", class: "mb-1" }),
       ],
       Button: Button({ name: "Save" }),
     },

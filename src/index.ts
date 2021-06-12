@@ -1,5 +1,5 @@
 import "../static/styles.scss";
-import { mountTemplate, createTemplate } from "./template";
+import { mountTemplate } from "./template";
 import Error from "./pages/error";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
@@ -17,7 +17,7 @@ const appRouts = {
 
 mountTemplate(Layout({ component: appRouts[path] || Error({ type: "404" }) }));
 
-const routing = (event) => {
+const routing = (event: Event & { target: HTMLElement }) => {
   if (event.target.tagName === "A") {
     event.preventDefault();
     const newPath = event.target.attributes[0].value;
@@ -31,4 +31,9 @@ const routing = (event) => {
   }
 };
 
-app.addEventListener("click", routing);
+if (document) {
+  const app = document.querySelector("#app");
+  if (app) {
+    app.addEventListener("click", routing);
+  }
+}

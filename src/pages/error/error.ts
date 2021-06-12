@@ -1,7 +1,11 @@
 import { createElement } from "../../template";
 import "./error.scss";
 
-const Error = (props) => {
+type Props = {
+  type: string;
+};
+
+const Error = (props: Props) => {
   const errorTemplate = `
   <div class="error">
     <div class="window">
@@ -13,7 +17,6 @@ const Error = (props) => {
   `;
 
   const errorData = {
-    test: "error page",
     props,
     test: 1,
   };
@@ -22,7 +25,7 @@ const Error = (props) => {
     {
       selector: ".testbtn",
       event: "click",
-      func(e) {
+      func() {
         this.set("test", this.get("test") + 1);
       },
     },

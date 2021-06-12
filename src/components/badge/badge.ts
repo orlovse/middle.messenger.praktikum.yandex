@@ -1,7 +1,10 @@
 import { createElement } from "../../template";
 import "./badge.scss";
 
-const Badge = (props) => {
+type Props = {
+  number: number;
+};
+const Badge = (props: Props) => {
   const badgeTemplate = `<div class="badge">{{ props.number }}</div>`;
   const badgeData = { props };
 

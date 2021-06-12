@@ -2,14 +2,26 @@ import { getObjectField, createId, deepUpdate } from "../utils";
 
 const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/i;
 
-export const createElement = (template, data, events) => {
-  let key = null;
+type Event = {
+  selector: string;
+  event: string;
+  func: Function;
+};
+
+type ChildComponent = { dataId: string; data: HTMLElement };
+
+export const createElement = (
+  template: string,
+  data: { id: string },
+  events: Event[] | null
+) => {
+  let key: RegExpExecArray | null = null;
   const dataId = createId();
   data.id = dataId;
   const rData = reactivData(data);
 
-  const createTemplate = (template) => {
-    const childComponents = [];
+  const createTemplate = (template: string) => {
+    const childComponents: ChildComponent[] = [];
     while ((key = TEMPLATE_REGEXP.exec(template))) {
       if (key[1]) {
         const templateValue = key[1].trim();
@@ -35,11 +47,15 @@ export const createElement = (template, data, events) => {
     }
     const element = new DOMParser().parseFromString(template, "text/html").body
       .firstChild;
-    element.setAttribute("data-id", dataId);
+    if (element) {
+      (element as HTMLElement).setAttribute("data-id", dataId);
+    }
 
     if (childComponents.length > 0) {
       childComponents.map(({ dataId, data }) => {
-        const portal = element.querySelector(`[data-id="${dataId}"]`);
+        const portal =
+          element &&
+          (element as HTMLElement).querySelector(`[data-id="${dataId}"]`);
         if (portal) {
           portal.replaceWith(data);
         }
@@ -47,11 +63,12 @@ export const createElement = (template, data, events) => {
     }
     if (events && events.length > 0) {
       events.map(({ selector, event, func }) => {
-        let targetEl = null;
+        let targetEl: ChildNode | null = null;
         if (selector === "root") {
           targetEl = element;
         } else {
-          targetEl = element.querySelector(selector);
+          targetEl =
+            element && (element as HTMLElement).querySelector(selector);
         }
 
         //console.log("element, selector, targetEl", element, selector, targetEl);
@@ -66,34 +83,33 @@ export const createElement = (template, data, events) => {
 
   const element = createTemplate(template);
 
-  const updateElement = (id) => {
+  const updateElement = (id: string) => {
     const element = createTemplate(template);
     const portal = document.querySelector(`[data-id="${id}"]`);
-    portal.replaceWith(element);
+    if (portal) {
+      portal.replaceWith(element as HTMLElement);
+    }
   };
   rData.addUpdate(updateElement);
   return element;
 };
 
-const reactivData = (data) => {
-  const set = (key, value, notUpdate = false) => {
-    // console.log("set", value);
-    // console.log("getAll", data);
-    // console.log("this", this);
+const reactivData = (data: { id: string; updateElement?: Function }) => {
+  const set = (key: string, value: any, notUpdate = false) => {
     if (key.includes(".")) {
       data = deepUpdate(data, key, value);
     } else {
       data[key] = value;
     }
-    if (!notUpdate) {
+    if (!notUpdate && data.updateElement) {
       data.updateElement(data.id);
     }
   };
-  const addUpdate = (update) => {
+  const addUpdate = (update: Function) => {
     data.updateElement = update;
   };
   const getAll = () => data;
-  const get = (key) => {
+  const get = (key: string) => {
     return data[key];
   };
   return { getAll, set, get, addUpdate };
@@ -101,7 +117,7 @@ const reactivData = (data) => {
 
 export const mountTemplate = (element, selector = "#app") => {
   const parent = document.querySelector(selector);
-  if (parent && parent.childElementCount) {
+  if (parent && parent.firstChild) {
     parent.firstChild.replaceWith(element);
   } else if (parent) {
     parent.appendChild(element);

@@ -3,7 +3,7 @@ import LoginComponent from "../../components/login";
 import Registration from "../../components/registration";
 import "./login.scss";
 
-const Login = (props) => {
+const Login = () => {
   const loginTemplate = `
     <div class="login">
       <div class="sheet">
