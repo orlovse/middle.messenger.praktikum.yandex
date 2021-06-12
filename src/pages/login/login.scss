@@ -21,16 +21,10 @@
     position: absolute;
   }
 
-  .tabs>input:first-child:checked~.tab-panels>.tab-panel:first-child,
-  .tabs>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2) {
+  .tabs > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabs > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2) {
     transform: translateY(0);
     opacity: 1;
-  }
-
-  .tabs>label:hover,
-  .tabs>input:focus+label,
-  .tabs>input:checked+label {
-    color: var(--color-primary);
   }
 
   .tabs {
@@ -46,4 +40,9 @@
     }
   }
 
+  .tabs > label:hover,
+  .tabs > input:focus + label,
+  .tabs > input:checked + label {
+    color: var(--color-primary);
+  }
 }
