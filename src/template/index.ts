@@ -13,7 +13,7 @@ type ChildComponent = { dataId: string; data: HTMLElement };
 export const createElement = (
   template: string,
   data: any,
-  events: Event[] | null
+  events?: Event[] | null
 ) => {
   let key: RegExpExecArray | null = null;
   const dataId = createId();
