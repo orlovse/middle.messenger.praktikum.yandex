@@ -35,29 +35,29 @@ const LoginComponen = (props) => {
     result: { login: "", password: "" },
   };
 
-  // const loginEvents = [
-  //   {
-  //     selector: ".submit-login-button",
-  //     event: "click",
-  //     func: (e) => {
-  //       e.preventDefault();
-  //       console.log("result:", loginData.result);
-  //     },
-  //   },
-  //   {
-  //     selector: ".login-form",
-  //     event: "input",
-  //     func: (e) => {
-  //       if (e.target.classList.contains("login-input")) {
-  //         loginData.result.login = e.target.value;
-  //       } else if (e.target.classList.contains("password-input")) {
-  //         loginData.result.password = e.target.value;
-  //       }
-  //     },
-  //   },
-  // ];
+  const loginEvents = [
+    {
+      selector: ".submit-login-button",
+      event: "click",
+      func(e) {
+        e.preventDefault();
+        console.log("send this", this.get("result"));
+      },
+    },
+    {
+      selector: "root",
+      event: "input",
+      func(e) {
+        if (e.target.classList.contains("login-input")) {
+          this.set("result.login", e.target.value, true);
+        } else if (e.target.classList.contains("password-input")) {
+          this.set("result.password", e.target.value, true);
+        }
+      },
+    },
+  ];
 
-  return createElement(loginTemplate, loginData);
+  return createElement(loginTemplate, loginData, loginEvents);
 };
 
 export default LoginComponen;

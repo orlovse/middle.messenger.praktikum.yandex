@@ -66,37 +66,41 @@ const RegistrationComponent = (props) => {
     },
   };
 
-  // const lregistrationEvents = [
-  //   {
-  //     selector: ".submit-registration-button",
-  //     event: "click",
-  //     func: (e) => {
-  //       e.preventDefault();
-  //       console.log("result:", registrationData.result);
-  //     },
-  //   },
-  //   {
-  //     selector: ".registration-form",
-  //     event: "input",
-  //     func: (e) => {
-  //       if (e.target.classList.contains("login-input")) {
-  //         registrationData.result.login = e.target.value;
-  //       } else if (e.target.classList.contains("password-input")) {
-  //         registrationData.result.password = e.target.value;
-  //       } else if (e.target.classList.contains("email-input")) {
-  //         registrationData.result.email = e.target.value;
-  //       } else if (e.target.classList.contains("name-input")) {
-  //         registrationData.result.name = e.target.value;
-  //       } else if (e.target.classList.contains("surname-input")) {
-  //         registrationData.result.surname = e.target.value;
-  //       } else if (e.target.classList.contains("phone-input")) {
-  //         registrationData.result.phone = e.target.value;
-  //       }
-  //     },
-  //   },
-  // ];
+  const lregistrationEvents = [
+    {
+      selector: ".submit-registration-button",
+      event: "click",
+      func(e) {
+        e.preventDefault();
+        console.log("result:", this.get("result"));
+      },
+    },
+    {
+      selector: "root",
+      event: "input",
+      func(e) {
+        if (e.target.classList.contains("login-input")) {
+          this.set("result.login", e.target.value, true);
+        } else if (e.target.classList.contains("password-input")) {
+          this.set("result.password", e.target.value, true);
+        } else if (e.target.classList.contains("email-input")) {
+          this.set("result.email", e.target.value, true);
+        } else if (e.target.classList.contains("name-input")) {
+          this.set("result.name", e.target.value, true);
+        } else if (e.target.classList.contains("surname-input")) {
+          this.set("result.surname", e.target.value, true);
+        } else if (e.target.classList.contains("phone-input")) {
+          this.set("result.phone", e.target.value, true);
+        }
+      },
+    },
+  ];
 
-  return createElement(registrationTemplate, registrationData);
+  return createElement(
+    registrationTemplate,
+    registrationData,
+    lregistrationEvents
+  );
 };
 
 export default RegistrationComponent;
