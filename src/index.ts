@@ -32,6 +32,10 @@ const routing = (event: Event & { target: HTMLElement }) => {
         }) as HTMLElement
       );
     }
+  } else if (event.target.classList.contains("theme-toggle")) {
+    const app = document.querySelector("#app");
+    app?.classList.toggle("theme-dark");
+    app?.classList.toggle("theme-light");
   }
 };
 

@@ -5,6 +5,7 @@ const Menu = () => {
   const menuTemplate = `
   <nav class="menu">
     {{ menuTemplateList }}
+    <div class="theme-toggle">Toggle theme</div>
   </nav>
   `;
 

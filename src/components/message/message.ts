@@ -8,7 +8,7 @@ type Props = {
 };
 const Message = (props: Props) => {
   const messageTemplate = `
-    <div class="message {{ props.class }}"> 
+    <div class="message {{ class }}"> 
       <div class="message-avatar">
         {{ components.Avatar }}
       </div>
@@ -17,6 +17,7 @@ const Message = (props: Props) => {
     </div>`;
   const messageData = {
     props,
+    class: props.class || "",
     components: {
       Avatar: Avatar(),
     },
