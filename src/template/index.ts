@@ -10,7 +10,7 @@ type Event = {
 
 type Component = {
   template: string;
-  rData: any;
+  rData?: any;
   events?: Event[] | null;
   components?: any;
 };
