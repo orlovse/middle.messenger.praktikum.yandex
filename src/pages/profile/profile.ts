@@ -1,3 +1,4 @@
+import { checkFormFields } from "./../../utils/index";
 import { createElement, reactivData } from "../../template";
 import "./profile.scss";
 import Input from "../../components/input";
@@ -63,25 +64,39 @@ const Profile = () => {
       selector: ".save-profile-button",
       event: "click",
       func(e: Event) {
-        e.preventDefault();
-        console.log("test", rData.get("result"));
+        const isValid = checkFormFields(e, ".profile-form");
+        if (isValid) {
+          console.log("result:", rData.get("result"));
+        } else {
+          console.error("Not all fields are valid");
+        }
       },
     },
     {
       selector: ".profile-form",
       event: "input",
       func(e: { target: HTMLInputElement }) {
-        if (e.target.classList.contains("profile-email")) {
+        if (e.target?.parentElement?.classList.contains("profile-email")) {
           rData.set("result.email", e.target.value, true);
-        } else if (e.target.classList.contains("profile-login")) {
+        } else if (
+          e.target?.parentElement?.classList.contains("profile-login")
+        ) {
           rData.set("result.login", e.target.value, true);
-        } else if (e.target.classList.contains("profile-name")) {
+        } else if (
+          e.target?.parentElement?.classList.contains("profile-name")
+        ) {
           rData.set("result.name", e.target.value, true);
-        } else if (e.target.classList.contains("profile-surname")) {
+        } else if (
+          e.target?.parentElement?.classList.contains("profile-surname")
+        ) {
           rData.set("result.surname", e.target.value, true);
-        } else if (e.target.classList.contains("profile-nickname")) {
+        } else if (
+          e.target?.parentElement?.classList.contains("profile-nickname")
+        ) {
           rData.set("result.nickname", e.target.value, true);
-        } else if (e.target.classList.contains("profile-phone")) {
+        } else if (
+          e.target?.parentElement?.classList.contains("profile-phone")
+        ) {
           rData.set("result.phone", e.target.value, true);
         }
       },

@@ -73,13 +73,24 @@ export const checkValid = (rules: ValidationRules, value: string | number) => {
     currentMessage = `Invalid email`;
   }
 
-  if (rules.phone) {
-    console.log("value", value);
-    console.log(
-      "value.toString().match(phoneRegExp)",
-      value.toString().match(phoneRegExp)
-    );
-  }
-
   return { isValid, currentMessage };
+};
+
+export const checkFormFields = (e: Event, formSelector: string) => {
+  e.preventDefault();
+  const form = document.querySelector(formSelector);
+  const inputs = form?.querySelectorAll("input");
+  let isValid = true;
+  inputs?.forEach((input) => {
+    input.focus();
+    input.blur();
+    const errorClasses = input.nextElementSibling?.classList;
+    if (
+      errorClasses?.contains("input-error-message") &&
+      !errorClasses?.contains("hide")
+    ) {
+      isValid = false;
+    }
+  });
+  return isValid;
 };

@@ -93,7 +93,6 @@ export const createElement = ({
             element && (element as HTMLElement).querySelector(selector);
         }
 
-        //console.log("element, selector, targetEl", element, selector, targetEl);
         if (targetEl) {
           targetEl.addEventListener(event, func.bind(rData));
         }

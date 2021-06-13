@@ -12,7 +12,6 @@ type Props = {
 };
 
 const Input = (props: Props) => {
-  console.log("input, props", props);
   const template = `
     <div class="input-component {{ class }}">
       <input 
@@ -36,11 +35,8 @@ const Input = (props: Props) => {
     selector: "input",
     event: "blur",
     func(e: Event & { target: HTMLInputElement }) {
-      console.log("blur", e.target.value);
       const value = e.target.value;
-      const messageEl = e.target.parentElement?.querySelector(
-        ".input-error-message"
-      );
+      const messageEl = e.target.nextElementSibling;
       if (props.rules) {
         const { isValid, currentMessage } = checkValid(props.rules, value);
         if (!isValid) {

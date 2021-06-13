@@ -1,3 +1,4 @@
+import { checkFormFields } from "./../../utils/index";
 import { createElement, reactivData } from "../../template";
 import "./login.scss";
 import Input from "../input";
@@ -15,7 +16,7 @@ const LoginComponen = () => {
   `;
 
   const rData = reactivData({
-    result: { login: "11", password: "" },
+    result: { login: "", password: "" },
   });
 
   const events = [
@@ -23,17 +24,23 @@ const LoginComponen = () => {
       selector: ".submit-login-button",
       event: "click",
       func(e: Event) {
-        e.preventDefault();
-        console.log("send this", rData.get("result"));
+        const isValid = checkFormFields(e, ".login-form");
+        if (isValid) {
+          console.log("result:", rData.get("result"));
+        } else {
+          console.error("Not all fields are valid");
+        }
       },
     },
     {
       selector: "root",
       event: "input",
       func(e: { target: HTMLInputElement }) {
-        if (e.target.classList.contains("login-input")) {
+        if (e.target?.parentElement?.classList.contains("login-input")) {
           rData.set("result.login", e.target.value, true);
-        } else if (e.target.classList.contains("password-input")) {
+        } else if (
+          e.target?.parentElement?.classList.contains("password-input")
+        ) {
           rData.set("result.password", e.target.value, true);
         }
       },
@@ -55,7 +62,7 @@ const LoginComponen = () => {
     }),
     SubmitButton: Button({
       name: "Save",
-      class: "save-profile-button mt-4 px-4",
+      class: "submit-login-button mt-4 px-4",
     }),
   };
 
