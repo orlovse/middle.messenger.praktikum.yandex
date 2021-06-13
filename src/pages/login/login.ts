@@ -1,10 +1,10 @@
-import { createTemplate } from "../../template";
+import { createElement, reactivData } from "../../template";
 import LoginComponent from "../../components/login";
-import RegistrationComponent from "../../components/registration";
+import Registration from "../../components/registration";
 import "./login.scss";
 
-const Login = (props) => {
-  const loginTemplate = `
+const Login = () => {
+  const template = `
     <div class="login">
       <div class="sheet">
         <div class="tabs">
@@ -14,10 +14,10 @@ const Login = (props) => {
           <label for="tab2">Registration</label>
           <div class="tab-panels">
             <section class="tab-panel" id="login">
-              {{ LoginComponent }}
+              {{ components.Login }}
             </section>
             <section class="tab-panel" id="registration">
-              {{ RegistrationComponent }}
+              {{ components.Registration }}
             </section>
           </div>
         </div>
@@ -25,12 +25,14 @@ const Login = (props) => {
     </div>
   `;
 
-  const loginData = {
-    LoginComponent,
-    RegistrationComponent,
+  const rData = reactivData({});
+
+  const components = {
+    Login: LoginComponent(),
+    Registration: Registration(),
   };
 
-  return createTemplate(loginTemplate, loginData);
+  return createElement({ template, rData, components });
 };
 
 export default Login;

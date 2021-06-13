@@ -1,11 +1,8 @@
 .layout {
   width: 100vw;
   height: 100vh;
-  background: rgb(68, 68, 68);
-  background: radial-gradient(circle,
-      rgb(32, 32, 32) 15%,
-      rgb(68, 68, 68) 41%,
-      rgb(96, 101, 107) 100%);
+  //background: var(--color-background);
+  background: var(--color-background);
 
   .container {
     padding: 0 2rem;

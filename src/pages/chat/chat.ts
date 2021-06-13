@@ -1,33 +1,34 @@
-import { createTemplate } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./chat.scss";
 import Message from "../../components/message";
 import Input from "../../components/input";
 import Contact from "../../components/contact";
 import Sender from "../../components/sender";
 
-const Chat = (props) => {
-  const chatTemplate = `
+const Chat = () => {
+  const template = `
   <div class="chat">
     <div class="panel">
-      {{ Search }}
+      {{ components.Search }}
       <div class="contact-list">
-        {{ contactsList }}
+        {{ components.contactsList }}
       </div>
     </div>
     <div class="main">
       <div class="main-field">
-        {{ messagesList }}
+        {{ components.messagesList }}
       </div>
       <div class="wrapper">
-        {{ Sender }}
+        {{ components.Sender }}
       </div>
     </div>
     </div>
-
   </div>
   `;
 
-  const chatData = {
+  const rData = reactivData({});
+
+  const components = {
     contactsList: [
       Contact(),
       Contact(),
@@ -39,7 +40,7 @@ const Chat = (props) => {
       Contact(),
       Contact(),
       Contact(),
-    ].join(" "),
+    ],
     Search: Input({ label: "Search" }),
     messagesList: [
       Message({ text: "My test message with mock text", class: "my" }),
@@ -60,10 +61,10 @@ const Chat = (props) => {
           "Quae, ut commodi. Et eligendi quo atque, animi, earum harum veniam tempore eos repudiandae distinctio similique ullam amet quasi maxime",
       }),
       Message({ text: "My test message with mock text", class: "my" }),
-    ].join(" "),
-    Sender: Sender,
+    ],
+    Sender: Sender(),
   };
-  return createTemplate(chatTemplate, chatData);
+  return createElement({ template, rData, components });
 };
 
 export default Chat;
