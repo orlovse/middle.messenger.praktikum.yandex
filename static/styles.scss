@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;800&display=swap");
 @import "./variables.scss";
+@import "./global.scss";
 
 * {
   padding: 0;
@@ -37,39 +38,4 @@ button {
   text-decoration: none;
   border: none;
   cursor: pointer;
-}
-
-.wrapper {
-  margin: 1rem 0;
-}
-
-.mb-1 {
-  margin-bottom: 1rem;
-}
-
-.mb-2 {
-  margin-bottom: 2rem;
-}
-
-.mt-1 {
-  margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 2rem;
-}
-
-.mx-1 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.mx-2 {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
-.px-1 {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }

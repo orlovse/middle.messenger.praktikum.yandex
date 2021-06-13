@@ -2,16 +2,16 @@
   width: 100%;
   padding: 2rem 1rem;
   display: flex;
-  flex-direction: column;
-  //flex-wrap: wrap;
-  //justify-content: center;
+  justify-content: space-between;
+  height: 100%;
+  flex-wrap: wrap;
 
-  // input {
-  //   flex: 50%;
-  // }
-}
+  &>.input-component {
+    flex: 50%;
+    padding: 0.5rem 1rem;
+  }
 
-.submit {
-  margin: 2rem 0;
-  margin-top: auto;
+  .submit {
+    width: 100%;
+  }
 }

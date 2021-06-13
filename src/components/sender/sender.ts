@@ -14,7 +14,7 @@ const Sender = () => {
   const rData = reactivData({});
 
   const components = {
-    Input: Input({ label: "Message", class: "mx-1" }),
+    Input: Input({ label: "Message", class: "px-2" }),
     SendButton: Button({ name: "Send" }),
     OptionsButton: Button({ name: "=>" }),
   };

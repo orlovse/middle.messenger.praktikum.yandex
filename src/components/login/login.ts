@@ -1,6 +1,7 @@
 import { createElement, reactivData } from "../../template";
 import "./login.scss";
 import Input from "../input";
+import Button from "../button";
 
 const LoginComponen = () => {
   const template = `
@@ -32,11 +33,6 @@ const LoginComponen = () => {
       func(e: { target: HTMLInputElement }) {
         if (e.target.classList.contains("login-input")) {
           rData.set("result.login", e.target.value, true);
-          console.log("input", rData.get("result"));
-          //console.log(this.get("test"));
-          if (e.target.value === "111") {
-            rData.set("result.login", e.target.value);
-          }
         } else if (e.target.classList.contains("password-input")) {
           rData.set("result.password", e.target.value, true);
         }
@@ -57,11 +53,9 @@ const LoginComponen = () => {
       class: "password-input mt-2",
       rules: { minSymbols: 6 },
     }),
-    SubmitButton: Input({
-      label: "Enter",
-      type: "submit",
-      value: "Enter",
-      class: "submit-login-button mt-2",
+    SubmitButton: Button({
+      name: "Save",
+      class: "save-profile-button mt-4 px-4",
     }),
   };
 

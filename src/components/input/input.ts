@@ -14,9 +14,8 @@ type Props = {
 const Input = (props: Props) => {
   console.log("input, props", props);
   const template = `
-    <div class="input-component">
+    <div class="input-component {{ class }}">
       <input 
-        class=" {{ class }}" 
         placeholder="{{ placeholder }}" 
         type="{{ type }}" 
         value="{{ value }}" 
@@ -33,7 +32,7 @@ const Input = (props: Props) => {
     class: props.class || "",
   });
 
-  const ruleEvent = () => ({
+  const ruleEvent = {
     selector: "input",
     event: "blur",
     func(e: Event & { target: HTMLInputElement }) {
@@ -44,19 +43,17 @@ const Input = (props: Props) => {
       );
       if (props.rules) {
         const { isValid, currentMessage } = checkValid(props.rules, value);
-        console.log("isValid?", isValid);
         if (!isValid) {
           (messageEl as HTMLElement).innerText = currentMessage;
           (messageEl as HTMLElement)?.classList.remove("hide");
-          console.log("messageEl", messageEl);
         } else {
           (messageEl as HTMLElement)?.classList.add("hide");
         }
       }
     },
-  });
+  };
 
-  const events = props.rules ? [ruleEvent()] : null;
+  const events = props.rules ? [ruleEvent] : null;
 
   return createElement({ template, rData, events });
 };

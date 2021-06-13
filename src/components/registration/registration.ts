@@ -1,6 +1,7 @@
 import { createElement, reactivData } from "../../template";
 import "./registration.scss";
 import Input from "../input";
+import Button from "../button";
 
 const RegistrationComponent = () => {
   const template = `
@@ -62,17 +63,15 @@ const RegistrationComponent = () => {
       class: "password-input mt-2",
       rules: { minSymbols: 6 },
     }),
-    SubmitButton: Input({
-      label: "Enter",
-      type: "submit",
-      value: "Enter",
-      class: "submit-registration-button mt-2",
+    SubmitButton: Button({
+      name: "Save",
+      class: "save-profile-button mt-4 px-4",
     }),
   };
 
   const events = [
     {
-      selector: ".submit-registration-button",
+      selector: ".save-profile-button",
       event: "click",
       func(e: Event) {
         e.preventDefault();

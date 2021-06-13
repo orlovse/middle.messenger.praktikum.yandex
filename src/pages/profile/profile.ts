@@ -35,28 +35,26 @@ const Profile = () => {
     fieldsConfig: [
       Input({
         label: "email",
-        class: "profile-email mb-1",
+        class: "profile-email mt-2",
         rules: { email: true },
       }),
       Input({
         label: "login",
-        class: "profile-login mb-1",
+        class: "profile-login mt-2",
         rules: { isRequired: true },
       }),
       Input({
         label: "phone",
-        class: "profile-phone mb-1",
+        class: "profile-phone mt-2",
         rules: { phone: true },
       }),
-      Input({ label: "name", class: "profile-name mb-1" }),
-      Input({ label: "surname", class: "profile-surname mb-1" }),
-      Input({ label: "nickname", class: "profile-nickname mb-1" }),
+      Input({ label: "name", class: "profile-name mt-2" }),
+      Input({ label: "surname", class: "profile-surname mt-2" }),
+      Input({ label: "nickname", class: "profile-nickname mt-2" }),
     ],
     SubmitButton: Button({
       name: "Save",
-      //type: "submit",
-      //value: "Save",
-      class: "save-profile-button mt-2",
+      class: "save-profile-button mt-2 px-4",
     }),
   };
 

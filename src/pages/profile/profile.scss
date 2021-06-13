@@ -1,22 +1,39 @@
 .profile {
   .sheet {
-    flex: 80%;
     height: 85vh;
     overflow: scroll;
     background-color: var(--color-secondary);
     border-radius: 2rem;
-    padding: 2rem;
+    padding: 2rem 2rem 3rem 2rem;
   }
 
-  .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin: 1rem auto;
-    background-color: black;
-  }
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 
-  .actions {
-    text-align: center;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 1rem auto;
+      background-color: black;
+    }
+
+    .fields {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .input-component {
+        flex: 50%;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    .actions {
+      text-align: center;
+    }
   }
 }
