@@ -10,57 +10,80 @@ type Event = {
 
 type ChildComponent = { dataId: string; data: HTMLElement };
 
-export const createElement = (
-  template: string,
-  data: any,
-  events?: Event[] | null
-) => {
+type Component = {
+  template: string;
+  rData: any;
+  events?: Event[] | null;
+  components?: any;
+};
+export const createElement = ({
+  template,
+  rData,
+  events,
+  components,
+}: Component) => {
   let key: RegExpExecArray | null = null;
-  const dataId = createId();
-  data.id = dataId;
-  const rData = reactivData(data);
 
   const createTemplate = (template: string) => {
-    const childComponents: ChildComponent[] = [];
     while ((key = TEMPLATE_REGEXP.exec(template))) {
       if (key[1]) {
         const templateValue = key[1].trim();
-        let data = getObjectField(rData.getAll(), templateValue);
-        if (templateValue.includes("component")) {
-          if (Array.isArray(data)) {
-            let newData = "";
-            data.map((component) => {
-              childComponents.push({
-                dataId: component.dataset.id,
-                data: component,
-              });
-              newData += `<div data-id="${component.dataset.id}"></div>\n`;
+        let dataToTemplate: any;
+        if (templateValue.includes("components.")) {
+          dataToTemplate = getObjectField(
+            components,
+            templateValue.replace("components.", "")
+          );
+          if (Array.isArray(dataToTemplate)) {
+            let childs = "";
+            dataToTemplate.map((childComponent) => {
+              childs += `<div data-id="${childComponent.dataset.id}"></div>\n`;
             });
-            data = newData;
+            dataToTemplate = childs;
           } else {
-            childComponents.push({ dataId: data.dataset.id, data });
-            data = `<div data-id="${data.dataset.id}"></div>`;
+            dataToTemplate = `<div data-id="${dataToTemplate.dataset.id}"></div>`;
           }
+        } else {
+          dataToTemplate = getObjectField(rData.getAll(), templateValue);
         }
-        template = template.replace(new RegExp(key[0], "i"), data);
+        template = template.replace(new RegExp(key[0], "i"), dataToTemplate);
       }
     }
     const element = new DOMParser().parseFromString(template, "text/html").body
       .firstChild;
     if (element) {
-      (element as HTMLElement).setAttribute("data-id", dataId);
+      (element as HTMLElement).setAttribute("data-id", rData.get("id"));
     }
 
-    if (childComponents.length > 0) {
-      childComponents.map(({ dataId, data }) => {
-        const portal =
-          element &&
-          (element as HTMLElement).querySelector(`[data-id="${dataId}"]`);
-        if (portal) {
-          portal.replaceWith(data);
-        }
-      });
+    if (components) {
+      const arrFromObj = Object.keys(components);
+      if (arrFromObj.length) {
+        arrFromObj.map((key) => {
+          if (Array.isArray(components[key])) {
+            components[key].map((childComponent) => {
+              const portal =
+                element &&
+                (element as HTMLElement).querySelector(
+                  `[data-id="${childComponent.dataset.id}"]`
+                );
+              if (portal) {
+                portal.replaceWith(childComponent);
+              }
+            });
+          } else {
+            const portal =
+              element &&
+              (element as HTMLElement).querySelector(
+                `[data-id="${components[key].dataset.id}"]`
+              );
+            if (portal) {
+              portal.replaceWith(components[key]);
+            }
+          }
+        });
+      }
     }
+
     if (events && events.length > 0) {
       events.map(({ selector, event, func }) => {
         let targetEl: ChildNode | null = null;
@@ -94,7 +117,8 @@ export const createElement = (
   return element;
 };
 
-const reactivData = (data: { id?: string; updateElement?: Function }) => {
+export const reactivData = (data: any) => {
+  data.id = createId();
   const set = (key: string, value: any, notUpdate = false) => {
     if (key.includes(".")) {
       data = deepUpdate(data, key, value);
@@ -110,7 +134,7 @@ const reactivData = (data: { id?: string; updateElement?: Function }) => {
   };
   const getAll = () => data;
   const get = (key: string) => {
-    return data[key];
+    return getObjectField(data, key);
   };
   return { getAll, set, get, addUpdate };
 };

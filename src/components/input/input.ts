@@ -1,4 +1,4 @@
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./input.scss";
 
 type Props = {
@@ -9,7 +9,8 @@ type Props = {
 };
 
 const Input = (props: Props) => {
-  const inputTemplate = `
+  console.log("input, props", props);
+  const template = `
     <input 
       class="input {{ class }}" 
       placeholder="{{ placeholder }}" 
@@ -18,14 +19,14 @@ const Input = (props: Props) => {
     />
   `;
 
-  const inputData = {
+  const rData = reactivData({
     placeholder: props.label || "label",
     type: props.type || "type",
     value: props.value || "",
     class: props.class || "",
-  };
+  });
 
-  return createElement(inputTemplate, inputData);
+  return createElement({ template, rData });
 };
 
 export default Input;

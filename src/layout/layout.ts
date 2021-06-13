@@ -1,4 +1,4 @@
-import { createElement } from "../template/index";
+import { createElement, reactivData } from "../template/index";
 import "./layout.scss";
 import Menu from "../components/menu";
 
@@ -6,16 +6,20 @@ type Props = {
   component: HTMLElement;
 };
 const Layout = (props: Props) => {
-  const layoutTemplate = `
+  const template = `
     <div class="layout">
       {{ components.Menu }}
       <main class="container">
-        {{ props.component }}
+        {{ components.Child }}
       </main>
     </div>
   `;
-  const layoutData = { props, components: { Menu: Menu() } };
-  return createElement(layoutTemplate, layoutData);
+  const rData = reactivData({ props });
+  const components = {
+    Menu: Menu(),
+    Child: props.component,
+  };
+  return createElement({ template, rData, components });
 };
 
 export default Layout;

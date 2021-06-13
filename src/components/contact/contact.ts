@@ -3,10 +3,10 @@ import "./contact.scss";
 import Avatar from "../avatar";
 import Badge from "../badge";
 
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 
 const Contact = () => {
-  const contactTemplate = `
+  const template = `
   <div class="contact">
     {{ components.Avatar }}
     <div class="content">
@@ -16,14 +16,14 @@ const Contact = () => {
     {{ components.Badge }}
   </div>
   `;
-  const contactData = {
-    components: {
-      Avatar: Avatar(),
-      Badge: Badge({ number: 2 }),
-    },
+  const rData = reactivData({});
+
+  const components = {
+    Avatar: Avatar(),
+    Badge: Badge({ number: 2 }),
   };
 
-  return createElement(contactTemplate, contactData);
+  return createElement({ template, rData, components });
 };
 
 export default Contact;

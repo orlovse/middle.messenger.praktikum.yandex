@@ -1,4 +1,4 @@
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./error.scss";
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Error = (props: Props) => {
-  const errorTemplate = `
+  const template = `
   <div class="error">
     <div class="window">
       <p class="title">{{ props.type }}</p>
@@ -16,22 +16,22 @@ const Error = (props: Props) => {
   </div>
   `;
 
-  const errorData = {
+  const rData = reactivData({
     props,
     test: 1,
-  };
+  });
 
   const events = [
     {
       selector: ".testbtn",
       event: "click",
       func() {
-        this.set("test", this.get("test") + 1);
+        rData.set("test", rData.get("test") + 1);
       },
     },
   ];
 
-  return createElement(errorTemplate, errorData, events);
+  return createElement({ template, rData, events });
 };
 
 export default Error;

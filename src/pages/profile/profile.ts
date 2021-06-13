@@ -1,10 +1,10 @@
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./profile.scss";
 import Input from "../../components/input";
 import Button from "../../components/button";
 
 const Profile = () => {
-  const profileTemplate = `
+  const template = `
   <div class="profile">
     <div class="sheet">
       <form class="profile-form">    
@@ -20,23 +20,7 @@ const Profile = () => {
   </div>
   `;
 
-  const profileData = {
-    components: {
-      fieldsConfig: [
-        Input({ label: "email", class: "profile-email mb-1" }),
-        Input({ label: "login", class: "profile-login mb-1" }),
-        Input({ label: "name", class: "profile-name mb-1" }),
-        Input({ label: "surname", class: "profile-surname mb-1" }),
-        Input({ label: "nickname", class: "profile-nickname mb-1" }),
-        Input({ label: "phone", class: "profile-phone mb-1" }),
-      ],
-      SubmitButton: Button({
-        name: "Save",
-        //type: "submit",
-        //value: "Save",
-        class: "save-profile-button mt-2",
-      }),
-    },
+  const rData = reactivData({
     result: {
       email: "",
       login: "",
@@ -45,15 +29,32 @@ const Profile = () => {
       nickname: "",
       phone: "",
     },
+  });
+
+  const components = {
+    fieldsConfig: [
+      Input({ label: "email", class: "profile-email mb-1" }),
+      Input({ label: "login", class: "profile-login mb-1" }),
+      Input({ label: "name", class: "profile-name mb-1" }),
+      Input({ label: "surname", class: "profile-surname mb-1" }),
+      Input({ label: "nickname", class: "profile-nickname mb-1" }),
+      Input({ label: "phone", class: "profile-phone mb-1" }),
+    ],
+    SubmitButton: Button({
+      name: "Save",
+      //type: "submit",
+      //value: "Save",
+      class: "save-profile-button mt-2",
+    }),
   };
 
-  const profileEvents = [
+  const events = [
     {
       selector: ".save-profile-button",
       event: "click",
       func(e: Event) {
         e.preventDefault();
-        console.log("test", this.get("result"));
+        console.log("test", rData.get("result"));
       },
     },
     {
@@ -61,23 +62,23 @@ const Profile = () => {
       event: "input",
       func(e: { target: HTMLInputElement }) {
         if (e.target.classList.contains("profile-email")) {
-          this.set("result.email", e.target.value, true);
+          rData.set("result.email", e.target.value, true);
         } else if (e.target.classList.contains("profile-login")) {
-          this.set("result.login", e.target.value, true);
+          rData.set("result.login", e.target.value, true);
         } else if (e.target.classList.contains("profile-name")) {
-          this.set("result.name", e.target.value, true);
+          rData.set("result.name", e.target.value, true);
         } else if (e.target.classList.contains("profile-surname")) {
-          this.set("result.surname", e.target.value, true);
+          rData.set("result.surname", e.target.value, true);
         } else if (e.target.classList.contains("profile-nickname")) {
-          this.set("result.nickname", e.target.value, true);
+          rData.set("result.nickname", e.target.value, true);
         } else if (e.target.classList.contains("profile-phone")) {
-          this.set("result.phone", e.target.value, true);
+          rData.set("result.phone", e.target.value, true);
         }
       },
     },
   ];
 
-  return createElement(profileTemplate, profileData, profileEvents);
+  return createElement({ template, rData, events, components });
 };
 
 export default Profile;

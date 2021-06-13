@@ -1,4 +1,4 @@
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./message.scss";
 import Avatar from "../avatar";
 
@@ -7,7 +7,7 @@ type Props = {
   text: string;
 };
 const Message = (props: Props) => {
-  const messageTemplate = `
+  const template = `
     <div class="message {{ class }}"> 
       <div class="message-avatar">
         {{ components.Avatar }}
@@ -15,14 +15,15 @@ const Message = (props: Props) => {
       {{ props.text }} 
       <span class="message-date">12:58</span>
     </div>`;
-  const messageData = {
+  const rData = reactivData({
     props,
     class: props.class || "",
-    components: {
-      Avatar: Avatar(),
-    },
+  });
+
+  const components = {
+    Avatar: Avatar(),
   };
-  return createElement(messageTemplate, messageData);
+  return createElement({ template, rData, components });
 };
 
 export default Message;

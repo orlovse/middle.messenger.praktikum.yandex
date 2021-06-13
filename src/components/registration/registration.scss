@@ -1,7 +1,14 @@
 .registration-form {
+  width: 100%;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  //flex-wrap: wrap;
+  //justify-content: center;
+
+  // input {
+  //   flex: 50%;
+  // }
 }
 
 .submit {

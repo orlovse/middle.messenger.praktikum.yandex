@@ -1,14 +1,14 @@
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./badge.scss";
 
 type Props = {
   number: number;
 };
 const Badge = (props: Props) => {
-  const badgeTemplate = `<div class="badge">{{ props.number }}</div>`;
-  const badgeData = { props };
+  const template = `<div class="badge">{{ props.number }}</div>`;
+  const rData = reactivData({ props });
 
-  return createElement(badgeTemplate, badgeData);
+  return createElement({ template, rData });
 };
 
 export default Badge;

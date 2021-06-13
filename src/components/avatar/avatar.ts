@@ -1,11 +1,11 @@
 import "./avatar.scss";
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 
 const Avatar = () => {
-  const avatarTemplate = `<div class="avatar"></div>`;
-  const avatarData = {};
+  const template = `<div class="avatar"></div>`;
+  const rData = reactivData({});
 
-  return createElement(avatarTemplate, avatarData);
+  return createElement({ template, rData });
 };
 
 export default Avatar;

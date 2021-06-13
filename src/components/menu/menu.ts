@@ -1,29 +1,28 @@
-import { createElement } from "../../template";
+import { createElement, reactivData } from "../../template";
 import "./menu.scss";
 
 const Menu = () => {
-  const menuTemplate = `
+  const template = `
   <nav class="menu">
     {{ menuTemplateList }}
     <div class="theme-toggle">Toggle theme</div>
   </nav>
   `;
 
-  const menuData = {
+  const rData = reactivData({
     name: "menu",
-    menuList: [
-      { name: "Login", link: "/login" },
-      { name: "Profile", link: "/profile" },
-      { name: "Chat", link: "/chat" },
-      { name: "Error", link: "/error" },
-    ],
     menuTemplateList() {
-      return menuData.menuList
+      return [
+        { name: "Login", link: "/login" },
+        { name: "Profile", link: "/profile" },
+        { name: "Chat", link: "/chat" },
+        { name: "Error", link: "/error" },
+      ]
         .map((menu) => `<a href=${menu.link}>${menu.name}</a>`)
         .join("");
     },
-  };
-  return createElement(menuTemplate, menuData);
+  });
+  return createElement({ template, rData });
 };
 
 export default Menu;
