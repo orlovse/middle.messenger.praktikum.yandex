@@ -48,12 +48,13 @@ const LoginComponen = () => {
     LoginInput: Input({
       label: "Login",
       type: "text",
-      class: `login-input mt-2 ${rData.get("result.login")}`,
+      class: `login-input mt-2`,
     }),
     PasswordInput: Input({
       label: "Password",
       type: "password",
       class: "password-input mt-2",
+      rules: { minSymbols: 6 },
     }),
     SubmitButton: Input({
       label: "Enter",

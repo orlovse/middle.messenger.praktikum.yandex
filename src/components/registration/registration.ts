@@ -57,6 +57,7 @@ const RegistrationComponent = () => {
       label: "Password",
       type: "password",
       class: "password-input mt-2",
+      rules: { minSymbols: 6 },
     }),
     SubmitButton: Input({
       label: "Enter",

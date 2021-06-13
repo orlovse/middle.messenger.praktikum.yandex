@@ -1,3 +1,4 @@
+import { ValidationRules } from "./../types/index";
 export const getObjectField = (
   obj: Object,
   path: string,
@@ -52,4 +53,14 @@ export const deepUpdate = (
   } else {
     return original;
   }
+};
+
+export const checkValid = (rules: ValidationRules, value: string | number) => {
+  let isValid = true;
+  let currentMessage = "";
+  if (rules.minSymbols && rules.minSymbols > value.toString().length) {
+    isValid = false;
+    currentMessage = `Less then ${rules.minSymbols} symbols`;
+  }
+  return { isValid, currentMessage };
 };

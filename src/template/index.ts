@@ -8,14 +8,13 @@ type Event = {
   func: Function;
 };
 
-type ChildComponent = { dataId: string; data: HTMLElement };
-
 type Component = {
   template: string;
   rData: any;
   events?: Event[] | null;
   components?: any;
 };
+
 export const createElement = ({
   template,
   rData,

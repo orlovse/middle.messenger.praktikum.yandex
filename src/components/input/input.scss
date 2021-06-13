@@ -1,4 +1,6 @@
 .input-component {
+  width: 100%;
+
   input {
     width: 100%;
     border-radius: 3rem;
@@ -15,7 +17,7 @@
 
   .input-error-message {
     display: inline-block;
-    color: red;
+    color: rgb(236, 5, 5);
     animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
     transform: translate3d(0, 0, 0);
   }
