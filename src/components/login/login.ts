@@ -49,6 +49,7 @@ const LoginComponen = () => {
       label: "Login",
       type: "text",
       class: `login-input mt-2`,
+      rules: { isRequired: true },
     }),
     PasswordInput: Input({
       label: "Password",

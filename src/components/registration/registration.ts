@@ -32,11 +32,13 @@ const RegistrationComponent = () => {
       label: "Email",
       type: "email",
       class: "email-input mt-2",
+      rules: { email: true },
     }),
     LoginInput: Input({
       label: "Login",
       type: "text",
       class: "login-input mt-2",
+      rules: { isRequired: true },
     }),
     NameInput: Input({
       label: "Name",
@@ -52,6 +54,7 @@ const RegistrationComponent = () => {
       label: "Phone",
       type: "tel",
       class: "phone-input mt-2",
+      rules: { phone: true },
     }),
     PasswordInput: Input({
       label: "Password",

@@ -1,4 +1,5 @@
 import { ValidationRules } from "./../types/index";
+import { phoneRegExp, emailRegExp } from "./regex";
 export const getObjectField = (
   obj: Object,
   path: string,
@@ -58,9 +59,27 @@ export const deepUpdate = (
 export const checkValid = (rules: ValidationRules, value: string | number) => {
   let isValid = true;
   let currentMessage = "";
-  if (rules.minSymbols && rules.minSymbols > value.toString().length) {
+  if (rules.isRequired && !value) {
+    isValid = false;
+    currentMessage = `Field is required`;
+  } else if (rules.minSymbols && rules.minSymbols > value.toString().length) {
     isValid = false;
     currentMessage = `Less then ${rules.minSymbols} symbols`;
+  } else if (rules.phone && !value.toString().match(phoneRegExp)) {
+    isValid = false;
+    currentMessage = `Invalid phone`;
+  } else if (rules.email && !value.toString().match(emailRegExp)) {
+    isValid = false;
+    currentMessage = `Invalid email`;
   }
+
+  if (rules.phone) {
+    console.log("value", value);
+    console.log(
+      "value.toString().match(phoneRegExp)",
+      value.toString().match(phoneRegExp)
+    );
+  }
+
   return { isValid, currentMessage };
 };

@@ -33,12 +33,24 @@ const Profile = () => {
 
   const components = {
     fieldsConfig: [
-      Input({ label: "email", class: "profile-email mb-1" }),
-      Input({ label: "login", class: "profile-login mb-1" }),
+      Input({
+        label: "email",
+        class: "profile-email mb-1",
+        rules: { email: true },
+      }),
+      Input({
+        label: "login",
+        class: "profile-login mb-1",
+        rules: { isRequired: true },
+      }),
+      Input({
+        label: "phone",
+        class: "profile-phone mb-1",
+        rules: { phone: true },
+      }),
       Input({ label: "name", class: "profile-name mb-1" }),
       Input({ label: "surname", class: "profile-surname mb-1" }),
       Input({ label: "nickname", class: "profile-nickname mb-1" }),
-      Input({ label: "phone", class: "profile-phone mb-1" }),
     ],
     SubmitButton: Button({
       name: "Save",
