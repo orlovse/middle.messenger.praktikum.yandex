@@ -7,9 +7,10 @@
       rgb(206, 203, 203) 41%,
       rgb(210, 220, 233) 100%);
   ;
-  --text-color: rgb(37, 37, 37);
+  --color-text: rgb(37, 37, 37);
   --color-shadow: 1px 19px 42px -5px rgb(61, 61, 61);
   --color-shadow-active: 1px 5px 20px 2px rgb(61, 61, 61);
+  --color-my-message: #cedef8;
 }
 
 .theme-dark {
@@ -17,10 +18,11 @@
   --color-secondary: #1e2022;
   --color-elements: #292c2d;
   --color-background: radial-gradient(circle,
-      rgb(32, 32, 32) 15%,
+      rgb(53, 52, 52) 15%,
       rgb(68, 68, 68) 41%,
       rgb(96, 101, 107) 100%);
-  --text-color: rgb(218, 218, 218);
+  --color-text: rgb(218, 218, 218);
   --color-shadow: 1px 19px 42px -5px rgba(0, 0, 0, 1);
   --color-shadow-active: 1px 5px 20px 2px rgba(0, 0, 0, 1);
+  --color-my-message: #5f6668;
 }
