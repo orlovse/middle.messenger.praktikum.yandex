@@ -25,6 +25,7 @@ export const LoginComponen = () => {
       func(e: Event) {
         const isValid = checkFormFields(e, ".login-form");
         if (isValid) {
+          window.history.pushState({ path: "/chat" }, "title", "/chat");
           console.log("result:", rData.get("result"));
         } else {
           console.error("Not all fields are valid");

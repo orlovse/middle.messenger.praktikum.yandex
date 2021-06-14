@@ -77,6 +77,7 @@ export const RegistrationComponent = () => {
       func(e: Event) {
         const isValid = checkFormFields(e, ".registration-form");
         if (isValid) {
+          window.history.pushState({ path: "/chat" }, "title", "/chat");
           console.log("result:", rData.get("result"));
         } else {
           console.error("Not all fields are valid");
