@@ -84,7 +84,7 @@ export const createElement = ({
     }
 
     if (events && events.length > 0) {
-      events.map(({ selector, event, func }) => {
+      events.forEach(({ selector, event, func }) => {
         let targetEl: ChildNode | null = null;
         if (selector === "root") {
           targetEl = element;
