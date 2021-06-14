@@ -1,20 +1,19 @@
 import { checkFormFields } from "./../../utils/index";
 import { createElement, reactivData } from "../../template";
 import "./login.scss";
-import Input from "../input";
-import Button from "../button";
+import { Button, Input } from "../";
 
-const LoginComponen = () => {
-  const template = `
-    <form class="login-form">
-        {{ components.LoginInput }}
-        {{ components.PasswordInput }}
-      <div class="submit">
-        {{ components.SubmitButton }}
-      </div>
-    </form>
-  `;
+const template = `
+<form class="login-form">
+    {{ components.LoginInput }}
+    {{ components.PasswordInput }}
+  <div class="submit">
+    {{ components.SubmitButton }}
+  </div>
+</form>
+`;
 
+export const LoginComponen = () => {
   const rData = reactivData({
     result: { login: "", password: "" },
   });
@@ -68,5 +67,3 @@ const LoginComponen = () => {
 
   return createElement({ template, rData, events, components });
 };
-
-export default LoginComponen;

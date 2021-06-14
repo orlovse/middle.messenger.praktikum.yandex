@@ -1,26 +1,25 @@
 import { checkFormFields } from "./../../utils/index";
 import { createElement, reactivData } from "../../template";
 import "./profile.scss";
-import Input from "../../components/input";
-import Button from "../../components/button";
+import { Button, Input } from "../../components";
 
-const Profile = () => {
-  const template = `
-  <div class="profile">
-    <div class="sheet">
-      <form class="profile-form">    
-        <div class="avatar"></div>
-        <div class="fields">
-          {{ components.fieldsConfig }}
-        </div>
-        <div class="actions">
-          {{ components.SubmitButton }}
-        </div>
-      </form>
-    </div>
+const template = `
+<div class="profile">
+  <div class="sheet">
+    <form class="profile-form">    
+      <div class="avatar"></div>
+      <div class="fields">
+        {{ components.fieldsConfig }}
+      </div>
+      <div class="actions">
+        {{ components.SubmitButton }}
+      </div>
+    </form>
   </div>
-  `;
+</div>
+`;
 
+export const Profile = () => {
   const rData = reactivData({
     result: {
       email: "",
@@ -105,5 +104,3 @@ const Profile = () => {
 
   return createElement({ template, rData, events, components });
 };
-
-export default Profile;

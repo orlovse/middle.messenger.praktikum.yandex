@@ -4,11 +4,11 @@ import "./badge.scss";
 type Props = {
   number: number;
 };
-const Badge = (props: Props) => {
-  const template = `<div class="badge">{{ props.number }}</div>`;
+
+const template = `<div class="badge">{{ props.number }}</div>`;
+
+export const Badge = (props: Props) => {
   const rData = reactivData({ props });
 
   return createElement({ template, rData });
 };
-
-export default Badge;

@@ -1,23 +1,23 @@
 import { checkFormFields } from "./../../utils/index";
 import { createElement, reactivData } from "../../template";
 import "./registration.scss";
-import Input from "../input";
-import Button from "../button";
+import { Button, Input } from "../";
 
-const RegistrationComponent = () => {
-  const template = `
-    <form class="registration-form">
-        {{ components.EmailInput }}
-        {{ components.LoginInput }}
-        {{ components.NameInput }}
-        {{ components.SurnameInput }}
-        {{ components.PhoneInput }}
-        {{ components.PasswordInput }}
-      <div class="submit">
-        {{ components.SubmitButton }}
-      </div>
-    </form>
-  `;
+const template = `
+<form class="registration-form">
+    {{ components.EmailInput }}
+    {{ components.LoginInput }}
+    {{ components.NameInput }}
+    {{ components.SurnameInput }}
+    {{ components.PhoneInput }}
+    {{ components.PasswordInput }}
+  <div class="submit">
+    {{ components.SubmitButton }}
+  </div>
+</form>
+`;
+
+export const RegistrationComponent = () => {
   const rData = reactivData({
     result: {
       email: "",
@@ -110,5 +110,3 @@ const RegistrationComponent = () => {
 
   return createElement({ template, rData, events, components });
 };
-
-export default RegistrationComponent;

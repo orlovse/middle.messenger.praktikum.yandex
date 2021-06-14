@@ -1,10 +1,7 @@
 import "../static/styles.scss";
 import { mountTemplate } from "./template";
-import Error from "./pages/error";
-import Login from "./pages/login";
-import Profile from "./pages/profile";
-import Chat from "./pages/chat";
-import Layout from "./layout";
+import { Chat, Error, Login, Profile } from "./pages";
+import { Layout } from "./layout";
 
 let path = window.location.pathname;
 const appRouts = {
