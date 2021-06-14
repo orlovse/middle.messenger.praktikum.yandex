@@ -7,14 +7,10 @@ export const getObjectField = (
 ) => {
   const keys = path.split(".");
 
-  let result = obj;
-  for (let key of keys) {
-    result = result[key];
+  let result = keys.reduce((acc, key) => {
+    return acc[key];
+  }, obj);
 
-    if (result === undefined) {
-      return defaultValue;
-    }
-  }
   return result ?? defaultValue;
 };
 
