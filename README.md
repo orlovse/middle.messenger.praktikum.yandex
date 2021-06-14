@@ -23,11 +23,35 @@ Project https://admiring-payne-a8eb48.netlify.app/
 - Компонент - это функция, создающая и возвращающая DOM Node
 - Компоненты принимают пропсы
 - DOM Node создаётся по средствам вызова функции createElement() внутри компонента
-- createElement({template, rData, events, components }) принимает объект с одним обязательным полем: template. И тремя необязательными: rData, components, events
+- createElement() принимает объект с одним обязательным полем: template. И тремя необязательными: rData, components, events
+    ```html
+      createElement({template, rData, events, components })
+    ```
 - template - это строка с HTML разметкой вида `<div>Test</div>`
-- rData = reactivData({}) . rData это объект с данными компонента, обёрнутый в reactivData(). 
-- components - это объект, содержащий другие компоненты или массив компонентов, например components = { LoginInput: Input(), arrayButtons: [Button(), Button()]}
+- rData это объект с данными компонента, обёрнутый в reactivData(). 
+    ```html
+      rData = reactivData({}) 
+    ```
+
+- components - это объект, содержащий другие компоненты или массив компонентов, например:
+    ```html
+      components = { 
+        LoginInput: Input(), 
+        arrayButtons: [Button(), Button()]
+      }
+    ```
 - events - это массив событий, каждое событие - объект с полями selector, event, func. События навешиваются непосредственно на компонент и удаляются вместе с ним.
+    ```html
+      events = [
+        {
+          selector: ".submit-button",
+          event: "click",
+          func(e) {
+            console.log(rData.get("formData"))
+          }
+        }
+      ]
+    ```
 - в events в поле selector можно указать "root", тогда событие будет навешено на весь компонент
 - чтобы вставить данные в HTML, нужно указать внутри разметки скобки с именем поля из rData, например: 
   
@@ -36,14 +60,18 @@ Project https://admiring-payne-a8eb48.netlify.app/
 
   const rData = reactivData({
     form: {
-    login: "Test",
-    password: 123456
+      login: "Test",
+      password: 123456
     }
   })
 
 - Во всех других местах, кроме темплейта, обращение к данным происходит через внутренние операторы reactivData
 - reactivData возвращает функции get() set()
-- Чтобы обратиться к данным из компонентов или событий, необходимо указать rData.get("form.login") или rData.set("form.login", "newLogin")
+- Чтобы обратиться к данным из компонентов или событий, необходимо указать:
+    ```html
+      rData.get("form.login")
+      rData.set("form.login", "newLogin")
+    ```
 - После изменения одного из полей данных (через функцию set()), компонент ререндерится
 - Чтобы предотвратить ререндер, необходимо в функции set() указать третий параметр со значением true
 - Следующий код не приведёт к ререндеру компонента:
@@ -51,7 +79,7 @@ Project https://admiring-payne-a8eb48.netlify.app/
   ```html
   rData.set("form.login", "newLogin", true)
   ```
-- Чтобы поместить компонент внутрь template, необходимо обратиться к  переменной components:
+- Чтобы поместить компонент внутрь template, необходимо обратиться к переменной components:
   ```html
     const template = <div> {{ components.Button }}</div>
     const components = {{ Button: Button() }}
