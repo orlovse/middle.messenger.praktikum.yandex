@@ -1,4 +1,4 @@
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./button.scss";
 
 type Props = {
@@ -6,11 +6,10 @@ type Props = {
   class?: string;
 };
 
-const Button = (props: Props) => {
-  const template = `<button class="button {{ class }}">{{ props.name }}</button>`;
+const template = `<button class="button {{ class }}">{{ props.name }}</button>`;
+
+export const Button = (props: Props) => {
   const rData = reactivData({ props, class: props.class || "" });
 
   return createElement({ template, rData });
 };
-
-export default Button;

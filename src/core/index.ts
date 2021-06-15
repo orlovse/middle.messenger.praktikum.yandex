@@ -1,6 +1,5 @@
 import { getObjectField, createId, deepUpdate } from "../utils";
-
-const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/i;
+import { TEMPLATE_REGEXP } from "../utils/regex";
 
 type Event = {
   selector: string;
@@ -10,7 +9,7 @@ type Event = {
 
 type Component = {
   template: string;
-  rData: any;
+  rData?: any;
   events?: Event[] | null;
   components?: any;
 };
@@ -84,7 +83,7 @@ export const createElement = ({
     }
 
     if (events && events.length > 0) {
-      events.map(({ selector, event, func }) => {
+      events.forEach(({ selector, event, func }) => {
         let targetEl: ChildNode | null = null;
         if (selector === "root") {
           targetEl = element;

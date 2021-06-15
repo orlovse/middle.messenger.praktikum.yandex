@@ -1,31 +1,28 @@
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./chat.scss";
-import Message from "../../components/message";
-import Input from "../../components/input";
-import Contact from "../../components/contact";
-import Sender from "../../components/sender";
+import { Contact, Input, Message, Sender } from "../../components";
 
-const Chat = () => {
-  const template = `
-  <div class="chat">
-    <div class="panel">
-      {{ components.Search }}
-      <div class="contact-list">
-        {{ components.contactsList }}
-      </div>
-    </div>
-    <div class="main">
-      <div class="main-field">
-        {{ components.messagesList }}
-      </div>
-      <div class="wrapper">
-        {{ components.Sender }}
-      </div>
-    </div>
+const template = `
+<div class="chat">
+  <div class="panel">
+    {{ components.Search }}
+    <div class="contact-list">
+      {{ components.contactsList }}
     </div>
   </div>
-  `;
+  <div class="main">
+    <div class="main-field">
+      {{ components.messagesList }}
+    </div>
+    <div class="wrapper">
+      {{ components.Sender }}
+    </div>
+  </div>
+  </div>
+</div>
+`;
 
+export const Chat = () => {
   const rData = reactivData({});
 
   const components = {
@@ -66,5 +63,3 @@ const Chat = () => {
   };
   return createElement({ template, rData, components });
 };
-
-export default Chat;

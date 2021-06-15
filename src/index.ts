@@ -1,10 +1,7 @@
 import "../static/styles.scss";
-import { mountTemplate } from "./template";
-import Error from "./pages/error";
-import Login from "./pages/login";
-import Profile from "./pages/profile";
-import Chat from "./pages/chat";
-import Layout from "./layout";
+import { mountTemplate } from "./core";
+import { Chat, Error, Login, Profile } from "./pages";
+import { Layout } from "./layout";
 
 let path = window.location.pathname;
 const appRouts = {
@@ -25,12 +22,7 @@ const routing = (event: Event & { target: HTMLElement }) => {
     const newPath = event.target.attributes[0].value;
     if (path !== newPath) {
       path = newPath;
-      window.history.replaceState({}, "title", newPath);
-      mountTemplate(
-        Layout({
-          component: appRouts[newPath] || Error({ type: "404" }),
-        }) as HTMLElement
-      );
+      window.history.pushState({ path: newPath }, "title", newPath);
     }
   } else if (event.target.classList.contains("theme-toggle")) {
     const app = document.querySelector("#app");
@@ -45,3 +37,18 @@ if (document) {
     app.addEventListener("click", routing);
   }
 }
+
+(function (history) {
+  const pushState = history.pushState;
+  history.pushState = function (state) {
+    if (path !== state.path) {
+      path = state.path;
+    }
+    mountTemplate(
+      Layout({
+        component: appRouts[state.path] || Error({ type: "404" }),
+      }) as HTMLElement
+    );
+    return pushState.apply(history, arguments);
+  };
+})(window.history);

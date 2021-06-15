@@ -1,16 +1,15 @@
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./sender.scss";
-import Input from "../input";
-import Button from "../button";
+import { Button, Input } from "../";
 
-const Sender = () => {
-  const template = `
-    <div class="sender">
-      {{ components.OptionsButton }}
-      {{ components.Input }}
-      {{ components.SendButton }}
-    </div>
-  `;
+const template = `
+<div class="sender">
+  {{ components.OptionsButton }}
+  {{ components.Input }}
+  {{ components.SendButton }}
+</div>
+`;
+export const Sender = () => {
   const rData = reactivData({});
 
   const components = {
@@ -21,5 +20,3 @@ const Sender = () => {
 
   return createElement({ template, rData, components });
 };
-
-export default Sender;

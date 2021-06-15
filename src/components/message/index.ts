@@ -1,1 +1,1 @@
-export { default } from "./message";
+export { Message } from "./message";

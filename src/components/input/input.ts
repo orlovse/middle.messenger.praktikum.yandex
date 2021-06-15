@@ -1,5 +1,5 @@
-import { ValidationRules } from "./../../types/index";
-import { createElement, reactivData } from "../../template";
+import { ValidationRules } from "./../../types";
+import { createElement, reactivData } from "../../core";
 import "./input.scss";
 import { checkValid } from "../../utils";
 
@@ -11,19 +11,18 @@ type Props = {
   rules?: ValidationRules;
 };
 
-const Input = (props: Props) => {
-  const template = `
-    <div class="input-component {{ class }}">
-      <input 
-        placeholder="{{ placeholder }}" 
-        type="{{ type }}" 
-        value="{{ value }}" 
-      />
-      <span class="input-error-message hide"></span>    
-    </div>
+const template = `
+<div class="input-component {{ class }}">
+  <input 
+    placeholder="{{ placeholder }}" 
+    type="{{ type }}" 
+    value="{{ value }}" 
+  />
+  <span class="input-error-message hide"></span>    
+</div>
+`;
 
-  `;
-
+export const Input = (props: Props) => {
   const rData = reactivData({
     placeholder: props.label || "label",
     type: props.type || "type",
@@ -53,5 +52,3 @@ const Input = (props: Props) => {
 
   return createElement({ template, rData, events });
 };
-
-export default Input;

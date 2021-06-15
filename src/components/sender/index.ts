@@ -1,1 +1,1 @@
-export { default } from "./sender";
+export { Sender } from "./sender";

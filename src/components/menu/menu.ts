@@ -1,14 +1,14 @@
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./menu.scss";
 
-const Menu = () => {
-  const template = `
-  <nav class="menu">
-    {{ menuTemplateList }}
-    <div class="theme-toggle">Toggle theme</div>
-  </nav>
-  `;
+const template = `
+<nav class="menu">
+  {{ menuTemplateList }}
+  <div class="theme-toggle">Toggle theme</div>
+</nav>
+`;
 
+export const Menu = () => {
   const rData = reactivData({
     name: "menu",
     menuTemplateList() {
@@ -24,5 +24,3 @@ const Menu = () => {
   });
   return createElement({ template, rData });
 };
-
-export default Menu;

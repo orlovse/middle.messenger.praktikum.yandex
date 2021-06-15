@@ -1,19 +1,20 @@
-import { createElement, reactivData } from "../../template/index";
+import { createElement, reactivData } from "../../core";
 import "./component.scss";
-import Button from "../button";
+import { Button } from "../button";
 
 type Props = {
   class?: string;
 };
 
-const Component = (props: Props) => {
-  const template = `
-    <div class="{{ props.class }}">
-      <div class="name">{{ name }}</div>
-      {{ components.componentsList }}
-      <div>{{ components.Button }}</div>
-    </div>
-  `;
+const template = `
+<div class="{{ props.class }}">
+  <div class="name">{{ name }}</div>
+  {{ components.componentsList }}
+  <div>{{ components.Button }}</div>
+</div>
+`;
+
+export const Component = (props: Props) => {
   const rData = reactivData({
     props,
     name: "Test component",
@@ -41,5 +42,3 @@ const Component = (props: Props) => {
   ];
   return createElement({ template, rData, events, components });
 };
-
-export default Component;

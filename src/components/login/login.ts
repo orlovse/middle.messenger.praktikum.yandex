@@ -1,20 +1,19 @@
 import { checkFormFields } from "./../../utils/index";
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./login.scss";
-import Input from "../input";
-import Button from "../button";
+import { Button, Input } from "../";
 
-const LoginComponen = () => {
-  const template = `
-    <form class="login-form">
-        {{ components.LoginInput }}
-        {{ components.PasswordInput }}
-      <div class="submit">
-        {{ components.SubmitButton }}
-      </div>
-    </form>
-  `;
+const template = `
+<form class="login-form">
+    {{ components.LoginInput }}
+    {{ components.PasswordInput }}
+  <div class="submit">
+    {{ components.SubmitButton }}
+  </div>
+</form>
+`;
 
+export const LoginComponen = () => {
   const rData = reactivData({
     result: { login: "", password: "" },
   });
@@ -26,7 +25,11 @@ const LoginComponen = () => {
       func(e: Event) {
         const isValid = checkFormFields(e, ".login-form");
         if (isValid) {
+          (document.querySelector(
+            "form.login-form"
+          ) as HTMLFormElement).reset();
           console.log("result:", rData.get("result"));
+          window.history.pushState({ path: "/chat" }, "title", "/chat");
         } else {
           console.error("Not all fields are valid");
         }
@@ -68,5 +71,3 @@ const LoginComponen = () => {
 
   return createElement({ template, rData, events, components });
 };
-
-export default LoginComponen;

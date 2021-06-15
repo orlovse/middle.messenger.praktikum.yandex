@@ -1,6 +1,106 @@
 PR Sprint 1: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/1
 
+PR Sprint 2: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/2
+
 Project https://admiring-payne-a8eb48.netlify.app/
+
+Сейчас в проекте используются:
+
+* HTML;
+* TypeScript;
+* Sass;
+* Express;
+* ESLint, Stylelint;
+
+Реализовано переключение темы на светлую/тёмную
+
+Шаблонизатор написан мной и лежит в папке template
+
+В папке components/_boilerplate лежит компонент с базовой структурой
+
+Базовый flow создания компонента:
+
+- Компонент - это функция, создающая и возвращающая DOM Node
+- Компоненты принимают пропсы
+- DOM Node создаётся по средствам вызова функции createElement() внутри компонента
+- createElement() принимает объект с одним обязательным полем: template. И тремя необязательными: rData, components, events
+    ```html
+      createElement({template, rData, events, components })
+    ```
+- template - это строка с HTML разметкой вида `<div>Test</div>`
+- rData это объект с данными компонента, обёрнутый в reactivData(). 
+    ```html
+      rData = reactivData({}) 
+    ```
+
+- components - это объект, содержащий другие компоненты или массив компонентов, например:
+    ```html
+      components = { 
+        LoginInput: Input(), 
+        arrayButtons: [Button(), Button()]
+      }
+    ```
+- events - это массив событий, каждое событие - объект с полями selector, event, func. События навешиваются непосредственно на компонент и удаляются вместе с ним.
+    ```html
+      events = [
+        {
+          selector: ".submit-button",
+          event: "click",
+          func(e) {
+            console.log(rData.get("formData"))
+          }
+        }
+      ]
+    ```
+- в events в поле selector можно указать "root", тогда событие будет навешено на весь компонент
+- чтобы вставить данные в HTML, нужно указать внутри разметки скобки с именем поля из rData, например: 
+  
+  ```html
+  const template = "<div> {{ form.login }} </div>"
+
+  const rData = reactivData({
+    form: {
+      login: "Test",
+      password: 123456
+    }
+  })
+
+- Во всех других местах, кроме темплейта, обращение к данным происходит через внутренние операторы reactivData
+- reactivData возвращает функции get() set()
+- Чтобы обратиться к данным из компонентов или событий, необходимо указать:
+    ```html
+      rData.get("form.login")
+      rData.set("form.login", "newLogin")
+    ```
+- После изменения одного из полей данных (через функцию set()), компонент ререндерится
+- Чтобы предотвратить ререндер, необходимо в функции set() указать третий параметр со значением true
+- Следующий код не приведёт к ререндеру компонента:
+  
+  ```html
+  rData.set("form.login", "newLogin", true)
+  ```
+- Чтобы поместить компонент внутрь template, необходимо обратиться к переменной components:
+  ```html
+    const template = <div> {{ components.Button }}</div>
+    const components = {{ Button: Button() }}
+  ```
+
+
+Как устроен createElement:
+- Создаёт уникальный id каждому компоненту
+- Проходит по всему template в поисках скобок {{ }} 
+- Заменяет все скобки на переменные из rData, если это компоненты, то вставляет на их место временный div с уникальным data-id
+- Создаёт DOM Node из темплейта
+- Навешивает data-id на него
+- Заменяет временные дивы на дочерние компоненты
+- Навешивает события на элемент
+
+В итоге у нас есть готовый HTML элемент, ещё не смонтированный в DOM дерево
+
+На проекте реализован роутинг по средствам History API. 
+
+
+--------------------------
 
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
