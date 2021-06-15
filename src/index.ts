@@ -41,6 +41,9 @@ if (document) {
 (function (history) {
   const pushState = history.pushState;
   history.pushState = function (state) {
+    if (path !== state.path) {
+      path = state.path;
+    }
     mountTemplate(
       Layout({
         component: appRouts[state.path] || Error({ type: "404" }),
