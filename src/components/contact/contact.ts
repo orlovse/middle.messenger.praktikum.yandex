@@ -1,6 +1,6 @@
 import "./contact.scss";
 import { Avatar, Badge } from "../";
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 
 const template = `
 <div class="contact">

@@ -1,5 +1,5 @@
 import "../static/styles.scss";
-import { mountTemplate } from "./template";
+import { mountTemplate } from "./core";
 import { Chat, Error, Login, Profile } from "./pages";
 import { Layout } from "./layout";
 

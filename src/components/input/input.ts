@@ -1,5 +1,5 @@
 import { ValidationRules } from "./../../types";
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./input.scss";
 import { checkValid } from "../../utils";
 

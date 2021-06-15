@@ -1,5 +1,5 @@
 import "./avatar.scss";
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 
 const template = `<div class="avatar"></div>`;
 

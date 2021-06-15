@@ -1,4 +1,4 @@
-import { createElement, reactivData } from "../template/index";
+import { createElement, reactivData } from "../core/index";
 import "./layout.scss";
 import { Menu } from "../components/menu";
 

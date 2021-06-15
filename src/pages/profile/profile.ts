@@ -1,5 +1,5 @@
 import { checkFormFields } from "./../../utils/index";
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./profile.scss";
 import { Button, Input } from "../../components";
 

@@ -1,4 +1,4 @@
-import { createElement, reactivData } from "../../template";
+import { createElement, reactivData } from "../../core";
 import "./message.scss";
 import { Avatar } from "../avatar";
 
