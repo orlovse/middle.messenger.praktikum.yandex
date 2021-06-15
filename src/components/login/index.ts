@@ -1,0 +1,1 @@
+export { LoginComponen } from "./login";

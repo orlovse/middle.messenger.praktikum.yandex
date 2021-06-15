@@ -6,31 +6,22 @@
 
   .sheet {
     position: relative;
-    max-width: 600px;
-    height: 60%;
-    background-color: #1e2022;
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--color-secondary);
     border-radius: 2rem;
     padding: 2rem;
     overflow: scroll;
+    overflow-x: hidden;
   }
 
   .tabs .tab-panel {
-    opacity: 0;
-    transition: transform 1s, opacity 1s;
-    transform: translateY(100%);
-    position: absolute;
+    display: none;
   }
 
-  .tabs>input:first-child:checked~.tab-panels>.tab-panel:first-child,
-  .tabs>input:nth-child(3):checked~.tab-panels>.tab-panel:nth-child(2) {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .tabs>label:hover,
-  .tabs>input:focus+label,
-  .tabs>input:checked+label {
-    color: var(--color-primary);
+  .tabs > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabs > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2) {
+    display: block;
   }
 
   .tabs {
@@ -46,4 +37,9 @@
     }
   }
 
+  .tabs > label:hover,
+  .tabs > input:focus + label,
+  .tabs > input:checked + label {
+    color: var(--color-primary);
+  }
 }

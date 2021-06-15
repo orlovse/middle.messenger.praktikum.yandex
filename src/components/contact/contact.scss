@@ -4,14 +4,14 @@
   justify-content: space-between;
   width: 100%;
   border-radius: 3rem;
-  background: #292c2d;
+  background: var(--color-elements);
   padding: 0.5rem 1rem;
   margin: 1rem 0;
   transition: box-shadow 0.5s;
-  box-shadow: 1px 29px 52px -20px rgba(0, 0, 0, 1);
+  box-shadow: var(--color-shadow);
 
   &:hover {
-    box-shadow: 1px 10px 42px -15px rgba(0, 0, 0, 1);
+    box-shadow: var(--color-shadow-active);
   }
 
   .title {
