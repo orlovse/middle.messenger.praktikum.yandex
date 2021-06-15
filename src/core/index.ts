@@ -1,6 +1,5 @@
 import { getObjectField, createId, deepUpdate } from "../utils";
-
-const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/i;
+import { TEMPLATE_REGEXP } from "../utils/regex";
 
 type Event = {
   selector: string;
