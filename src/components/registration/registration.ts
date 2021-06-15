@@ -77,6 +77,9 @@ export const RegistrationComponent = () => {
       func(e: Event) {
         const isValid = checkFormFields(e, ".registration-form");
         if (isValid) {
+          (document.querySelector(
+            "form.registration-form"
+          ) as HTMLFormElement).reset();
           window.history.pushState({ path: "/chat" }, "title", "/chat");
           console.log("result:", rData.get("result"));
         } else {
