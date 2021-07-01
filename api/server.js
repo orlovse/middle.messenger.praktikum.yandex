@@ -11,6 +11,7 @@ let reqPath = path.join(__dirname, "../dist/index.html");
 
 const app = express();
 
+app.use(app.router);
 app.use(express.static("./dist"));
 
 app.get("*", (req, res) => {
