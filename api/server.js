@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.static("./dist"));
 
-app.all("*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(reqPath);
 });
 
