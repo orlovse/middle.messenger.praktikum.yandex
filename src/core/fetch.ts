@@ -34,10 +34,12 @@ function queryStringify(data: Object) {
   }, "?");
 }
 
-class HTTPTransport implements IFetch {
+export class HTTPTransport implements IFetch {
+  constructor(protected baseUrl: string) {}
+
   get: FetchMethod = (url, options = {}) => {
     return this.request(
-      url,
+      this.baseUrl + url,
       { ...options, method: METHODS.GET },
       options.timeout
     );
@@ -45,7 +47,7 @@ class HTTPTransport implements IFetch {
 
   post: FetchMethod = (url, options = {}) => {
     return this.request(
-      url,
+      this.baseUrl + url,
       { ...options, method: METHODS.POST },
       options.timeout
     );
@@ -53,7 +55,7 @@ class HTTPTransport implements IFetch {
 
   put: FetchMethod = (url, options = {}) => {
     return this.request(
-      url,
+      this.baseUrl + url,
       { ...options, method: METHODS.PUT },
       options.timeout
     );
@@ -61,7 +63,7 @@ class HTTPTransport implements IFetch {
 
   patch: FetchMethod = (url, options = {}) => {
     return this.request(
-      url,
+      this.baseUrl + url,
       { ...options, method: METHODS.PATCH },
       options.timeout
     );
@@ -69,7 +71,7 @@ class HTTPTransport implements IFetch {
 
   delete: FetchMethod = (url, options = {}) => {
     return this.request(
-      url,
+      this.baseUrl + url,
       { ...options, method: METHODS.DELETE },
       options.timeout
     );
@@ -77,7 +79,7 @@ class HTTPTransport implements IFetch {
 
   request: RequestMethod = (url, options = {}, timeout = 5000) => {
     const { headers = {}, method, data } = options;
-
+    console.log("data", data);
     return new Promise<XMLHttpRequest>(function (resolve, reject) {
       if (!method) {
         reject("No method");
@@ -105,7 +107,8 @@ class HTTPTransport implements IFetch {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhr.send(JSON.stringify(data));
       }
     });
   };
