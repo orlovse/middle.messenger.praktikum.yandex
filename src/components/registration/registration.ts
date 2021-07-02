@@ -2,6 +2,7 @@ import { checkFormFields } from "./../../utils/index";
 import { createElement, reactivData } from "../../core";
 import "./registration.scss";
 import { Button, Input } from "../";
+import { signupAPI } from "../../api/auth";
 
 const template = `
 <form class="registration-form">
@@ -20,12 +21,12 @@ const template = `
 export const RegistrationComponent = () => {
   const rData = reactivData({
     result: {
-      email: "",
-      login: "",
-      name: "",
-      surname: "",
-      phone: "",
-      password: "",
+      first_name: "Test",
+      second_name: "Testov",
+      login: "test0001",
+      email: "111@dydyd.test",
+      password: "123456",
+      phone: "+79172932974",
     },
   });
 
@@ -77,9 +78,17 @@ export const RegistrationComponent = () => {
       func(e: Event) {
         const isValid = checkFormFields(e, ".registration-form");
         if (isValid) {
-          (document.querySelector(
-            "form.registration-form"
-          ) as HTMLFormElement).reset();
+          signupAPI({
+            first_name: rData.get("result.first_name"),
+            second_name: rData.get("result.second_name"),
+            login: rData.get("result.login"),
+            email: rData.get("result.email"),
+            password: rData.get("result.password"),
+            phone: rData.get("result.phone"),
+          }),
+            (document.querySelector(
+              "form.registration-form"
+            ) as HTMLFormElement).reset();
           window.history.pushState({ path: "/chat" }, "title", "/chat");
           console.log("result:", rData.get("result"));
         } else {
@@ -100,11 +109,11 @@ export const RegistrationComponent = () => {
         } else if (e.target?.parentElement?.classList.contains("email-input")) {
           rData.set("result.email", e.target.value, true);
         } else if (e.target?.parentElement?.classList.contains("name-input")) {
-          rData.set("result.name", e.target.value, true);
+          rData.set("result.first_name", e.target.value, true);
         } else if (
           e.target?.parentElement?.classList.contains("surname-input")
         ) {
-          rData.set("result.surname", e.target.value, true);
+          rData.set("result.second_name", e.target.value, true);
         } else if (e.target?.parentElement?.classList.contains("phone-input")) {
           rData.set("result.phone", e.target.value, true);
         }
