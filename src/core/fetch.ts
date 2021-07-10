@@ -23,7 +23,7 @@ interface IFetch {
   request: RequestMethod;
 }
 
-function queryStringify(data: Object) {
+const queryStringify = (data: Object) => {
   if (typeof data !== "object") {
     throw new Error("Data must be object");
   }
@@ -32,7 +32,7 @@ function queryStringify(data: Object) {
   return keys.reduce((result, key, index) => {
     return `${result}${key}=${data[key]}${index < keys.length - 1 ? "&" : ""}`;
   }, "?");
-}
+};
 
 export class HTTPTransport implements IFetch {
   constructor(protected baseUrl: string) {}
@@ -79,7 +79,6 @@ export class HTTPTransport implements IFetch {
 
   request: RequestMethod = (url, options = {}, timeout = 5000) => {
     const { headers = {}, method, data } = options;
-    console.log("data", data);
     return new Promise<XMLHttpRequest>(function (resolve, reject) {
       if (!method) {
         reject("No method");
@@ -103,6 +102,7 @@ export class HTTPTransport implements IFetch {
       xhr.onerror = reject;
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+      xhr.withCredentials = true;
 
       if (isGet || !data) {
         xhr.send();
