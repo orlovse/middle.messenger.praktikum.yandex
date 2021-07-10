@@ -32,7 +32,7 @@ export class Route {
 
   render(): void {
     if (!this._block) {
-      this._block = new this._blockClass();
+      this._block = new this._blockClass(this._props);
       renderToDOM(this._props.rootQuery, this._block);
       return;
     }
@@ -60,8 +60,11 @@ export class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: any) {
-    const route = new Route(pathname, block, { rootQuery: this._rootQuery });
+  use(pathname: string, block: any, props: any) {
+    const route = new Route(pathname, block, {
+      rootQuery: this._rootQuery,
+      data: props,
+    });
     this.routes.push(route);
     return this;
   }
