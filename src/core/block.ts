@@ -144,6 +144,7 @@ export class Block implements IBlock {
         if (!nextProps) {
             return;
         }
+        console.log('nextProps', nextProps, this.props)
         const oldProps = {...this.props};
         this.props = {...oldProps, ...nextProps};
         //console.log('this.props', oldProps, this.props)

@@ -27,7 +27,7 @@ export const createBlock = ({components, componentDidMount, events, props, templ
 
     render() {
       const tmpl = Handlebars.compile(template)
-      return tmpl({...this.props, ...data})
+      return tmpl(this.props)
     }
   }
 
