@@ -72,8 +72,7 @@ export const checkValid = (rules: ValidationRules, value: string | number) => {
   return { isValid, currentMessage };
 };
 
-export const checkFormFields = (e: Event, formSelector: string) => {
-  e.preventDefault();
+export const checkFormFields = (formSelector: string) => {
   const form = document.querySelector(formSelector);
   const inputs = form?.querySelectorAll("input");
   let isValid = true;

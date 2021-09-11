@@ -1,10 +1,13 @@
 import { ValidationRules } from "./../../types";
-import { createElement, reactivData } from "../../core";
-import "./input.scss";
 import { checkValid } from "../../utils";
+import { createBlock } from "../../core/createBlock";
 
-type Props = {
+import "./input.scss";
+import { userStore } from "../../core/store";
+
+type PropsType = {
   class?: string;
+  name?: string;
   label?: string;
   type?: string;
   value?: string | number;
@@ -17,25 +20,18 @@ const template = `
     placeholder="{{ placeholder }}" 
     type="{{ type }}" 
     value="{{ value }}" 
+    name="{{ name }}"
   />
   <span class="input-error-message hide"></span>    
 </div>
 `;
 
-export const Input = (props: Props) => {
-  const rData = reactivData({
-    placeholder: props.label || "label",
-    type: props.type || "type",
-    value: props.value || "",
-    class: props.class || "",
-  });
-
-  const ruleEvent = {
-    selector: "input",
-    event: "blur",
-    func(e: Event & { target: HTMLInputElement }) {
-      const value = e.target.value;
-      const messageEl = e.target.nextElementSibling;
+export const Input = (props: PropsType) => {
+  const events = {
+    onBlur: (e: Event) => {
+      const target = e.target as HTMLInputElement
+      const value = target.value;
+      const messageEl = target.nextElementSibling;   
       if (props.rules) {
         const { isValid, currentMessage } = checkValid(props.rules, value);
         if (!isValid) {
@@ -45,10 +41,7 @@ export const Input = (props: Props) => {
           (messageEl as HTMLElement)?.classList.add("hide");
         }
       }
-    },
-  };
-
-  const events = props.rules ? [ruleEvent] : null;
-
-  return createElement({ template, rData, events });
-};
+    }
+  }
+  return createBlock({template, props, events})
+}

@@ -1,15 +1,16 @@
-import { createElement, reactivData } from "../../core";
+import { createBlock } from "../../core/createBlock";
 import "./button.scss";
 
-type Props = {
+type PropsType = {
   name?: string;
   class?: string;
+  onClick?(e: any): void;
 };
 
-const template = `<button class="button {{ class }}">{{ props.name }}</button>`;
+const template = `<button class="button {{ class }}">{{ name }}</button>`;
 
-export const Button = (props: Props) => {
-  const rData = reactivData({ props, class: props.class || "" });
+export const Button = (props: PropsType) => {
 
-  return createElement({ template, rData });
+  return createBlock({ template, props });
 };
+

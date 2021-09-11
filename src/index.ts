@@ -1,54 +1,35 @@
+import 'regenerator-runtime/runtime'
 import "../static/styles.scss";
-import { mountTemplate } from "./core";
-import { Chat, Error, Login, Profile } from "./pages";
+import { render, Router } from "./core/router";
 import { Layout } from "./layout";
+import { Error, Login, Profile } from "./pages";
+import { Error500Page } from "./pages/test";
 
-let path = window.location.pathname;
-const appRouts = {
-  "/": Chat(),
-  "/login": Login(),
-  "/profile": Profile(),
-  "/chat": Chat(),
-  "/error": Error({ type: "500" }),
-};
-
-mountTemplate(
-  Layout({ component: appRouts[path] || Error({ type: "404" }) }) as HTMLElement
-);
-
-const routing = (event: Event & { target: HTMLElement }) => {
-  if (event.target.tagName === "A") {
-    event.preventDefault();
-    const newPath = event.target.attributes[0].value;
-    if (path !== newPath) {
-      path = newPath;
-      window.history.pushState({ path: newPath }, "title", newPath);
-    }
-  } else if (event.target.classList.contains("theme-toggle")) {
-    const app = document.querySelector("#app");
-    app?.classList.toggle("theme-dark");
-    app?.classList.toggle("theme-light");
-  }
-};
-
-if (document) {
-  const app = document.querySelector("#app");
-  if (app) {
-    app.addEventListener("click", routing);
-  }
+export enum ROUTES {
+  HOME = "/",
+  LOGIN = "/login",
+  SIGNIN = "/signin",
+  PROFILE_EDIT = "/profile-edit",
+  PASSWORD_EDIT = "/password-edit",
+  CHAT = "/chat/",
+  PROFILE = "/profile",
+  SERVER_ERROR = "/500",
+  NOT_FOUND = "/404",
 }
 
-(function (history) {
-  const pushState = history.pushState;
-  history.pushState = function (state) {
-    if (path !== state.path) {
-      path = state.path;
-    }
-    mountTemplate(
-      Layout({
-        component: appRouts[state.path] || Error({ type: "404" }),
-      }) as HTMLElement
-    );
-    return pushState.apply(history, arguments);
-  };
-})(window.history);
+render('#app', Layout())
+
+export const router = new Router("#layout-children");
+
+router
+    // .use(ROUTES.CHAT, ChatPage)
+    .use(ROUTES.LOGIN, Login())
+    // .use(ROUTES.SIGNIN, SigninPage)
+    // .use(ROUTES.PROFILE_EDIT, ProfileEditPage)
+    // .use(ROUTES.PASSWORD_EDIT, PasswordEditPage)
+    .use(ROUTES.PROFILE, Profile())
+    // .use(ROUTES.SERVER_ERROR, Error500Page)
+    .use(ROUTES.NOT_FOUND, Error({type: '404'}))
+    // .use(ROUTES.HOME, ChatsPage)
+    .use('/', Error500Page({errorCode: 'ababa', errorText: 'bababa'}))
+    .start();

@@ -1,7 +1,8 @@
-import { createElement, reactivData } from "../../core";
-import { LoginComponen, RegistrationComponent } from "../../components";
+import { LoginComponent } from "../../components";
 
 import "./login.scss";
+import { createBlock } from "../../core/createBlock";
+import { authController } from "../../controllers/authController";
 
 const template = `
 <div class="login">
@@ -13,10 +14,9 @@ const template = `
       <label for="tab2">Registration</label>
       <div class="tab-panels">
         <section class="tab-panel" id="login">
-          {{ components.Login }}
+          <div data-component="loginComponent"></div>
         </section>
         <section class="tab-panel" id="registration">
-          {{ components.Registration }}
         </section>
       </div>
     </div>
@@ -24,13 +24,21 @@ const template = `
 </div>
 `;
 
+//          <div data-component="registrationComponent"></div>
+
+
+
 export const Login = () => {
-  const rData = reactivData({});
-
   const components = {
-    Login: LoginComponen(),
-    Registration: RegistrationComponent(),
-  };
+    loginComponent: LoginComponent(), 
+    //registrationComponent: RegistrationComponent()
+  }
+  const componentDidMount = () => {
+    //authController.redirectToChat()
+    return {
+      
+    }
+  }
+  return createBlock({components, componentDidMount, template })
+}
 
-  return createElement({ template, rData, components });
-};
