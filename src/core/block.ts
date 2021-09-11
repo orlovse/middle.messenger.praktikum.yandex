@@ -80,6 +80,11 @@ export class Block implements IBlock {
             //const componentToRender = component.firstChild || component
             elementChild?.appendChild(component)
 
+            if(childProps.onClickChild) {
+                const ab = childProps.onClickChild(this.setProps, this.props)
+                elementChild?.addEventListener("click", ab);
+            }
+
             // if (childProps.onClick) {
             //     const elementChildren = this._element.querySelectorAll(`[data-component="${name}"]`);
             //     for (const child of elementChildren) {

@@ -40,7 +40,7 @@ export const Profile = () => {
   const components = {
     buttonTest: Button({
       name: 'click',
-      onClick: (e) => {
+      onClickChild: (e) => {
         e.preventDefault();
         data.test++
         console.log('click', data)
