@@ -1,36 +1,34 @@
-type TListener = <T>(...args: T[]) => void;
-
 export class EventBus {
-    listeners: {[key: string]: TListener[]};
+  listeners: Record<string, Function[]>;
 
-    constructor() {
-        this.listeners = {};
-    }
-  
-    on(event: string, callback: TListener): void {
-        if (!this.listeners[event]) {
-            this.listeners[event] = [];
-        }
+  constructor() {
+    this.listeners = {};
+  }
 
-        this.listeners[event].push(callback);
+  on(event: string, callback: Function) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
     }
-  
-    off(event: string, callback: TListener): void {
-        if (!this.listeners[event]) {
-            throw new Error(`Нет события: ${event}`);
-        }
 
-        this.listeners[event] = this.listeners[event].filter(
-            (listener: TListener) => listener !== callback
-        );
+    this.listeners[event].push(callback);
+  }
+
+  off(event: string, callback: Function) {
+    if (!this.listeners[event]) {
+      throw new Error(`Event does not exist: ${event}`);
     }
-  
-    emit<T>(event: string, ...args: T[]): void {
-        if (!this.listeners[event]) {
-            throw new Error(`Нет события: ${event}`);
-        }
-        this.listeners[event].forEach(function(listener: TListener) {
-            listener(...args);
-        });
+
+    this.listeners[event] = this.listeners[event].filter(
+      (listener) => listener !== callback
+    );
+  }
+
+  emit(event: string, ...args: any) {
+    if (!this.listeners[event]) {
+      throw new Error(`Event does not exist: ${event}`);
     }
+    this.listeners[event].forEach((listener: Function) => {
+      listener(...args);
+    });
+  }
 }
