@@ -1,6 +1,7 @@
 import { createBlock } from './../core/createBlock';
-import "./layout.scss";
-import { Menu } from "../components/menu";
+import { Menu } from '../components/menu';
+
+import './layout.scss';
 
 const template = `
 <div class="layout">
@@ -9,8 +10,8 @@ const template = `
   </main>
 </div>
 `;
+
 export const Layout = () => {
-  const components = {menuComponent: Menu()}
+  const components = { menuComponent: Menu() };
   return createBlock({ template, components });
 };
-
