@@ -1,35 +1,29 @@
-import { Block } from './block';
 import * as Handlebars from 'handlebars';
+import { Block } from './block';
+import { CreateBlockPropsType } from '../types';
 
-type CreateBlockProps = {
-  components? : any;
-  componentDidMount?(): {};
-  data?: any;
-  events?: any;
-  props?: any;
-  template: string;
-}
-
-export const createBlock = ({components, componentDidMount, events, props, template, data} : CreateBlockProps) => {
+export const createBlock = ({
+  components,
+  componentDidMount,
+  events,
+  props,
+  template,
+  data
+}: CreateBlockPropsType) => {
   class Component extends Block {
     constructor() {
-      super({...props, ...data, ...events}, {...components})
+      super({ ...props, ...data, ...events }, { ...components });
     }
 
     componentDidMount() {
-      componentDidMount && this.setProps({...props, ...componentDidMount()})
-      // this.setProps({...props, onnew: 'tut?'})
-      // console.log('tetetet')
-      // if(componentDidMount && typeof componentDidMount === 'function'){
-      //   componentDidMount(this)
-      // }
+      componentDidMount && componentDidMount(this.setProps, this.props);
     }
 
     render() {
-      const tmpl = Handlebars.compile(template)
-      return tmpl(this.props)
+      const tmpl = Handlebars.compile(template);
+      return tmpl(this.props);
     }
   }
 
-  return new Component()
-}
+  return new Component();
+};
