@@ -5,9 +5,9 @@ type PlainObject<T = any> = {
 const isPlainObject = (value: any): boolean => {
   return (
     value &&
-    typeof value === "object" &&
+    typeof value === 'object' &&
     value.constructor === Object &&
-    Object.prototype.toString.call(value) === "[object Object]"
+    Object.prototype.toString.call(value) === '[object Object]'
   );
 };
 

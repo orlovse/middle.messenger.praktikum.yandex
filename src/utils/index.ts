@@ -1,11 +1,11 @@
-import { ValidationRules } from "./../types/index";
-import { phoneRegExp, emailRegExp } from "./regex";
+import { ValidationRules } from './../types/index';
+import { phoneRegExp, emailRegExp } from './regex';
 export const getObjectField = (
   obj: Object,
   path: string,
   defaultValue?: any
 ) => {
-  const keys = path.split(".");
+  const keys = path.split('.');
 
   let result = keys.reduce((acc, key) => {
     return acc[key];
@@ -23,8 +23,8 @@ export const deepUpdate = (
   keys: string | string[],
   value: any
 ) => {
-  if (typeof keys === "string") {
-    keys = keys.split(".");
+  if (typeof keys === 'string') {
+    keys = keys.split('.');
   }
 
   if (keys.length === 0) {
@@ -36,7 +36,7 @@ export const deepUpdate = (
     return original.map((v, index) =>
       index === parseInt(currentKey) ? deepUpdate(v, keys.slice(1), value) : v
     );
-  } else if (typeof original === "object" && original !== null) {
+  } else if (typeof original === 'object' && original !== null) {
     return Object.fromEntries(
       Object.entries(original).map((keyValuePair) => {
         const [k, v] = keyValuePair;
@@ -54,7 +54,7 @@ export const deepUpdate = (
 
 export const checkValid = (rules: ValidationRules, value: string | number) => {
   let isValid = true;
-  let currentMessage = "";
+  let currentMessage = '';
   if (rules.isRequired && !value) {
     isValid = false;
     currentMessage = `Field is required`;
@@ -74,15 +74,15 @@ export const checkValid = (rules: ValidationRules, value: string | number) => {
 
 export const checkFormFields = (formSelector: string) => {
   const form = document.querySelector(formSelector);
-  const inputs = form?.querySelectorAll("input");
+  const inputs = form?.querySelectorAll('input');
   let isValid = true;
   inputs?.forEach((input) => {
     input.focus();
     input.blur();
     const errorClasses = input.nextElementSibling?.classList;
     if (
-      errorClasses?.contains("input-error-message") &&
-      !errorClasses?.contains("hide")
+      errorClasses?.contains('input-error-message') &&
+      !errorClasses?.contains('hide')
     ) {
       isValid = false;
     }

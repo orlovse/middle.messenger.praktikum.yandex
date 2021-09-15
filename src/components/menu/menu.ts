@@ -1,9 +1,8 @@
-import { Button } from "..";
-import { router } from "../..";
-import { logoutAPI } from "../../api/auth";
-import { createElement, reactivData } from "../../core";
-import { createBlock } from "../../core/createBlock";
-import "./menu.scss";
+import { Button } from '..';
+import { router } from '../..';
+import { logoutAPI } from '../../api/auth';
+import { createBlock } from '../../core/createBlock';
+import './menu.scss';
 
 const template = `
 <nav class="menu">
@@ -18,32 +17,33 @@ const template = `
 export const Menu = () => {
   const data = {
     menuTemplateList: [
-              { name: "Login", link: "/login" },
-              { name: "Profile", link: "/profile" },
-              { name: "Chat", link: "/chat" },
-              { name: "Error", link: "/404" },
-            ]
-  }
-  const events = {onClick: (e) => {
-    e.preventDefault()
-    const tag = e.target
-    if(tag.tagName === 'A'){
-      const newPath = tag.getAttribute("href")
-      router.go(newPath)
-    } else if (tag.classList.contains("theme-toggle")) {
-      const app = document.querySelector("#app");
-      app?.classList.toggle("theme-dark");
-      app?.classList.toggle("theme-light");
+      { name: 'Login', link: '/login' },
+      { name: 'Profile', link: '/profile' },
+      { name: 'Chat', link: '/chat' },
+      { name: 'Error', link: '/404' }
+    ]
+  };
+  const events = {
+    onClick: (e) => {
+      e.preventDefault();
+      const tag = e.target;
+      if (tag.tagName === 'A') {
+        const newPath = tag.getAttribute('href');
+        router.go(newPath);
+      } else if (tag.classList.contains('theme-toggle')) {
+        const app = document.querySelector('#app');
+        app?.classList.toggle('theme-dark');
+        app?.classList.toggle('theme-light');
+      }
     }
-  }}
+  };
   const components = {
     logoutButtonComponent: Button({
-      name: "Logout",
+      name: 'Logout',
       onClick: () => {
-        logoutAPI()
+        logoutAPI();
       }
     })
-  }
-  return createBlock({components, template, data, events});
-}
-
+  };
+  return createBlock({ components, template, data, events });
+};

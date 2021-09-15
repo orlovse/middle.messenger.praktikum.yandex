@@ -1,6 +1,7 @@
-import { createElement, reactivData } from "../../core";
-import "./message.scss";
-import { Avatar } from "../avatar";
+import { Avatar } from '../avatar';
+import { createBlock } from '../../core/createBlock';
+
+import './message.scss';
 
 type Props = {
   class?: string;
@@ -10,20 +11,16 @@ type Props = {
 const template = `
 <div class="message {{ class }}"> 
   <div class="message-avatar">
-    {{ components.Avatar }}
+    <div data-component="messageAvatar"></div>
   </div>
-  {{ props.text }} 
+  {{ text }} 
   <span class="message-date">12:58</span>
 </div>`;
 
 export const Message = (props: Props) => {
-  const rData = reactivData({
-    props,
-    class: props.class || "",
-  });
 
   const components = {
-    Avatar: Avatar(),
+    messageAvatar: Avatar({})
   };
-  return createElement({ template, rData, components });
+  return createBlock({ template, components, props });
 };

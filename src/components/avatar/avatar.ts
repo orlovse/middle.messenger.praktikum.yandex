@@ -1,10 +1,9 @@
-import "./avatar.scss";
-import { createElement, reactivData } from "../../core";
+import { createBlock } from '../../core/createBlock';
+import './avatar.scss';
 
 const template = `<div class="avatar"></div>`;
 
-export const Avatar = () => {
-  const rData = reactivData({});
+export const Avatar = (props) => {
 
-  return createElement({ template, rData });
+  return createBlock({ template, props });
 };

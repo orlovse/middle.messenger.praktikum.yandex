@@ -1,22 +1,21 @@
-import { createElement, reactivData } from "../../core";
-import "./sender.scss";
-import { Button, Input } from "../";
+import { Button, Input } from '../';
+import { createBlock } from '../../core/createBlock';
+
+import './sender.scss';
 
 const template = `
 <div class="sender">
-  {{ components.OptionsButton }}
-  {{ components.Input }}
-  {{ components.SendButton }}
+  <div data-component="senderInput"></div>
+  <div data-component="senderSubmitButton"></div>
+  <div data-component="senderOptionsButton"></div>
 </div>
 `;
 export const Sender = () => {
-  const rData = reactivData({});
-
   const components = {
-    Input: Input({ label: "Message", class: "px-2" }),
-    SendButton: Button({ name: "Send" }),
-    OptionsButton: Button({ name: "=>" }),
+    senderInput: Input({ label: 'Message', class: 'px-2' }),
+    senderSubmitButton: Button({ name: 'Send' }),
+    senderOptionsButton: Button({ name: '=>' })
   };
 
-  return createElement({ template, rData, components });
+  return createBlock({ components, template });
 };

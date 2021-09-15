@@ -1,8 +1,9 @@
-import { LoginComponent } from "../../components";
+import { LoginComponent } from '../../components';
 
-import "./login.scss";
-import { createBlock } from "../../core/createBlock";
-import { authController } from "../../controllers/authController";
+import { createBlock } from '../../core/createBlock';
+import { authController } from '../../controllers/authController';
+
+import './login.scss';
 
 const template = `
 <div class="login">
@@ -26,19 +27,14 @@ const template = `
 
 //          <div data-component="registrationComponent"></div>
 
-
-
 export const Login = () => {
   const components = {
-    loginComponent: LoginComponent(), 
+    loginComponent: LoginComponent()
     //registrationComponent: RegistrationComponent()
-  }
+  };
   const componentDidMount = () => {
     //authController.redirectToChat()
-    return {
-      
-    }
-  }
-  return createBlock({components, componentDidMount, template })
-}
-
+    return {};
+  };
+  return createBlock({ components, componentDidMount, template });
+};

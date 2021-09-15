@@ -1,25 +1,25 @@
-import "./contact.scss";
-import { Avatar, Badge } from "../";
-import { createElement, reactivData } from "../../core";
+import { Avatar, Badge } from '../';
+import { createBlock } from '../../core/createBlock';
+
+import './contact.scss';
 
 const template = `
 <div class="contact">
-  {{ components.Avatar }}
+  <div data-component="contactAvatar"></div>
   <div class="content">
     <p class="title">Test contact</p>
     <p class="subtitle">Message text</p>
   </div>
-  {{ components.Badge }}
+  <div data-component="contactBadge"></div>
 </div>
 `;
 
 export const Contact = () => {
-  const rData = reactivData({});
 
   const components = {
-    Avatar: Avatar(),
-    Badge: Badge({ number: 2 }),
+    contactAvatar: Avatar({}),
+    contactBadge: Badge({ number: 2 })
   };
 
-  return createElement({ template, rData, components });
+  return createBlock({ template, components });
 };

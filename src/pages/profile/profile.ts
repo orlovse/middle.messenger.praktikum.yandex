@@ -1,10 +1,10 @@
-import { checkFormFields } from "./../../utils/index";
-import { createElement, reactivData } from "../../core";
-import "./profile.scss";
-import { Button, Input } from "../../components";
-import { createBlock } from "../../core/createBlock";
-import { authController } from "../../controllers/authController";
-import { userStore } from "../../core/store";
+import { Button } from '../../components';
+import { createBlock } from '../../core/createBlock';
+import { authController } from '../../controllers/authController';
+import { userStore } from '../../core/store';
+import { SetPropsType } from '../../types';
+
+import './profile.scss';
 
 const template = `
 <div class="profile">
@@ -14,7 +14,7 @@ const template = `
       <div class="fields">
       {{onnew}}
       {{test}}
-
+      {{ login }}
       </div>
       <div class="actions">
         <div data-component="buttonTest"></div>
@@ -28,29 +28,29 @@ export const Profile = () => {
   const data = {
     test: 1
   };
-  const componentDidMount = () => {
+  const componentDidMount = (setProps: SetPropsType) => {
     authController.auth((user) => {
-      // this.setProps({...this.props, ...user})
-      // console.log('ababa', user)
-      // console.log('userStore', userStore)
-      // parent.setProps({...parent.props, ...user})
-      // console.log('parent', parent)
-    })
-  }
+      setProps(user);
+      console.log('userStore', userStore.state);
+    });
+    // us.then(() => {
+    //   console.log('ttt',  userStore.state)
+    // })
+  };
   const components = {
     buttonTest: Button({
       name: 'click',
       onClickChild: (setProps, props) => (e) => {
         e.preventDefault();
-        setProps({test: 22})
-        console.log('click', props)
+        setProps({ test: props.test + 1 });
+        console.log('click', props);
       }
     })
-  }
+  };
 
-  const result = createBlock({components, componentDidMount, template, data})
-  return result
-}
+  const result = createBlock({ components, componentDidMount, template, data });
+  return result;
+};
 
 // export const Profile = () => {
 //   const rData = reactivData({

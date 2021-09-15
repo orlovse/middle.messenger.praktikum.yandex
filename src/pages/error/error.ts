@@ -1,5 +1,5 @@
-import { createBlock } from "../../core/createBlock";
-import "./error.scss";
+import { createBlock } from '../../core/createBlock';
+import './error.scss';
 
 type PropsType = {
   type: string;
@@ -15,6 +15,5 @@ const template = `
 `;
 
 export const Error = (props: PropsType) => {
-
-  return createBlock({template, props})
-}
+  return createBlock({ template, props });
+};

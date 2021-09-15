@@ -1,9 +1,8 @@
-import { ValidationRules } from "./../../types";
-import { checkValid } from "../../utils";
-import { createBlock } from "../../core/createBlock";
+import { ValidationRules } from './../../types';
+import { checkValid } from '../../utils';
+import { createBlock } from '../../core/createBlock';
 
-import "./input.scss";
-import { userStore } from "../../core/store";
+import './input.scss';
 
 type PropsType = {
   class?: string;
@@ -29,19 +28,19 @@ const template = `
 export const Input = (props: PropsType) => {
   const events = {
     onBlur: (e: Event) => {
-      const target = e.target as HTMLInputElement
+      const target = e.target as HTMLInputElement;
       const value = target.value;
-      const messageEl = target.nextElementSibling;   
+      const messageEl = target.nextElementSibling;
       if (props.rules) {
         const { isValid, currentMessage } = checkValid(props.rules, value);
         if (!isValid) {
           (messageEl as HTMLElement).innerText = currentMessage;
-          (messageEl as HTMLElement)?.classList.remove("hide");
+          (messageEl as HTMLElement)?.classList.remove('hide');
         } else {
-          (messageEl as HTMLElement)?.classList.add("hide");
+          (messageEl as HTMLElement)?.classList.add('hide');
         }
       }
     }
-  }
-  return createBlock({template, props, events})
-}
+  };
+  return createBlock({ template, props, events });
+};

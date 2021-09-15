@@ -13,5 +13,5 @@ const template = `
 
 export const Layout = () => {
   const components = { menuComponent: Menu() };
-  return createBlock({ template, components });
+  return createBlock({ components, template });
 };
