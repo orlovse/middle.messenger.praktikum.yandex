@@ -1,5 +1,9 @@
 import { EventBus } from '../core/eventBus';
-import { ChatDataType, ChatsListType, UserStoreType } from '../types/storeTypes';
+import {
+  ChatDataType,
+  ChatsListType,
+  UserStoreType
+} from '../types/storeTypes';
 
 export enum STORE_EVENTS {
   UPDATE = 'update'
@@ -22,8 +26,6 @@ export class Store<T> extends EventBus {
     this.emit(STORE_EVENTS.UPDATE, newData);
   }
 }
-
-
 
 export const chatDataStore: Store<ChatDataType> = new Store();
 

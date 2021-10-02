@@ -1,4 +1,4 @@
-import { ProfileDataType } from "./apiTypes";
+import { ProfileDataType } from './apiTypes';
 
 export type UserStoreType = {
   avatar: string | null;
@@ -17,9 +17,9 @@ export type LastMessageType = {
   id: number;
   time: number;
   user: ProfileDataType & {
-    avatar: string | null 
-  }
-}
+    avatar: string | null;
+  };
+};
 
 export type ChatDataType = {
   avatar: string | null;
@@ -28,6 +28,6 @@ export type ChatDataType = {
   last_message: LastMessageType;
   title: string;
   unread_count: number;
-}
+};
 
-export type ChatsListType = ChatDataType[]
+export type ChatsListType = ChatDataType[];
