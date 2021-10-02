@@ -39,10 +39,7 @@ export const LoginComponent = () => {
         const isFormValid = checkFormFields('.login-form');
         if (isFormValid) {
           const formData = getFormData('form.login-form');
-          console.log('result:', formData);
           signinController.signin(formData as SigninDataType);
-          // login: 'test000',
-          // password: 'test$^%usdUA1'
         } else {
           console.error('Not all fields are valid');
         }

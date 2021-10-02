@@ -28,6 +28,5 @@ export const deleteUserFromChatAPI = (data: UsersForChatType) => {
 
 export const getTokenAPI = async (chatId: number) => {
   const data = await http.post('/chats/token/' + chatId, {});
-  console.log('data', data, 'chatId', chatId);
   return JSON.parse(data.response);
 };

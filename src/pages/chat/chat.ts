@@ -133,7 +133,6 @@ export const Chat = (props) => {
     chatController.getChatData();
 
     const currentRout = router.getUrlParam();
-    console.log('currentRout', currentRout);
     if (currentRout === 'chat') {
       data.isEmptyChat = true;
       setProps({ isEmptyChat: true });
@@ -146,8 +145,6 @@ export const Chat = (props) => {
         setProps({ userId });
       },
       (messages: any) => {
-        console.log('messages111', messages);
-
         if (Array.isArray(messages)) {
           const messagesForRender = messages
             .map((message) => {

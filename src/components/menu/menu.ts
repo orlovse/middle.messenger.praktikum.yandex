@@ -94,8 +94,6 @@ export const Menu = () => {
           menuList?.forEach((menuItem) => {
             menuItem.classList.remove('active');
           });
-          console.log('tag.parentElement');
-
           tag.classList.add('active');
         }
       }
