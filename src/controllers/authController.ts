@@ -1,6 +1,7 @@
-import { router, ROUTES } from '..';
+import { router } from '..';
 import { getUserAPI } from '../api/auth';
 import { STORE_EVENTS, userStore } from '../core/store';
+import { ROUTES } from '../types';
 
 export class AuthController {
   public async auth(callback: (storeData: any) => void) {
@@ -17,7 +18,7 @@ export class AuthController {
   public async redirectToChat() {
     try {
       await getUserAPI();
-      router.go(ROUTES.HOME);
+      router.go(ROUTES.CHAT);
     } catch (error) {
       console.error(error);
     }
