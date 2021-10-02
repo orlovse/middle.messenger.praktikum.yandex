@@ -1,0 +1,46 @@
+.profile-input {
+  text-align: center;
+  .input-with-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .profile-label {
+
+  }
+
+  .edit-profile-ok, .edit-profile-cancel {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .edit-profile-ok {
+   transform: translate(50px, -150%);
+   &:hover{
+    color: var(--color-primary);
+  }
+}
+
+  .edit-profile-cancel {
+    transform: translate(-40px, -150%);
+    &:hover{
+      color: red;
+    }
+  }
+  
+  .profile-value-field {
+    cursor: pointer;
+    display: block;
+    height: 64px;
+    color: var(--color-primary)
+  }
+
+  .profile-empty-field{
+    border-top: 1px solid var(--color-primary);
+    width: 40px;
+    margin: 0 auto;
+  }
+}

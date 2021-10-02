@@ -1,7 +1,12 @@
-import { checkFormFields } from "./../../utils/index";
-import { createElement, reactivData } from "../../core";
-import "./profile.scss";
-import { Button, Input } from "../../components";
+import { ProfileDataType } from './../../types/apiTypes';
+import { Button, ProfileInput } from '../../components';
+import { createBlock } from '../../core/createBlock';
+import { authController } from '../../controllers/authController';
+import { SetPropsType } from '../../types';
+import { editProfileController } from '../../controllers/profileController';
+
+import './profile.scss';
+import { removeEmptyObjectFields } from '../../utils/removeEmptyObjectFields';
 
 const template = `
 <div class="profile">
@@ -9,98 +14,123 @@ const template = `
     <form class="profile-form">    
       <div class="avatar"></div>
       <div class="fields">
-        {{ components.fieldsConfig }}
+        <div data-component="firstNameComponent"></div>
+        <div data-component="secondNameComponent"></div>
+        <div data-component="displayNameComponent"></div>
+        <div data-component="emailComponent"></div>
+        <div data-component="phoneComponent"></div>
+        <div data-component="loginComponent"></div>
       </div>
       <div class="actions">
-        {{ components.SubmitButton }}
+        <div data-component="buttonTest"></div>
       </div>
     </form>
   </div>
 </div>
 `;
 
-export const Profile = () => {
-  const rData = reactivData({
-    result: {
-      email: "",
-      login: "",
-      name: "",
-      surname: "",
-      nickname: "",
-      phone: "",
-    },
-  });
+type DataType = {
+  avatar?: '';
+  display_name: string;
+  email: string;
+  first_name: string;
+  login: string;
+  phone: string;
+  second_name: string;
+};
 
-  const components = {
-    fieldsConfig: [
-      Input({
-        label: "email",
-        class: "profile-email mt-2",
-        rules: { email: true },
-      }),
-      Input({
-        label: "login",
-        class: "profile-login mt-2",
-        rules: { isRequired: true },
-      }),
-      Input({
-        label: "phone",
-        class: "profile-phone mt-2",
-        rules: { phone: true },
-      }),
-      Input({ label: "name", class: "profile-name mt-2" }),
-      Input({ label: "surname", class: "profile-surname mt-2" }),
-      Input({ label: "nickname", class: "profile-nickname mt-2" }),
-    ],
-    SubmitButton: Button({
-      name: "Save",
-      class: "save-profile-button mt-2 px-4",
-    }),
+export const Profile = () => {
+  let data: DataType = {
+    display_name: '',
+    email: '',
+    first_name: '',
+    login: '',
+    phone: '',
+    second_name: ''
   };
 
-  const events = [
-    {
-      selector: ".save-profile-button",
-      event: "click",
-      func(e: Event) {
-        const isValid = checkFormFields(e, ".profile-form");
-        if (isValid) {
-          console.log("result:", rData.get("result"));
-        } else {
-          console.error("Not all fields are valid");
-        }
-      },
-    },
-    {
-      selector: ".profile-form",
-      event: "input",
-      func(e: { target: HTMLInputElement }) {
-        if (e.target?.parentElement?.classList.contains("profile-email")) {
-          rData.set("result.email", e.target.value, true);
-        } else if (
-          e.target?.parentElement?.classList.contains("profile-login")
-        ) {
-          rData.set("result.login", e.target.value, true);
-        } else if (
-          e.target?.parentElement?.classList.contains("profile-name")
-        ) {
-          rData.set("result.name", e.target.value, true);
-        } else if (
-          e.target?.parentElement?.classList.contains("profile-surname")
-        ) {
-          rData.set("result.surname", e.target.value, true);
-        } else if (
-          e.target?.parentElement?.classList.contains("profile-nickname")
-        ) {
-          rData.set("result.nickname", e.target.value, true);
-        } else if (
-          e.target?.parentElement?.classList.contains("profile-phone")
-        ) {
-          rData.set("result.phone", e.target.value, true);
-        }
-      },
-    },
-  ];
+  const componentDidMount = (setProps: SetPropsType) => {
+    authController.auth((user: DataType) => {
+      setProps(user);
+      components.emailComponent.setProps({ value: user?.email });
+      components.phoneComponent.setProps({ value: user?.phone });
+      components.firstNameComponent.setProps({ value: user?.first_name });
+      components.secondNameComponent.setProps({ value: user?.second_name });
+      components.displayNameComponent.setProps({ value: user?.display_name });
+      components.loginComponent.setProps({ value: user?.login });
+      data = { ...data, ...user };
+    });
+  };
 
-  return createElement({ template, rData, events, components });
+  const components = {
+    emailComponent: ProfileInput({
+      value: data.email,
+      setProfileProps: (value?: string) => {
+        if (value) {
+          data.email = value;
+        }
+      },
+      label: 'E-mail',
+      rules: { email: true }
+    }),
+    phoneComponent: ProfileInput({
+      label: 'Phone',
+      value: data.phone,
+      setProfileProps: (value?: string) => {
+        if (value) {
+          data.phone = value;
+        }
+      },
+      rules: { phone: true }
+    }),
+    firstNameComponent: ProfileInput({
+      label: 'First name',
+      value: data.first_name,
+      setProfileProps: (value?: string) => {
+        if (value) {
+          data.first_name = value;
+        }
+      },
+      rules: { isRequired: true }
+    }),
+    secondNameComponent: ProfileInput({
+      label: 'Second name',
+      value: data.second_name,
+      setProfileProps: (value?: string) => {
+        if (value) {
+          data.second_name = value;
+        }
+      }
+    }),
+    displayNameComponent: ProfileInput({
+      label: 'Display name',
+      value: data.display_name,
+      setProfileProps: (value?: string) => {
+        if (value) {
+          data.display_name = value;
+        }
+      }
+    }),
+    loginComponent: ProfileInput({
+      label: 'Login',
+      value: data.login,
+      setProfileProps: (value?: string) => {
+        if (value) {
+          data.login = value;
+        }
+      }
+    }),
+    buttonTest: Button({
+      name: 'Save changes',
+      onClick: () => (e) => {
+        e.preventDefault();
+        const filteredData = removeEmptyObjectFields(data);
+        const dataToPut = { ...data, ...filteredData };
+        editProfileController.edit(dataToPut as ProfileDataType);
+      },
+      type: 'submit'
+    })
+  };
+
+  return createBlock({ components, componentDidMount, template, data });
 };

@@ -1,25 +1,33 @@
-import "./contact.scss";
-import { Avatar, Badge } from "../";
-import { createElement, reactivData } from "../../core";
+import { Avatar, Badge } from '../';
+import { createBlock } from '../../core/createBlock';
+
+import './contact.scss';
 
 const template = `
-<div class="contact">
-  {{ components.Avatar }}
-  <div class="content">
-    <p class="title">Test contact</p>
-    <p class="subtitle">Message text</p>
+<a href="/chat/{{ id }}" class="contact">
+  <div class="contact-left-block">
+    <div data-href="/chat/{{ id }}" class="avatar"></div>
+    <div class="content">
+      <p data-href="/chat/{{ id }}" class="title">{{ title }}</p>
+      <p data-href="/chat/{{ id }}" class="subtitle">{{ lastMessage }}</p>
+    </div>
   </div>
-  {{ components.Badge }}
-</div>
+  <div data-href="/chat/{{ id }}" class="badge">{{ unreadCount }}</div>
+</a>
 `;
 
-export const Contact = () => {
-  const rData = reactivData({});
+type PropsType = {
+  id: number;
+  title: string;
+  lastMessage?: string;
+  unreadCount: number;
+};
 
+export const Contact = (props: PropsType) => {
   const components = {
-    Avatar: Avatar(),
-    Badge: Badge({ number: 2 }),
+    contactAvatar: Avatar({}),
+    contactBadge: Badge({ number: 2 })
   };
 
-  return createElement({ template, rData, components });
+  return createBlock({ props, template, components });
 };

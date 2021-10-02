@@ -1,7 +1,13 @@
-import { createElement, reactivData } from "../../core";
-import { LoginComponen, RegistrationComponent } from "../../components";
+import { LoginComponent, RegistrationComponent } from '../../components';
 
-import "./login.scss";
+import { createBlock } from '../../core/createBlock';
+import { authController } from '../../controllers/authController';
+
+import { userStore } from '../../core/store';
+import { router } from '../..';
+import { ROUTES } from '../../types';
+
+import './login.scss';
 
 const template = `
 <div class="login">
@@ -13,10 +19,10 @@ const template = `
       <label for="tab2">Registration</label>
       <div class="tab-panels">
         <section class="tab-panel" id="login">
-          {{ components.Login }}
+          <div data-component="loginComponent"></div>
         </section>
         <section class="tab-panel" id="registration">
-          {{ components.Registration }}
+          <div data-component="registrationComponent"></div>
         </section>
       </div>
     </div>
@@ -25,12 +31,19 @@ const template = `
 `;
 
 export const Login = () => {
-  const rData = reactivData({});
-
   const components = {
-    Login: LoginComponen(),
-    Registration: RegistrationComponent(),
+    loginComponent: LoginComponent(),
+    registrationComponent: RegistrationComponent()
   };
 
-  return createElement({ template, rData, components });
+  const componentDidMount = () => {
+    authController.auth(() => {
+      if (router.getUrlParam() === ROUTES.LOGIN) {
+        const isAuth = Boolean(userStore?.state?.id);
+        isAuth && authController.redirectToChat();
+      }
+    });
+  };
+
+  return createBlock({ components, componentDidMount, template });
 };

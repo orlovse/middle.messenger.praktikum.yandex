@@ -1,0 +1,33 @@
+.chats-list-block {
+  .create-new-chat {
+    display: flex;
+  }
+
+  .chats-list {
+    width: 100%;
+    height: 80vh;
+    padding: 0 2rem;
+    overflow: scroll;
+  }
+
+  .search {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 3rem;
+    background: var(--color-elements);
+    padding: 1rem 1.5rem;
+    border: none;
+    box-shadow: var(--color-shadow);
+    transition: box-shadow 0.3s;
+  
+    &:focus {
+      box-shadow: var(--color-shadow-active);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .chats-list-block .chats-list{
+    padding: 0 1.4rem;
+  }
+}
