@@ -2,14 +2,14 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "chat app",
-  "type": "module",
   "main": "index.ts",
   "scripts": {
     "start": "parcel static/index.html --open & npm run server",
     "dev": "parcel static/index.html --open",
     "server": "node api/server.js",
     "build": "parcel build static/index.html",
-    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "test": "mocha -r jsdom-global/register"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,13 @@
   },
   "homepage": "https://github.com/orlovse/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "chai": "^4.3.4",
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^9.1.2",
     "sass": "^1.32.13"
   },
   "devDependencies": {
