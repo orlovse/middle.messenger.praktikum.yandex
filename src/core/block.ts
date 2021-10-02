@@ -49,17 +49,11 @@ export class Block implements IBlock {
   _addChildren(children: ChildrenType) {
     for (const childName in children) {
       const child = children[childName];
-      const childProps = child.props;
       const elementChild = this._element.querySelector(
         `[data-component="${childName}"]`
       );
       const component = child.element;
       elementChild?.appendChild(component);
-
-      if (childProps.onClickChild) {
-        const onClick = childProps.onClickChild(this.setProps, this.props);
-        elementChild?.addEventListener('click', onClick);
-      }
     }
   }
 
@@ -95,7 +89,8 @@ export class Block implements IBlock {
       : this._element.append(block);
 
     if (this.props.onClick) {
-      block.addEventListener('click', this.props.onClick);
+      const clickCallback = this.props.onClick(this.setProps, this.props);
+      block.addEventListener('click', clickCallback);
     }
 
     if (this.props.onBlur) {
@@ -105,6 +100,26 @@ export class Block implements IBlock {
         block
           .querySelector('input')
           ?.addEventListener('blur', this.props.onBlur);
+      }
+    }
+
+    if (this.props.onInput) {
+      if (block.tagName === 'input') {
+        block.addEventListener('input', this.props.onInput);
+      } else {
+        block
+          .querySelector('input')
+          ?.addEventListener('input', this.props.onInput);
+      }
+    }
+
+    if (this.props.onKeyup) {
+      if (block.tagName === 'input') {
+        block.addEventListener('keyup', this.props.onKeyup);
+      } else {
+        block
+          .querySelector('input')
+          ?.addEventListener('keyup', this.props.onKeyup);
       }
     }
 
