@@ -1,8 +1,20 @@
 import { Block } from '../core/block';
 
+export enum ROUTES {
+  HOME = '/',
+  LOGIN = '/login',
+  CHAT = '/chat',
+  PROFILE = '/profile',
+  SERVER_ERROR = '/500',
+  NOT_FOUND = '/404'
+}
+
 export type BlockPropsType = {
   [key: string]: any;
-  onClick?: (e?: Event) => void;
+  onClick?: (
+    setProps: SetPropsType,
+    props: { [key: string]: any }
+  ) => (e?: Event) => void;
   onBlur?: (e?: Event) => void;
 };
 
