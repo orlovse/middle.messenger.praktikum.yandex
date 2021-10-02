@@ -5,9 +5,9 @@ import { Block } from '../Block';
 // @ts-ignore
 global.DOMParser = window.DOMParser;
 
-describe('Block', () => {
+describe('Block test', () => {
   const childElement = new Block({ id: 0 }, {});
-  const element = new Block({ id: 1 }, {childElement});
+  const element = new Block({ id: 1 }, { childElement });
 
   it('Element should have child component', () => {
     expect(element.children.childElement).to.equal(childElement);

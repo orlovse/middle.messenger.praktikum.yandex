@@ -13,11 +13,11 @@ describe('Router test', () => {
   router.use('/login', componentOne).use('/profile', componentTwo).start();
 
   it('Should works add new routes', () => {
-    expect(router.routes.length).to.eq(2);
+    expect(router.routes.length).to.equal(2);
   });
 
   it('Should be correct elements on paths', () => {
-    expect(router.getRoute('/login')?._block).to.be.eq(componentOne);
-    expect(router.getRoute('/profile')?._block).to.be.eq(componentTwo);
+    expect(router.getRoute('/login')?._block).to.deep.equal(componentOne);
+    expect(router.getRoute('/profile')?._block).to.deep.equal(componentTwo);
   });
 });
