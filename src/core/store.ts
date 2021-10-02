@@ -1,4 +1,5 @@
 import { EventBus } from '../core/eventBus';
+import { ChatDataType, ChatsListType, UserStoreType } from '../types/storeTypes';
 
 export enum STORE_EVENTS {
   UPDATE = 'update'
@@ -22,24 +23,12 @@ export class Store<T> extends EventBus {
   }
 }
 
-type UserStore = {
-  avatar: string | null;
-  display_name: string | null;
-  email: string | null;
-  first_name: string | null;
-  id: string | null;
-  login: string | null;
-  phone: string | null;
-  second_name: string | null;
-  usersList: [];
-};
 
-export const authStore: Store<any> = new Store();
 
-export const chatDataStore: Store<any> = new Store();
+export const chatDataStore: Store<ChatDataType> = new Store();
 
-export const chatStore: Store<any> = new Store();
+export const chatStore: Store<ChatsListType> = new Store();
 
 export const socketStore = new Store<{ socket: WebSocket }>();
 
-export const userStore: Store<UserStore> = new Store();
+export const userStore: Store<UserStoreType> = new Store();
