@@ -164,12 +164,14 @@ export const Chat = (props) => {
           data.messages = messagesForRender;
           setProps({ loading: false, messages: messagesForRender });
         } else if (messages?.type === 'user connected') {
-
         } else {
           const newMessage = {
             ...messages,
             class: messages.user_id === data.userId && 'my',
-            userName: messages.user_id === data.userId ? data.userName : messages.user_id,
+            userName:
+              messages.user_id === data.userId
+                ? data.userName
+                : messages.user_id,
             chat_id: router.getUrlParam(),
             time: getDate(messages.time)
           };

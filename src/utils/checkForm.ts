@@ -1,5 +1,5 @@
-import { ValidationRules } from "../types";
-import { emailRegExp, phoneRegExp } from "./regex";
+import { ValidationRules } from '../types';
+import { emailRegExp, phoneRegExp } from './regex';
 
 export const checkValid = (rules: ValidationRules, value: string | number) => {
   let isValid = true;

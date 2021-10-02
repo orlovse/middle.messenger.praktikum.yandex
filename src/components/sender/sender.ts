@@ -30,7 +30,7 @@ export const Sender = (props: PropsType) => {
     props.callback(data.newMessage);
     data.newMessage = '';
     components.senderInput.setProps({ newMessage: null });
-  }
+  };
 
   const components = {
     senderInput: Input({
@@ -42,9 +42,9 @@ export const Sender = (props: PropsType) => {
         data.newMessage = value;
       },
       onKeyup: (e: KeyboardEvent) => {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
           e.preventDefault();
-          onSearch()
+          onSearch();
         }
       },
       value: data.newMessage || ''
@@ -52,7 +52,7 @@ export const Sender = (props: PropsType) => {
     senderSubmitButton: Button({
       name: props.buttonText || 'Send',
       onClick: () => () => {
-        onSearch()
+        onSearch();
       }
     })
   };
