@@ -16,10 +16,30 @@ export class Store<T> extends EventBus {
     return this.state;
   }
 
-  update(newData: T) {
+  update(newData: any) {
     this.state = { ...this.state, ...newData };
     this.emit(STORE_EVENTS.UPDATE, newData);
   }
 }
 
-export const userStore = new Store();
+type UserStore = {
+  avatar: string | null;
+  display_name: string | null;
+  email: string | null;
+  first_name: string | null;
+  id: string | null;
+  login: string | null;
+  phone: string | null;
+  second_name: string | null;
+  usersList: [];
+};
+
+export const authStore: Store<any> = new Store();
+
+export const chatDataStore: Store<any> = new Store();
+
+export const chatStore: Store<any> = new Store();
+
+export const socketStore = new Store<{ socket: WebSocket }>();
+
+export const userStore: Store<UserStore> = new Store();

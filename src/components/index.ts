@@ -1,10 +1,15 @@
 export { Avatar } from './avatar';
 export { Badge } from './badge';
 export { Button } from './button';
+export { ChatsList } from './chatsList';
 export { Contact } from './contact';
 export { Input } from './input';
+export { Loading } from './loading';
 export { LoginComponent } from './login';
 export { Menu } from './menu';
 export { Message } from './message';
 export { RegistrationComponent } from './registration';
+export { ProfileInput } from './profileInput';
+export { SearchUser } from './searchUser';
 export { Sender } from './sender';
+export { Switch } from './switch';

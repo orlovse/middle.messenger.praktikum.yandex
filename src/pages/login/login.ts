@@ -1,7 +1,11 @@
-import { LoginComponent } from '../../components';
+import { LoginComponent, RegistrationComponent } from '../../components';
 
 import { createBlock } from '../../core/createBlock';
 import { authController } from '../../controllers/authController';
+
+import { userStore } from '../../core/store';
+import { router } from '../..';
+import { ROUTES } from '../../types';
 
 import './login.scss';
 
@@ -18,6 +22,7 @@ const template = `
           <div data-component="loginComponent"></div>
         </section>
         <section class="tab-panel" id="registration">
+          <div data-component="registrationComponent"></div>
         </section>
       </div>
     </div>
@@ -25,16 +30,20 @@ const template = `
 </div>
 `;
 
-//          <div data-component="registrationComponent"></div>
-
 export const Login = () => {
   const components = {
-    loginComponent: LoginComponent()
-    //registrationComponent: RegistrationComponent()
+    loginComponent: LoginComponent(),
+    registrationComponent: RegistrationComponent()
   };
+
   const componentDidMount = () => {
-    //authController.redirectToChat()
-    return {};
+    authController.auth(() => {
+      if (router.getUrlParam() === ROUTES.LOGIN) {
+        const isAuth = Boolean(userStore?.state?.id);
+        isAuth && authController.redirectToChat();
+      }
+    });
   };
+
   return createBlock({ components, componentDidMount, template });
 };

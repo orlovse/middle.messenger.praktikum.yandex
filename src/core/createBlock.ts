@@ -25,5 +25,6 @@ export const createBlock = ({
     }
   }
 
-  return new Component();
+  const CompoentnToRender = new Component();
+  return CompoentnToRender;
 };

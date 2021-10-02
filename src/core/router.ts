@@ -113,6 +113,7 @@ export class Router {
   }
 
   getUrlParam() {
-    return window.location.pathname;
+    const pathArr = window.location.pathname.split('/');
+    return pathArr[pathArr.length - 1];
   }
 }

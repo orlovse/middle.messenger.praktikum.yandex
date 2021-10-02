@@ -4,18 +4,58 @@ import { createBlock } from '../../core/createBlock';
 import './sender.scss';
 
 const template = `
-<div class="sender">
-  <div data-component="senderInput"></div>
+<div class="sender {{ class }}">
+  <div data-component="senderInput" style="width: 100%"></div>
   <div data-component="senderSubmitButton"></div>
-  <div data-component="senderOptionsButton"></div>
 </div>
 `;
-export const Sender = () => {
-  const components = {
-    senderInput: Input({ label: 'Message', class: 'px-2' }),
-    senderSubmitButton: Button({ name: 'Send' }),
-    senderOptionsButton: Button({ name: '=>' })
+
+type PropsType = {
+  callback: (value: string) => void;
+  buttonText?: string;
+  class?: string;
+  placeholder?: string;
+};
+
+type DataType = {
+  newMessage: string;
+};
+
+export const Sender = (props: PropsType) => {
+  const data: DataType = {
+    newMessage: ''
   };
 
-  return createBlock({ components, template });
+  const onSearch = () => {
+    props.callback(data.newMessage);
+    data.newMessage = '';
+    components.senderInput.setProps({ newMessage: null });
+  }
+
+  const components = {
+    senderInput: Input({
+      placeholder: props.placeholder,
+      class: 'pr-1',
+      onInput: (e: Event) => {
+        const { target } = e;
+        const value = (target as HTMLInputElement).value;
+        data.newMessage = value;
+      },
+      onKeyup: (e: KeyboardEvent) => {
+        if(e.key === 'Enter') {
+          e.preventDefault();
+          onSearch()
+        }
+      },
+      value: data.newMessage || ''
+    }),
+    senderSubmitButton: Button({
+      name: props.buttonText || 'Send',
+      onClick: () => () => {
+        onSearch()
+      }
+    })
+  };
+
+  return createBlock({ components, data, template, props });
 };

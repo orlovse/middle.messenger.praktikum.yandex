@@ -1,6 +1,6 @@
 import { ValidationRules } from './../../types';
-import { checkValid } from '../../utils';
 import { createBlock } from '../../core/createBlock';
+import { checkValid } from '../../utils/checkForm';
 
 import './input.scss';
 
@@ -11,6 +11,10 @@ type PropsType = {
   type?: string;
   value?: string | number;
   rules?: ValidationRules;
+  placeholder?: string;
+  onInput?: (e: Event) => void;
+  onKeyup?: (e: KeyboardEvent) => void;
+  onBlurCallback?: () => void;
 };
 
 const template = `
@@ -40,7 +44,9 @@ export const Input = (props: PropsType) => {
           (messageEl as HTMLElement)?.classList.add('hide');
         }
       }
-    }
+      props.onBlurCallback && props.onBlurCallback();
+    },
+    onInput: props.onInput
   };
   return createBlock({ template, props, events });
 };

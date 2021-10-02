@@ -4,6 +4,5 @@ import './avatar.scss';
 const template = `<div class="avatar"></div>`;
 
 export const Avatar = (props) => {
-
   return createBlock({ template, props });
 };
