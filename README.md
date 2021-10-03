@@ -4,21 +4,21 @@ PR Sprint 1: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/1
 
 PR Sprint 2: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/2
 
-Project https://admiring-payne-a8eb48.netlify.app/
+Деплой проекта на netlify https://admiring-payne-a8eb48.netlify.app/
 
 Сейчас в проекте используются:
 
-- HTML;
-- Handlebars;
-- TypeScript;
-- Sass;
-- Express;
-- ESLint, Stylelint, Prettier;
-- Mocha;
+- HTML
+- Handlebars
+- TypeScript
+- Sass
+- Express
+- ESLint, Stylelint, Prettier
+- Mocha
 
 ### Сборка и запуск
 
-Сборка проекта. Используемый сборщик [Parcel](https://parceljs.org/):
+Проект собирается в [Parcel](https://parceljs.org/):
 
 ```bash
 npm run build
@@ -48,10 +48,21 @@ npm run prettier
 npm run test
 ```
 
-Реализовано переключение темы на светлую/тёмную
+Реализовано переключение темы на светлую/тёмную.
 
-Роутинг по средствам History API
+Роутинг по средствам History API.
 
 Над классом Block реализована функция-обёртка createBlock, которая принимает набор параметров и возвращает экземпляр класса.
 
-HTML парсится в Handlebars
+Функция createBlock принимает следущие параметры:
+
+- trmplate - единственный обязательный параметр
+- components - обьект, состоящий из дочерних компонентов
+- componentDidMount - функция, вызывающаяся после рендера компонента, принимает в параметрах setProps и props
+- events - объект, состоящий из ивентов
+- props - пропсы компонента
+- data - данные компонента
+
+HTML парсится в Handlebars.
+
+Ререндер компонента происходит за счёт вызова метода setProps класса Block.
