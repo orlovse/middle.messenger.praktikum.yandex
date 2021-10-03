@@ -60,8 +60,8 @@ npm run test
 
 Функция createBlock принимает следущие параметры:
 
-- template - единственный обязательный параметр - стринг с HTML разметкой, который будет парсится Handlebars
-- components - обьект, состоящий из дочерних компонентов
+- template - единственный обязательный параметр - стринг с HTML разметкой, который будет парситься Handlebars
+- components - объект, состоящий из дочерних компонентов
 - componentDidMount - функция, вызывающаяся после рендера компонента, принимает в параметрах setProps и props
 - events - объект, состоящий из ивентов
 - props - пропсы компонента
@@ -75,5 +75,19 @@ HTML парсится в Handlebars.
 - onBlur
 - onInput
 - onKeyup
+
+Для монтирования дочернего компонента, необходимо прописать в темплейте строку вида:
+
+```bash
+<div data-component="componentName"></div>
+```
+
+А переменная components, передаваемая параметром в createBlock должна быть такой:
+
+```bash
+const components = {
+  componentName: TestComponent();
+}
+```
 
 Ререндер компонента происходит за счёт вызова метода setProps класса Block.
