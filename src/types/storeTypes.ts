@@ -28,6 +28,7 @@ export type ChatDataType = {
   last_message: LastMessageType;
   title: string;
   unread_count: number;
+  class?: string;
 };
 
 export type ChatsListType = ChatDataType[];

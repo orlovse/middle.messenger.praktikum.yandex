@@ -34,3 +34,7 @@
     text-overflow: ellipsis;
   }
 }
+
+.contact.selected{
+  border: 1px solid var(--color-primary);
+}

@@ -45,11 +45,11 @@ export const Menu = () => {
       const isAuth = Boolean(userStore?.state?.id);
       data.isAuth = isAuth;
       setProps({ menuTemplateList: menuTemplateList(isAuth) });
-
       const menuList = document.querySelectorAll('a.menu-link');
-      const url = router.getUrlParam();
+      const url = router.getCurrentRoute();
       menuList?.forEach((menuItem) => {
-        if (url && menuItem.getAttribute('href')?.includes(url)) {
+        const link = menuItem.getAttribute('href') || '';
+        if (url.includes(link)) {
           menuItem.classList.add('active');
         } else {
           menuItem.classList.remove('active');
@@ -73,7 +73,7 @@ export const Menu = () => {
   };
 
   const events = {
-    onClick: (setProps) => (e: Event) => {
+    onClick: (setProps: SetPropsType) => (e: Event) => {
       e.preventDefault();
       const tag = e.target as HTMLElement;
       if (tag.tagName === 'A') {

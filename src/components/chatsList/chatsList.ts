@@ -1,9 +1,11 @@
+import { router } from './../../index';
 import { Button, Sender } from '..';
 import { chatController } from '../../controllers/chatController';
 import { SetPropsType } from '../../types';
 import { createBlock } from './../../core/createBlock';
 
 import './chatsList.scss';
+import { ChatsListType } from '../../types/storeTypes';
 
 const template = `
   <div class="chats-list-block">
@@ -21,7 +23,7 @@ const template = `
         <div>Loading!</div>
       {{else}}
         {{#each chats}}
-          <a href="/chat/{{ id }}" class="contact">
+          <a href="/chat/{{ id }}" class="contact {{ class }}">
             <div class="contact-left-block">
             <div data-href="/chat/{{ id }}" class="avatar"></div>
             <div class="content">
@@ -39,21 +41,12 @@ const template = `
   </div>
 `;
 
-type ChatType = {
-  avatar: string | null;
-  created_by: number;
-  id: number;
-  last_message: string | number;
-  title: string;
-  unread_count: number;
-};
-
 type DataType = {
-  chats: ChatType[];
+  chats: ChatsListType;
   searchValue: string;
   newChatName: string;
   isShowNewChatModal: boolean;
-  filteredChats: ChatType[];
+  filteredChats: ChatsListType;
   loading: boolean;
   setProps: SetPropsType | null;
 };
@@ -110,9 +103,16 @@ export const ChatsList = () => {
   const componentDidMount = (setProps: SetPropsType, props) => {
     data.setProps = setProps;
     setProps({ loading: true });
-    chatController.subscribeChatsUpdate((chats) => {
-      setProps({ ...props, chats: chats, loading: false });
-      data.chats = chats;
+    chatController.subscribeChatsUpdate((chats: ChatsListType) => {
+      const currentId = router.getUrlParam();
+      const chatsToRender = chats.map((chat) => {
+        if (chat.id === parseInt(currentId)) {
+          chat.class = 'selected';
+        }
+        return chat;
+      });
+      setProps({ ...props, chats: chatsToRender, loading: false });
+      data.chats = chatsToRender;
     });
     chatController.getChats();
   };

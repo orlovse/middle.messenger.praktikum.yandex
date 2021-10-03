@@ -23,7 +23,7 @@ const template = `
   <div class="main active-block">
     <div class="main-field">
       {{#if isEmptyChat}}
-        <div>Empty chat</div>
+        <div class="empty-chat">Empty chat. Create or select chat from left menu.</div>
       {{else}}
         <div class="main-top-panel">
           <span class="mx-2">{{ chatName }}</span>
@@ -51,9 +51,11 @@ const template = `
         {{/if}}
       {{/if}}
     </div>
-    <div class="wrapper">
-      <div data-component="senderComponent"></div>
-    </div>
+    {{#unless isEmptyChat}}
+      <div class="wrapper">
+        <div data-component="senderComponent"></div>
+      </div>
+    {{/unless}}
   </div>
   </div>
 </div>
@@ -126,8 +128,8 @@ export const Chat = (props) => {
     });
 
     chatController.subscribeChatUpdate((chat) => {
-      data.chatName = chat.title;
-      setProps({ chatName: chat.title });
+      data.chatName = chat?.title;
+      setProps({ chatName: chat?.title });
     });
 
     chatController.getChatData();
