@@ -2,6 +2,8 @@ PR Sprint 1: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/1
 
 PR Sprint 2: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/2
 
+PR Sprint 3: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/3
+
 Project https://admiring-payne-a8eb48.netlify.app/
 
 Сейчас в проекте используются:
