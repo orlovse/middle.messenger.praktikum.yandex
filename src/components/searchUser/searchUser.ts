@@ -5,6 +5,7 @@ import { userStore } from '../../core/store';
 import { createBlock } from './../../core/createBlock';
 
 import './searchUser.scss';
+import { ChatsListType } from '../../types/storeTypes';
 
 const template = `
   <div class="search-user">
@@ -25,7 +26,7 @@ const template = `
 `;
 
 type DataType = {
-  usersList: any;
+  usersList: ChatsListType;
   setProps: SetPropsType | null;
   noUsers: boolean;
   loading: boolean;
