@@ -34,14 +34,14 @@ export const Input = (props: PropsType) => {
     onBlur: (e: Event) => {
       const target = e.target as HTMLInputElement;
       const value = target.value;
-      const messageEl = target.nextElementSibling;
+      const messageEl = target.nextElementSibling as HTMLElement;
       if (props.rules) {
         const { isValid, currentMessage } = checkValid(props.rules, value);
         if (!isValid) {
-          (messageEl as HTMLElement).innerText = currentMessage;
-          (messageEl as HTMLElement)?.classList.remove('hide');
+          messageEl.innerText = currentMessage;
+          messageEl?.classList.remove('hide');
         } else {
-          (messageEl as HTMLElement)?.classList.add('hide');
+          messageEl?.classList.add('hide');
         }
       }
       props.onBlurCallback && props.onBlurCallback();

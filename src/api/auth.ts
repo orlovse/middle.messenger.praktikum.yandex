@@ -1,23 +1,33 @@
-import { HTTPTransport } from '../core/fetch';
+import { http } from '../core/fetch';
 import { SigninDataType, SignupDataType } from '../types/apiTypes';
 
-const http = new HTTPTransport('https://ya-praktikum.tech/api/v2/auth');
-
 export const signupAPI = async (data: SignupDataType) => {
-  await http.post('/signup', { data });
+  try {
+    await http.post('/auth/signup', { data });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const loginAPI = async (data: SigninDataType) => {
-  await http.post('/signin', { data });
+  try {
+    await http.post('/auth/signin', { data });
+  } catch (error) {
+    console.error('Login error: ', +error);
+  }
 };
 
 export const logoutAPI = () => {
-  http.post('/logout', {});
+  try {
+    http.post('/auth/logout', {});
+  } catch (error) {
+    console.error('Logout error: ', error);
+  }
 };
 
 export const getUserAPI = async () => {
   try {
-    const data = await http.get('/user', {});
+    const data = await http.get('/auth/user', {});
     return JSON.parse(data.response);
   } catch (error) {
     console.log(error);

@@ -87,7 +87,7 @@ export class ChatController {
   public async searchUser(userName: string) {
     try {
       const data = await searchUserAPI(userName);
-      const oldUserData = userStore.get()
+      const oldUserData = userStore.get();
       userStore.update({ ...oldUserData, usersList: data });
     } catch (error) {
       console.log(error);

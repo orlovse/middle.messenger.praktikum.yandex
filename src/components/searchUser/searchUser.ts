@@ -27,7 +27,7 @@ const template = `
 
 type DataType = {
   usersList: ChatsListType;
-  setProps: SetPropsType | null;
+  setProps: SetPropsType | (() => void);
   noUsers: boolean;
   loading: boolean;
 };
@@ -35,7 +35,7 @@ type DataType = {
 export const SearchUser = () => {
   const data: DataType = {
     usersList: [],
-    setProps: null,
+    setProps: () => {},
     noUsers: false,
     loading: false
   };
@@ -51,19 +51,15 @@ export const SearchUser = () => {
       placeholder: 'Search user',
       class: 'mb-2',
       callback: async (userName: string) => {
-        data.setProps && data.setProps({ loading: true });
+        data.setProps({ loading: true });
         await chatController.searchUser(userName);
-        data.setProps && data.setProps({ loading: false });
+        data.setProps({ loading: false });
         const usersList = userStore.get()?.usersList;
         data.usersList = usersList || [];
 
-        if (data.usersList.length === 0) {
-          data.noUsers = true;
-        } else {
-          data.noUsers = false;
-        }
+        data.noUsers = !data.usersList.length;
 
-        data.setProps && data.setProps({ usersList, noUsers: data.noUsers });
+        data.setProps({ usersList, noUsers: data.noUsers });
 
         const users = document.querySelectorAll('[data-user-id]');
         users.forEach((user) => {
