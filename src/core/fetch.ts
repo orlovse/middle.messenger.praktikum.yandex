@@ -9,8 +9,11 @@ const METHODS = {
   DELETE: 'DELETE'
 };
 
+const baseURL = 'https://ya-praktikum.tech/api/v2';
+
 export class HTTPTransport implements IFetch {
-  constructor(protected baseUrl: string) {}
+  baseUrl = baseURL;
+  constructor() {}
 
   get: FetchMethodType = (url, options = {}) => {
     return this.request(
@@ -88,3 +91,5 @@ export class HTTPTransport implements IFetch {
     });
   };
 }
+
+export const http = new HTTPTransport();

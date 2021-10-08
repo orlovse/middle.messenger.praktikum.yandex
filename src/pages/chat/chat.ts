@@ -123,8 +123,8 @@ export const Chat = (props) => {
   const componentDidMount = (setProps: SetPropsType) => {
     data.setProps = setProps;
     authController.auth((user) => {
-      data.userName = user.display_name;
-      setProps({ userName: user.display_name });
+      data.userName = user?.display_name;
+      setProps({ userName: user?.display_name });
     });
 
     chatController.subscribeChatUpdate((chat) => {
