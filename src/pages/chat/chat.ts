@@ -65,7 +65,7 @@ type DataType = {
   chatName: string | null;
   messages: any[];
   message: any | null;
-  setProps: SetPropsType | null;
+  setProps: SetPropsType | (() => void);
   isEmptyChat: boolean | null;
   isShowAddUser: boolean;
   loading: boolean;
@@ -80,7 +80,7 @@ export const Chat = (props) => {
     message: null,
     isEmptyChat: null,
     isShowAddUser: false,
-    setProps: null,
+    setProps: () => {},
     loading: false,
     userId: null,
     userName: null
@@ -107,7 +107,7 @@ export const Chat = (props) => {
       name: 'Add users',
       class: 'chat-button',
       onClick: () => () => {
-        data.setProps && data.setProps({ isShowAddUser: !data.isShowAddUser });
+        data.setProps({ isShowAddUser: !data.isShowAddUser });
         data.isShowAddUser = !data.isShowAddUser;
       }
     }),

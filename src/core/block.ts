@@ -84,9 +84,12 @@ export class Block implements IBlock {
 
   _render() {
     const block = createHTMLfromTemplate(this.render());
-    this._element.firstElementChild
-      ? this._element.replaceChild(block, this._element.firstElementChild)
-      : this._element.append(block);
+
+    if (this._element.firstElementChild) {
+      this._element.replaceChild(block, this._element.firstElementChild);
+    } else {
+      this._element.append(block);
+    }
 
     if (this.props.onClick) {
       const clickCallback = this.props.onClick(this.setProps, this.props);

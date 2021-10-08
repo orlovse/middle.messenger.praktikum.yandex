@@ -12,7 +12,7 @@ const template = `
     {{#if isShowNewChatModal}} 
       <div class="create-new-chat">
         <div data-component="closeNewChatComponent"></div> 
-        <div data-component="confirmNewChatComponent" style="width: 100%"></div>  
+        <div data-component="confirmNewChatComponent"></div>  
       </div>
     {{else}}
       <div data-component="addChatComponent"></div>  
@@ -48,7 +48,7 @@ type DataType = {
   isShowNewChatModal: boolean;
   filteredChats: ChatsListType;
   loading: boolean;
-  setProps: SetPropsType | null;
+  setProps: SetPropsType | (() => void);
 };
 
 export const ChatsList = () => {
@@ -59,18 +59,19 @@ export const ChatsList = () => {
     isShowNewChatModal: false,
     filteredChats: [],
     loading: false,
-    setProps: null
+    setProps: () => {}
   };
+
   const components = {
     searchComponent: Sender({
       placeholder: 'Search',
       callback: (value: string) => {
         const filteredChats = data.chats.filter((chat) => {
-          return chat?.title.toLowerCase().includes(value.toLowerCase());
+          return chat.title.toLowerCase().includes(value.toLowerCase());
         });
         data.filteredChats = filteredChats;
         const chatsToRender = value ? data.filteredChats : data.chats;
-        data.setProps && data.setProps({ chats: chatsToRender });
+        data.setProps({ chats: chatsToRender });
       },
       buttonText: 'Search'
     }),
