@@ -1,5 +1,7 @@
 .profile {
   .sheet {
+    max-width: 800px;
+    margin: 0 auto;
     height: 85vh;
     overflow: scroll;
     background-color: var(--color-secondary);
@@ -22,18 +24,34 @@
     }
 
     .fields {
+      width: 100%;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-
-      .input-component {
-        flex: 50%;
+      flex-wrap: wrap;
+    
+      &>div {
+        flex: 33%;
         padding: 0.5rem 1rem;
       }
     }
 
     .actions {
       text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile {
+    .sheet {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .profile-form .fields {    
+      &>div {
+        flex: 50%;
+      }
     }
   }
 }

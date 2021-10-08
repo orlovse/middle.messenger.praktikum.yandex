@@ -1,29 +1,26 @@
-import { createElement, reactivData } from "../../core";
-import "./message.scss";
-import { Avatar } from "../avatar";
+import { Avatar } from '../avatar';
+import { createBlock } from '../../core/createBlock';
+
+import './message.scss';
+
+const template = `
+<div class="message {{ class }}"> 
+  <div class="message-avatar">
+    <div data-component="messageAvatar"></div>
+  </div>
+  {{ text }} 
+  <span class="message-date">12:58</span>
+</div>`;
 
 type Props = {
   class?: string;
   text: string;
 };
 
-const template = `
-<div class="message {{ class }}"> 
-  <div class="message-avatar">
-    {{ components.Avatar }}
-  </div>
-  {{ props.text }} 
-  <span class="message-date">12:58</span>
-</div>`;
-
 export const Message = (props: Props) => {
-  const rData = reactivData({
-    props,
-    class: props.class || "",
-  });
-
   const components = {
-    Avatar: Avatar(),
+    messageAvatar: Avatar({})
   };
-  return createElement({ template, rData, components });
+
+  return createBlock({ template, components, props });
 };

@@ -1,24 +1,17 @@
-import { createElement, reactivData } from "../core/index";
-import "./layout.scss";
-import { Menu } from "../components/menu";
+import { createBlock } from './../core/createBlock';
+import { Menu } from '../components/menu';
 
-type Props = {
-  component: HTMLElement;
-};
+import './layout.scss';
 
 const template = `
 <div class="layout">
-  {{ components.Menu }}
-  <main class="container">
-    {{ components.Child }}
-  </main>
+  <div data-component="menuComponent"></div>
+  <main class="container" id="layout-children"></main>
 </div>
 `;
-export const Layout = (props: Props) => {
-  const rData = reactivData({ props });
-  const components = {
-    Menu: Menu(),
-    Child: props.component,
-  };
-  return createElement({ template, rData, components });
+
+export const Layout = () => {
+  const components = { menuComponent: Menu() };
+
+  return createBlock({ components, template });
 };

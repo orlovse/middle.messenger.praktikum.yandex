@@ -6,12 +6,18 @@
   height: 100%;
   flex-wrap: wrap;
 
-  &>.input-component {
+  &>div {
     flex: 50%;
     padding: 0.5rem 1rem;
   }
 
   .submit {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .registration-form {
+      padding: 0
   }
 }

@@ -18,3 +18,10 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .error .window{
+    flex-direction: column;
+    width: 90%;
+  }
+}

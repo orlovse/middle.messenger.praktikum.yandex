@@ -1,54 +1,33 @@
-import "../static/styles.scss";
-import { mountTemplate } from "./core";
-import { Chat, Error, Login, Profile } from "./pages";
-import { Layout } from "./layout";
+import 'regenerator-runtime/runtime';
+import '../static/styles.scss';
+import { authController } from './controllers/authController';
+import { Router } from './core/router';
+import { userStore } from './core/store';
+import { Layout } from './layout';
+import { Chat, Error, Login, Profile } from './pages';
+import { ROUTES } from './types';
+import { appendBlockToDOM } from './utils/appendBlockToDOM';
+import { setTheme } from './utils/theme';
 
-let path = window.location.pathname;
-const appRouts = {
-  "/": Chat(),
-  "/login": Login(),
-  "/profile": Profile(),
-  "/chat": Chat(),
-  "/error": Error({ type: "500" }),
-};
+setTheme();
 
-mountTemplate(
-  Layout({ component: appRouts[path] || Error({ type: "404" }) }) as HTMLElement
-);
+appendBlockToDOM('#app', Layout());
 
-const routing = (event: Event & { target: HTMLElement }) => {
-  if (event.target.tagName === "A") {
-    event.preventDefault();
-    const newPath = event.target.attributes[0].value;
-    if (path !== newPath) {
-      path = newPath;
-      window.history.pushState({ path: newPath }, "title", newPath);
-    }
-  } else if (event.target.classList.contains("theme-toggle")) {
-    const app = document.querySelector("#app");
-    app?.classList.toggle("theme-dark");
-    app?.classList.toggle("theme-light");
+export const router = new Router('#layout-children');
+
+authController.auth(() => {
+  const isAuth = Boolean(userStore?.state?.id);
+  if (!isAuth) {
+    router.go(ROUTES.LOGIN);
+  } else if (isAuth && !router.getUrlParam()) {
+    router.go(ROUTES.CHAT);
   }
-};
+});
 
-if (document) {
-  const app = document.querySelector("#app");
-  if (app) {
-    app.addEventListener("click", routing);
-  }
-}
-
-(function (history) {
-  const pushState = history.pushState;
-  history.pushState = function (state) {
-    if (path !== state.path) {
-      path = state.path;
-    }
-    mountTemplate(
-      Layout({
-        component: appRouts[state.path] || Error({ type: "404" }),
-      }) as HTMLElement
-    );
-    return pushState.apply(history, arguments);
-  };
-})(window.history);
+router
+  .use(ROUTES.CHAT, Chat({}))
+  .use(ROUTES.LOGIN, Login())
+  .use(ROUTES.PROFILE, Profile())
+  .use(ROUTES.SERVER_ERROR, Error({ type: '500' }))
+  .use(ROUTES.HOME, Error({ type: '404' }))
+  .start();

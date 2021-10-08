@@ -1,22 +1,13 @@
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const PORT = 3000;
-let reqPath = path.join(__dirname, "../dist/index.html");
-
+const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static("./dist"));
+app.use(express.static(__dirname + '/dist'));
 
-app.all("*", (req, res) => {
-  res.sendFile(reqPath);
+app.get('/*', (req, res) => {
+  res.sendFile(__dirname + '/dist/index.html');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server run on port http://localhost:${PORT}`);
+app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}!`);
 });
