@@ -7,7 +7,7 @@
     "build": "webpack",
     "dev": "webpack serve --open",
     "eslint": "eslint \"**/*.{ts,tsx}\"",
-    "fix": "npm audit fix ",
+    "fix": "npm audit fix",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "server": "node ./server.js",
     "start": "webpack && server",
@@ -16,8 +16,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint stylelint",
-      "pre-push": "npm run fix test"
+      "pre-commit": "npm-run-all --parallel eslint stylelint",
+      "pre-push": "npm-run-all --parallel fix test"
     }
   },
   "repository": {
