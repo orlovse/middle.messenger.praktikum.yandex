@@ -19,7 +19,7 @@
     border: none;
     box-shadow: var(--color-shadow);
     transition: box-shadow 0.3s;
-  
+
     &:focus {
       box-shadow: var(--color-shadow-active);
     }
@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 900px) {
-  .chats-list-block .chats-list{
+  .chats-list-block .chats-list {
     padding: 0 1.4rem;
   }
 }

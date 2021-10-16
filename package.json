@@ -4,13 +4,21 @@
   "description": "chat app",
   "main": "index.ts",
   "scripts": {
-    "start": "webpack && server",
-    "dev": "webpack serve --open",
-    "server": "node ./server.js",
     "build": "webpack",
+    "dev": "webpack serve --open",
+    "eslint": "eslint \"**/*.{ts,tsx}\"",
+    "fix": "npm audit fix ",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "test": "mocha -r jsdom-global/register",
-    "fix": "npm audit fix "
+    "server": "node ./server.js",
+    "start": "webpack && server",
+    "stylelint": "stylelint \"**/*.scss\"",
+    "test": "mocha -r jsdom-global/register"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint stylelint",
+      "pre-push": "npm run fix test"
+    }
   },
   "repository": {
     "type": "git",

@@ -28,8 +28,8 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-    
-      &>div {
+
+      & > div {
         flex: 33%;
         padding: 0.5rem 1rem;
       }
@@ -48,8 +48,8 @@
       padding-right: 0.5rem;
     }
 
-    .profile-form .fields {    
-      &>div {
+    .profile-form .fields {
+      & > div {
         flex: 50%;
       }
     }

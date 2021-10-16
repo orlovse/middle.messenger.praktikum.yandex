@@ -32,8 +32,8 @@
         position: absolute;
         right: 0;
         top: 52px;
-        width: 440px;   
-        background: var(--color-elements);   
+        width: 440px;
+        background: var(--color-elements);
         z-index: 2;
         padding: 1rem;
         border-radius: 0 0 0 2rem;
@@ -60,10 +60,7 @@
         }
 
         .delete-button {
-          background-color: var(--color-error)
-        }
-
-        .add-button {
+          background-color: var(--color-error);
         }
       }
     }
