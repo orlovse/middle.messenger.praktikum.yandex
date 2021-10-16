@@ -6,6 +6,8 @@ PR Sprint 2: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/2
 
 PR Sprint 3: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/3
 
+PR Sprint 4:
+
 Деплой проекта на netlify https://admiring-payne-a8eb48.netlify.app/
 
 Сейчас в проекте используются:
