@@ -9,6 +9,14 @@ PR Sprint 3: https://github.com/orlovse/middle.messenger.praktikum.yandex/pull/3
 PR Sprint 4:
 
 Деплой проекта на netlify https://admiring-payne-a8eb48.netlify.app/
+Доплой проекта на heroku https://yandex-praktikum-chat-app.herokuapp.com/
+
+## Спринт 4
+
+- Удалён Parcel. Добавлен Webpack
+- Настроен husky pre-commit
+- Добавлен Docker
+- Сайт задеплоен на Heroku
 
 Сейчас в проекте используются:
 
@@ -19,38 +27,6 @@ PR Sprint 4:
 - Express
 - ESLint, Stylelint, Prettier
 - Mocha
-
-### Сборка и запуск
-
-Проект собирается в [Parcel](https://parceljs.org/):
-
-```bash
-npm run build
-```
-
-Сборка и запуск статического сервера на Express:
-
-```bash
-npm run start
-```
-
-Сборка проекта в Parcel:
-
-```bash
-npm run dev
-```
-
-Автоматическое форматирование:
-
-```bash
-npm run prettier
-```
-
-Запуск тестов
-
-```bash
-npm run test
-```
 
 ### Функционал
 
