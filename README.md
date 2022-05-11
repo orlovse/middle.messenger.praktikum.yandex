@@ -71,7 +71,7 @@ npm run test
 
 HTML парсится в Handlebars.
 
-События, которые можно навесть на компонент или его детейЖ
+События, которые можно навесть на компонент или его детей:
 
 - onClick
 - onBlur
@@ -84,7 +84,7 @@ HTML парсится в Handlebars.
 <div data-component="componentName"></div>
 ```
 
-А переменная components, передаваемая параметром в createBlock должна быть такой:
+Переменная components, передаваемая параметром в createBlock должна быть такой:
 
 ```bash
 const components = {
