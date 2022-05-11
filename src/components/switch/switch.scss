@@ -6,6 +6,7 @@
     visibility: hidden;
     position: absolute;
   }
+
   label {
     width: 50px;
     height: 26px;
@@ -17,6 +18,7 @@
     transition: 0.5s;
     box-shadow: 0 0 20px #477a8550;
   }
+
   label::after {
     content: "";
     width: 20px;
@@ -28,11 +30,11 @@
     left: 3px;
     transition: 0.5s;
   }
-  
-  input:checked + label:after {
+
+  input:checked + label::after {
     transform: translateX(23px);
   }
-  
+
   input:checked + label {
     background-color: var(--color-third);
   }

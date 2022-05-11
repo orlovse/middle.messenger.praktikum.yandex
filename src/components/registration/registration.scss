@@ -6,7 +6,7 @@
   height: 100%;
   flex-wrap: wrap;
 
-  &>div {
+  & > div {
     flex: 50%;
     padding: 0.5rem 1rem;
   }
@@ -18,6 +18,6 @@
 
 @media screen and (max-width: 500px) {
   .registration-form {
-      padding: 0
+    padding: 0;
   }
 }
